@@ -380,7 +380,7 @@ public class CommiteeManagement extends javax.swing.JFrame {
         }
 
        
-
+            //System.out.println("Hello KZ);
 
     }//GEN-LAST:event_btnEditActionPerformed
 
