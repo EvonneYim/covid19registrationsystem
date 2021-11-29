@@ -3,22 +3,42 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CommiteeSystem;
+package System;
 
+import SystemClass.Commitee;
+import SystemClass.People;
+import SystemClass.SystemDataIO;
+import static SystemClass.SystemDataIO.allCommitee;
+import static SystemClass.SystemDataIO.allPeople;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author User
- */
 public class CommiteePeople extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CommiteePeople
-     */
+    private static ArrayList<People> p = new ArrayList<People>();
+    DefaultTableModel dtm;
+    String columnname[] = new String[]{"ID", "Name", "Address", "Age", "Gender", "Mobile No.", "Password", "Nationality"};
+    String pplID, name, address, gender, mobile, password, nationality;
+    int age;
+    
     public CommiteePeople() {
         initComponents();
+        
+        rbtnMale.setActionCommand("Male");
+        rbtnFemale.setActionCommand("Female");
+        rbtnMalaysian.setActionCommand("Malaysian");
+        rbtnNMalaysian.setActionCommand("Non-Malaysian");
+
+
+        dtm = new DefaultTableModel(columnname, 0);
+        tblPeople.setModel(dtm);
+        SystemDataIO.read();            //*readPeople();
+        DisplayTable();
     }
 
     /**
@@ -30,9 +50,11 @@ public class CommiteePeople extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        GENDER = new javax.swing.ButtonGroup();
+        NATIONALITY = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPeople = new javax.swing.JTable();
-        btnSearch = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnBack = new javax.swing.JButton();
@@ -58,9 +80,15 @@ public class CommiteePeople extends javax.swing.JFrame {
         rbtnFemale = new javax.swing.JRadioButton();
         rbtnMalaysian = new javax.swing.JRadioButton();
         rbtnNMalaysian = new javax.swing.JRadioButton();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("People Management");
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         tblPeople.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -82,6 +110,11 @@ public class CommiteePeople extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tblPeople.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPeopleMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblPeople);
         if (tblPeople.getColumnModel().getColumnCount() > 0) {
             tblPeople.getColumnModel().getColumn(1).setMinWidth(150);
@@ -93,7 +126,17 @@ public class CommiteePeople extends javax.swing.JFrame {
             tblPeople.getColumnModel().getColumn(7).setMinWidth(120);
         }
 
-        btnSearch.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtSearch.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setText("Search ");
@@ -236,6 +279,7 @@ public class CommiteePeople extends javax.swing.JFrame {
         txtAddress.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         rbtnMale.setBackground(new java.awt.Color(153, 153, 153));
+        GENDER.add(rbtnMale);
         rbtnMale.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         rbtnMale.setForeground(new java.awt.Color(102, 102, 102));
         rbtnMale.setText("Male");
@@ -246,6 +290,7 @@ public class CommiteePeople extends javax.swing.JFrame {
         });
 
         rbtnFemale.setBackground(new java.awt.Color(153, 153, 153));
+        GENDER.add(rbtnFemale);
         rbtnFemale.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         rbtnFemale.setForeground(new java.awt.Color(102, 102, 102));
         rbtnFemale.setText("Female");
@@ -256,6 +301,7 @@ public class CommiteePeople extends javax.swing.JFrame {
         });
 
         rbtnMalaysian.setBackground(new java.awt.Color(153, 153, 153));
+        NATIONALITY.add(rbtnMalaysian);
         rbtnMalaysian.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         rbtnMalaysian.setForeground(new java.awt.Color(102, 102, 102));
         rbtnMalaysian.setText("Malaysian");
@@ -266,6 +312,7 @@ public class CommiteePeople extends javax.swing.JFrame {
         });
 
         rbtnNMalaysian.setBackground(new java.awt.Color(153, 153, 153));
+        NATIONALITY.add(rbtnNMalaysian);
         rbtnNMalaysian.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         rbtnNMalaysian.setForeground(new java.awt.Color(102, 102, 102));
         rbtnNMalaysian.setText("Non-Malaysian");
@@ -274,6 +321,10 @@ public class CommiteePeople extends javax.swing.JFrame {
                 rbtnNMalaysianActionPerformed(evt);
             }
         });
+
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(102, 0, 0));
+        jLabel8.setText("*Double click here to reset fields");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -304,16 +355,16 @@ public class CommiteePeople extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtMobile, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(rbtnMale, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rbtnFemale, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(38, 38, 38)
+                                .addGap(6, 6, 6)
+                                .addComponent(rbtnMale, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbtnFemale, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtMobile, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -323,12 +374,13 @@ public class CommiteePeople extends javax.swing.JFrame {
                                         .addComponent(rbtnMalaysian, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(rbtnNMalaysian))
-                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(208, 208, 208)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -340,7 +392,7 @@ public class CommiteePeople extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -369,7 +421,8 @@ public class CommiteePeople extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMobile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -397,15 +450,129 @@ public class CommiteePeople extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        
+        try{
+            pplID = txtICPassport.getText();
+            name = txtName.getText();
+            address = txtAddress.getText();
+            age = Integer.parseInt(txtAge.getText());
+            gender = GENDER.getSelection().getActionCommand();
+            mobile = txtMobile.getText();
+            password = txtPassword.getText();
+            nationality = NATIONALITY.getSelection().getActionCommand();
+            
+            People found = SystemDataIO.checkingPeople(pplID);
+            if (found != null) {
+                JOptionPane.showMessageDialog(rootPane, "This name has been registered!");
+                
+            } else {
+                //SystemDataIO.allPeople.clear();
+                //SystemDataIO.read();
+                People p = new People(pplID, name, address, age, gender, mobile, password, nationality);
+                System.out.println(allPeople.size());
+                allPeople.add(p);
 
+                System.out.println(allPeople.size());
+                Commitee.PmodifyDetails();
+
+//                ClearText();
+//                SystemDataIO.allPeople.clear();
+                DisplayTable();
+
+                System.out.println("Added successfully!");
+                System.out.println(allPeople.size());
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane,"Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
+            
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        // TODO add your handling code here:
+         try{
+            People current = null;
+            pplID = txtICPassport.getText();
+            name = txtName.getText();
+            address = txtAddress.getText();
+            age = Integer.parseInt(txtAge.getText());
+            gender = GENDER.getSelection().getActionCommand();
+            mobile = txtMobile.getText();
+            password = txtPassword.getText();
+            nationality = NATIONALITY.getSelection().getActionCommand();
+                      
+            boolean found = false;
+            System.out.println(allPeople.size());
+            for (int i = 0; i < allPeople.size(); i++) {
+                People a = allPeople.get(i);
+                if (pplID.equals(a.getPeopleID())) {
+                    found = true;
+                    current = a;
+//                    System.out.println("Checked");
+                    break;
+                }
+            }
+            if (found) {
+
+                current.setPeopleName(name);
+                current.setAddress(address);
+                current.setAge(age);
+                current.setGender(gender);
+                current.setMobileNo(mobile);                
+                current.setPassword(password);
+                current.setNationality(nationality);
+                Commitee.PmodifyDetails();
+//                allPeople.clear();            //if no clear, will always add record into arraylisy, cannot identify duplicates
+                ClearText();
+                DisplayTable();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+        try{
+            People current = null;
+            pplID = txtICPassport.getText();
+            name = txtName.getText();
+            address = txtAddress.getText();
+            age = Integer.parseInt(txtAge.getText());
+            gender = GENDER.getSelection().getActionCommand();
+            mobile = txtMobile.getText();
+            password = txtPassword.getText();
+            nationality = NATIONALITY.getSelection().getActionCommand();
+       
+            if (pplID.isEmpty() || name.isEmpty() || address.isEmpty() || age == 0 || GENDER.getSelection().getActionCommand().isEmpty() || 
+                    mobile.isEmpty() || password.isEmpty() || NATIONALITY.getSelection().getActionCommand().isEmpty()) {
+               JOptionPane.showMessageDialog(rootPane,"Please enter complete details!","Warning", JOptionPane.WARNING_MESSAGE);
+            } else {
+                boolean found = false;
+//                SystemDataIO.read();
+
+                for (int i = 0; i < allPeople.size(); i++) {
+                    People a = allPeople.get(i);
+                    if (pplID.equals(a.getPeopleID())) {
+                        found = true;
+                        current = a;
+                        allPeople.remove(a);
+                        break;
+                    }
+                }
+
+                if (found) {
+                    Commitee.PmodifyDetails();
+//                    allPeople.clear();
+
+                    ClearText();
+                    System.out.println("Removed.");
+                    DisplayTable();
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "User not exist!", "Fail to delete", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void rbtnMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMaleActionPerformed
@@ -427,6 +594,53 @@ public class CommiteePeople extends javax.swing.JFrame {
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        
+    }//GEN-LAST:event_txtSearchActionPerformed
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        Search();
+    }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+         if (evt.getClickCount() == 2 && !evt.isConsumed()) {
+            evt.consume();
+            ClearText();
+            DisplayTable();
+            System.out.println("Double Clicked");
+        }
+                
+    }//GEN-LAST:event_formMouseClicked
+
+    private void tblPeopleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPeopleMouseClicked
+        int i;
+        i = tblPeople.getSelectedRow();
+        txtICPassport.setText(dtm.getValueAt(i, 0).toString());
+        txtName.setText(dtm.getValueAt(i, 1).toString());
+        txtAddress.setText(dtm.getValueAt(i, 2).toString());
+        txtAge.setText(dtm.getValueAt(i, 3).toString());
+        gender = dtm.getValueAt(i, 4).toString();
+
+        if (gender.equals("Male")) {
+            rbtnMale.setSelected(true);
+
+        } else {
+            rbtnFemale.setSelected(true);
+        }
+        
+        txtMobile.setText(dtm.getValueAt(i, 5).toString());
+        txtPassword.setText(dtm.getValueAt(i, 6).toString());
+        nationality = dtm.getValueAt(i, 7).toString();
+        
+        if (nationality.equals("Malaysian")) {
+            rbtnMalaysian.setSelected(true);
+
+        } else {
+            rbtnNMalaysian.setSelected(true);
+        }
+        
+    }//GEN-LAST:event_tblPeopleMouseClicked
 
     /**
      * @param args the command line arguments
@@ -465,12 +679,13 @@ public class CommiteePeople extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup GENDER;
+    private javax.swing.ButtonGroup NATIONALITY;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnLogout;
-    private javax.swing.JTextField btnSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -479,6 +694,7 @@ public class CommiteePeople extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -493,5 +709,76 @@ public class CommiteePeople extends javax.swing.JFrame {
     private javax.swing.JTextField txtMobile;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
+
+    public void DisplayTable(JTable ctable) {
+        dtm.setRowCount(0);
+        try {
+            File file = new File("People.txt");
+            Scanner sc;
+            sc = new Scanner(file);
+            while (sc.hasNextLine()) {
+                String line;
+                line = sc.nextLine();
+                if (!(line.isEmpty())) {
+                    String[] wordsinLine;
+                    wordsinLine = line.split(";");
+                    dtm.addRow(wordsinLine);
+                }
+            }
+            sc.close();
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(rootPane, "File not found.", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }
+
+    public void DisplayTable() {
+        DisplayTable(tblPeople);
+
+    }
+    
+    public void Search() {
+        String searchCommitee;
+        searchCommitee = txtSearch.getText();
+        dtm.setRowCount(0);
+
+        try {
+            File file;
+            file = new File("People.txt");
+            Scanner sc;
+            sc = new Scanner(file);
+            while (sc.hasNextLine()) {
+                String Line;
+                Line = sc.nextLine();
+                if (Line.contains(searchCommitee)) {
+                    String[] wordsinLine;
+                    wordsinLine = Line.split(";");
+                    dtm.addRow(wordsinLine);
+                }
+            }
+            sc.close();
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Please ensure all procedures are in correct manner.", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    public void ClearText() {
+        txtICPassport.setText("");
+        txtName.setText("");
+        txtAddress.setText("");
+        txtAge.setText("");
+        GENDER.clearSelection();
+        txtMobile.setText("");
+        txtPassword.setText("");
+        txtSearch.setText("");
+        NATIONALITY.clearSelection();
+        
+    }
+
+
+
+
 }
+

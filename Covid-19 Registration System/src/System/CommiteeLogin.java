@@ -1,5 +1,5 @@
 
-package CommiteeSystem;
+package System;
 import SystemClass.Commitee;
 import SystemClass.SystemDataIO;
 import javax.swing.JOptionPane;

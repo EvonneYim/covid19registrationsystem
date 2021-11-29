@@ -1,6 +1,7 @@
 package SystemClass;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -18,8 +19,13 @@ public class SystemDataIO {
 
     public static void read() {
         try {
+            allAppointments.clear();
+            allVaccines.clear();
+            allPeople.clear();
+            allCommitee.clear();
+            
             Scanner s1 = new Scanner(new File("Commitee.txt"));
-            while (s1.hasNext()) {;
+            while (s1.hasNext()) {
                 String line = s1.nextLine();
                 String[] wordsinLine;
                 String cno = null;
@@ -44,11 +50,12 @@ public class SystemDataIO {
                 String peopleID = null;
                 String peopleName = null;
                 String address = null;
-                int age = Integer.parseInt(null);
+                int age = 0;           //here got prob
                 String gender = null;
-                int mobileNo = Integer.parseInt(null);
+                String mobileNo = null;
                 String password = null;
                 String nationality = null;
+                
                 if (!(line.isEmpty())) {
 
                     wordsinLine = line.split(";");
@@ -57,7 +64,7 @@ public class SystemDataIO {
                     address = wordsinLine[2];
                     age = Integer.parseInt(wordsinLine[3]);
                     gender = wordsinLine[4];
-                    mobileNo = Integer.parseInt(wordsinLine[5]);
+                    mobileNo = wordsinLine[5];
                     password = wordsinLine[6];
                     nationality = wordsinLine[7];
                 }
@@ -129,8 +136,45 @@ public class SystemDataIO {
 
         } catch (Exception e) {
             System.out.println("Error in read!");
+            e.printStackTrace();
         }
     }
+    
+//    public static void readPeople(){
+//     try {
+//        Scanner s2 = new Scanner(new File("People.txt"));
+//            while (s2.hasNext()) {
+//                String line = s2.nextLine();
+//                String[] wordsinLine;
+//                String peopleID = null;
+//                String peopleName = null;
+//                String address = null;
+//                int age = Integer.parseInt(null);
+//                String gender = null;
+//                String mobileNo = null;
+//                String password = null;
+//                String nationality = null;
+//                
+//                if (!(line.isEmpty())) {
+//
+//                    wordsinLine = line.split(";");
+//                    peopleID = wordsinLine[0];
+//                    peopleName = wordsinLine[1];
+//                    address = wordsinLine[2];
+//                    age = Integer.parseInt(wordsinLine[3]);
+//                    gender = wordsinLine[4];
+//                    mobileNo = wordsinLine[5];
+//                    password = wordsinLine[6];
+//                    nationality = wordsinLine[7];
+//                }
+//
+//                People p = new People(peopleID, peopleName, address, age, gender, mobileNo, password, nationality);
+//                allPeople.add(p);
+//            }
+//    }catch(Exception e){
+//        System.out.println("Error in reading people!");
+//    }
+//}
 
     public static void write() {
         try {
@@ -143,7 +187,7 @@ public class SystemDataIO {
             }
             p1.close();
 
-            PrintWriter p2 = new PrintWriter("People.txt");
+            PrintWriter p2 = new PrintWriter(new FileOutputStream("People.txt", false));
             for (int i = 0; i < allPeople.size(); i++) {
                 p2.print(allPeople.get(i).getPeopleID() + ";");
                 p2.print(allPeople.get(i).getPeopleName() + ";");
@@ -190,7 +234,7 @@ public class SystemDataIO {
 
     public static Commitee checkingCommitee(String x) {
 //        System.out.println(allCommitee.size());
-        read();
+        //read();
         System.out.println(allCommitee.size());
         for (int i = 0; i < allCommitee.size(); i++) {
             if (x.equals(allCommitee.get(i).getUsername())) {
@@ -201,6 +245,9 @@ public class SystemDataIO {
     }
 
     public static People checkingPeople(String x) {
+        
+        //read();
+        System.out.println(allPeople.size());
         for (int i = 0; i < allPeople.size(); i++) {
             if (x.equals(allPeople.get(i).getPeopleID())) {
                 return allPeople.get(i);

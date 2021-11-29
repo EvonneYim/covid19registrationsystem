@@ -1,4 +1,4 @@
-package CommiteeSystem;
+package System;
 
 import SystemClass.Commitee;
 import SystemClass.SystemDataIO;
@@ -7,7 +7,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -19,18 +18,22 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class CommiteeManagement extends javax.swing.JFrame {
-
+   
     private static ArrayList<Commitee> c = new ArrayList<Commitee>();
     DefaultTableModel dtm;
     String columnname[] = new String[]{"CNO.", "Username", "Password"};
-
+    
+    String cno, username, password;
+         
     public CommiteeManagement() {
         initComponents();
         dtm = new DefaultTableModel(columnname, 0);
         tblCommitee.setModel(dtm);
 
+        SystemDataIO.read();       //readCommitee();
         AutoNumber();
         DisplayTable();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -53,6 +56,7 @@ public class CommiteeManagement extends javax.swing.JFrame {
         txtUsername = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Commitee Management");
@@ -151,9 +155,9 @@ public class CommiteeManagement extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(btnBack)
-                .addGap(44, 44, 44)
+                .addGap(64, 64, 64)
                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -202,6 +206,7 @@ public class CommiteeManagement extends javax.swing.JFrame {
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         txtCNo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCNo.setEnabled(false);
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel3.setText("Username");
@@ -215,6 +220,10 @@ public class CommiteeManagement extends javax.swing.JFrame {
 
         txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(102, 0, 0));
+        jLabel5.setText("*Double click here to reset fields");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -223,29 +232,31 @@ public class CommiteeManagement extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(115, 115, 115)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
-                                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
-                                .addComponent(txtCNo, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
-                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(40, 40, 40)
+                                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(40, 40, 40)
+                                        .addComponent(txtCNo, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(40, 40, 40)
+                                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,13 +273,18 @@ public class CommiteeManagement extends javax.swing.JFrame {
                     .addComponent(txtCNo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(45, 45, 45)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -296,100 +312,117 @@ public class CommiteeManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        String username = txtUsername.getText();
-        String cno = txtCNo.getText();
-        String password = txtPassword.getText();
-        Commitee found = SystemDataIO.checkingCommitee(username);
-        if (found != null) {
-            JOptionPane.showMessageDialog(btnAdd, "The name has been used!");
+        
+        try{
+            username = txtUsername.getText();
+            cno = txtCNo.getText();
+            password = txtPassword.getText();
+            Commitee found = SystemDataIO.checkingCommitee(username);
+            if (found != null) {
+                JOptionPane.showMessageDialog(rootPane, "The name has been used!");
 
-        } else {
-            SystemDataIO.allCommitee.clear();
-            SystemDataIO.read();
-            Commitee c = new Commitee(cno, username, password);
-            SystemDataIO.allCommitee.add(c);
+            } else {
+//                SystemDataIO.allCommitee.clear();
+//                SystemDataIO.read();
+                Commitee c = new Commitee(cno, username, password);
+                SystemDataIO.allCommitee.add(c);
 
-            Commitee.CmodifyDetails();
-            System.out.println(c.toString());
+                Commitee.CmodifyDetails();
+                System.out.println(c.toString());
 
-            AutoNumber();
-            ClearText();
-            SystemDataIO.allCommitee.clear();
-            DisplayTable();
+                AutoNumber();
+                ClearText();
+                //SystemDataIO.allCommitee.clear();
+                DisplayTable();
 
-            System.out.println("Added successfully!");
+                System.out.println("Added successfully!");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane,"Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
         }
 
 
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        Commitee current = null;
-        String cno = txtCNo.getText();
-        String username = txtUsername.getText();
-        String password = txtPassword.getText();
 
-        boolean found = false;
-        SystemDataIO.read();
-        System.out.println(allCommitee.size());
-        for (int i = 0; i < allCommitee.size(); i++) {
-            Commitee a = allCommitee.get(i);
-            if (cno.equals(a.getCno())) {
-                found = true;
-                current = a;
+        try{
+            Commitee current = null;
+            cno = txtCNo.getText();
+            username = txtUsername.getText();
+            password = txtPassword.getText();
+                      
+            boolean found = false;
+//            SystemDataIO.read();
+            System.out.println(allCommitee.size());
+            for (int i = 0; i < allCommitee.size(); i++) {
+                Commitee a = allCommitee.get(i);
+                if (cno.equals(a.getCno())) {
+                    found = true;
+                    current = a;
 //                    System.out.println("Checked");
-                break;
+                    break;
+                }
             }
+            if (found) {
+
+                current.setUsername(username);
+                current.setPassword(password);
+
+                Commitee.CmodifyDetails();
+//                allCommitee.clear();            //if no clear, will always add record into arraylisy, cannot identify duplicates
+                ClearText();
+                AutoNumber();
+                DisplayTable();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
         }
-        if (found) {
 
-            current.setUsername(username);
-            current.setPassword(password);
+       
 
-            Commitee.CmodifyDetails();
-            allCommitee.clear();            //if no clear, will always add record into arraylisy, cannot identofy duplicates
-            DisplayTable();
-        }
-
-//            if(found){
-//                String pin = p.getText();
-//                current.setPin(Integer.parseInt(pin));
-//                DefaultTableModel model = (DefaultTableModel) z1.getModel();
-//                model.setValueAt(pin,i,1);
-//            } else{
-//                JOptionPane.showMessageDialog(x,"User not exists!");
-//            }
 
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        Commitee current = null;
-        String username = txtUsername.getText();
-        String cno = txtCNo.getText();
-        
-        boolean found = false;
-        SystemDataIO.read();
+    
+        try{
+            username = txtUsername.getText();
+            cno = txtCNo.getText();
+            password = txtPassword.getText();
+            Commitee current = null;
+       
+            if (username.isEmpty() || password.isEmpty()) {
+               JOptionPane.showMessageDialog(rootPane,"Please enter complete details!","Warning", JOptionPane.WARNING_MESSAGE);
+            } else {
+                boolean found = false;
+                SystemDataIO.read();
 
-        for (int i = 0; i < allCommitee.size(); i++) {
-            Commitee a = allCommitee.get(i);
-            if (cno.equals(a.getCno())) {
-                found = true;
-                current = a;
-                allCommitee.remove(a);
-                break;
+                for (int i = 0; i < allCommitee.size(); i++) {
+                    Commitee a = allCommitee.get(i);
+                    if (cno.equals(a.getCno())) {
+                        found = true;
+                        current = a;
+                        allCommitee.remove(a);
+                        break;
+                    }
+                }
+
+                if (found) {
+                    Commitee.CmodifyDetails();
+                    allCommitee.clear();
+
+                    ClearText();
+                    System.out.println("Removed.");
+                    AutoNumber();
+                    DisplayTable();
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "User not exist!", "Fail to delete", JOptionPane.ERROR_MESSAGE);
+                }
             }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
         }
-
-        if (found) {
-            Commitee.CmodifyDetails();
-            allCommitee.clear();
-        
-            ClearText();
-            System.out.println("Removed.");
-            DisplayTable();
-        }
-
-
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
@@ -403,6 +436,7 @@ public class CommiteeManagement extends javax.swing.JFrame {
         txtCNo.setText(dtm.getValueAt(i, 0).toString());
         txtUsername.setText(dtm.getValueAt(i, 1).toString());
         txtPassword.setText(dtm.getValueAt(i, 2).toString());
+        
     }//GEN-LAST:event_tblCommiteeMouseClicked
 
     private void txtSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyTyped
@@ -417,6 +451,8 @@ public class CommiteeManagement extends javax.swing.JFrame {
         if (evt.getClickCount() == 2 && !evt.isConsumed()) {
             evt.consume();
             ClearText();
+            AutoNumber();
+            DisplayTable();
             System.out.println("Double Clicked");
         }
     }//GEN-LAST:event_formMouseClicked
@@ -466,6 +502,7 @@ public class CommiteeManagement extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblCommitee;
@@ -560,6 +597,7 @@ public class CommiteeManagement extends javax.swing.JFrame {
     public void ClearText() {
         txtUsername.setText("");
         txtPassword.setText("");
-//        SystemDataIO.allCommitee.clear();
+        txtSearch.setText("");
+        
     }
 }

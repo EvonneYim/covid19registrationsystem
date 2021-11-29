@@ -9,12 +9,12 @@ public class People {
     private String address;
     private int age;
     private String gender;
-    private int mobileNo;
+    private String mobileNo;
     private String password;
     private String nationality;
     private ArrayList<Appointment> myAppointment = new ArrayList<Appointment>();
 
-    public People(String peopleID, String peopleName, String address, int age, String gender, int mobileNo, String password, String nationality) {
+    public People(String peopleID, String peopleName, String address, int age, String gender, String mobileNo, String password, String nationality) {
         this.peopleID = peopleID;
         this.peopleName = peopleName;
         this.address = address;
@@ -65,11 +65,11 @@ public class People {
         this.gender = gender;
     }
 
-    public int getMobileNo() {
+    public String getMobileNo() {
         return mobileNo;
     }
 
-    public void setMobileNo(int mobileNo) {
+    public void setMobileNo(String mobileNo) {
         this.mobileNo = mobileNo;
     }
 

@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CommiteeSystem;
+package System;
 
 import SystemClass.SystemDataIO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -204,16 +206,19 @@ public class CommiteeOperations extends javax.swing.JFrame {
 
     private void btnCommiteeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCommiteeActionPerformed
        String input = JOptionPane.showInputDialog("Enter keyword to proceed:");
-            if(input.equals("ilovesinovac")){
-                SystemDataIO.write();
-                
+       try{
+           if(input.isEmpty()){
+               JOptionPane.showMessageDialog(rootPane,"Please enter keyword!", "Error", JOptionPane.ERROR_MESSAGE);
+           }else{
+            if(input.equals("ilovesinovac")){   
                 this.setVisible(false);
                 CommiteeManagement cm = new CommiteeManagement();
                 cm.setVisible(true);
             } else{
-                JOptionPane.showMessageDialog(rootPane,"Wrong password!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane,"Wrong password!", "Error", JOptionPane.ERROR_MESSAGE);}
+            }}catch(Exception e){
+                JOptionPane.showMessageDialog(rootPane,"Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
             }
-               
         //put input dialog to limit access
         //Hi test github features
     }//GEN-LAST:event_btnCommiteeActionPerformed

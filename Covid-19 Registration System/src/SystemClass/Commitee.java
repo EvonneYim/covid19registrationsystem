@@ -84,7 +84,7 @@ public class Commitee {
     }
     
     public static void PmodifyDetails(){
-        
+        SystemDataIO.write();
     }
     
     public static void searchAppointment(){

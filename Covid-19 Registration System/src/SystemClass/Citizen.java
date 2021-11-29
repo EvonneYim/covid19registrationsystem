@@ -4,7 +4,7 @@ package SystemClass;
 public class Citizen extends People{
     private int icNumber;
 
-    public Citizen(String peopleID, String peopleName, String address, int age, String gender, int mobileNo, String password, String nationality, int icNumber) {
+    public Citizen(String peopleID, String peopleName, String address, int age, String gender, String mobileNo, String password, String nationality, int icNumber) {
                super(peopleID, peopleName, address, age, gender, mobileNo, password, nationality);
                this.icNumber = icNumber;
     }
