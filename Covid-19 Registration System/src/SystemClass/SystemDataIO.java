@@ -139,42 +139,6 @@ public class SystemDataIO {
             e.printStackTrace();
         }
     }
-    
-//    public static void readPeople(){
-//     try {
-//        Scanner s2 = new Scanner(new File("People.txt"));
-//            while (s2.hasNext()) {
-//                String line = s2.nextLine();
-//                String[] wordsinLine;
-//                String peopleID = null;
-//                String peopleName = null;
-//                String address = null;
-//                int age = Integer.parseInt(null);
-//                String gender = null;
-//                String mobileNo = null;
-//                String password = null;
-//                String nationality = null;
-//                
-//                if (!(line.isEmpty())) {
-//
-//                    wordsinLine = line.split(";");
-//                    peopleID = wordsinLine[0];
-//                    peopleName = wordsinLine[1];
-//                    address = wordsinLine[2];
-//                    age = Integer.parseInt(wordsinLine[3]);
-//                    gender = wordsinLine[4];
-//                    mobileNo = wordsinLine[5];
-//                    password = wordsinLine[6];
-//                    nationality = wordsinLine[7];
-//                }
-//
-//                People p = new People(peopleID, peopleName, address, age, gender, mobileNo, password, nationality);
-//                allPeople.add(p);
-//            }
-//    }catch(Exception e){
-//        System.out.println("Error in reading people!");
-//    }
-//}
 
     public static void write() {
         try {

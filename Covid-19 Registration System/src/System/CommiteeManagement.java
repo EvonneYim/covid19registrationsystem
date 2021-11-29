@@ -29,6 +29,7 @@ public class CommiteeManagement extends javax.swing.JFrame {
         initComponents();
         dtm = new DefaultTableModel(columnname, 0);
         tblCommitee.setModel(dtm);
+        
 
         SystemDataIO.read();       //readCommitee();
         AutoNumber();
@@ -313,32 +314,39 @@ public class CommiteeManagement extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         
-        try{
-            username = txtUsername.getText();
-            cno = txtCNo.getText();
-            password = txtPassword.getText();
-            Commitee found = SystemDataIO.checkingCommitee(username);
-            if (found != null) {
-                JOptionPane.showMessageDialog(rootPane, "The name has been used!");
+        if (txtCNo.getText().isEmpty() || txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Please ensure all information are entered.", "Incomplete details", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
 
-            } else {
+                username = txtUsername.getText();
+                cno = txtCNo.getText();
+                password = txtPassword.getText();
+                
+                Commitee found = SystemDataIO.checkingCommitee(username);
+                if (found != null) {
+                    JOptionPane.showMessageDialog(rootPane, "The name has been used!");
+
+                } else {
 //                SystemDataIO.allCommitee.clear();
 //                SystemDataIO.read();
-                Commitee c = new Commitee(cno, username, password);
-                SystemDataIO.allCommitee.add(c);
+                    Commitee c = new Commitee(cno, username, password);
+                    SystemDataIO.allCommitee.add(c);
 
-                Commitee.CmodifyDetails();
-                System.out.println(c.toString());
+                    Commitee.CmodifyDetails();
+                    System.out.println(c.toString());
 
-                AutoNumber();
-                ClearText();
-                //SystemDataIO.allCommitee.clear();
-                DisplayTable();
+                    AutoNumber();
+                    ClearText();
+                    //SystemDataIO.allCommitee.clear();
+                    DisplayTable();
 
-                System.out.println("Added successfully!");
+                    JOptionPane.showMessageDialog(rootPane, "Added successfully!");                   
+                    System.out.println("Added successfully!");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane,"Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
         }
 
 
@@ -346,55 +354,65 @@ public class CommiteeManagement extends javax.swing.JFrame {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
 
-        try{
-            Commitee current = null;
-            cno = txtCNo.getText();
-            username = txtUsername.getText();
-            password = txtPassword.getText();
-                      
-            boolean found = false;
+         if (txtCNo.getText().isEmpty() || txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Please ensure all information are entered.", "Incomplete details", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                username = txtUsername.getText();
+                cno = txtCNo.getText();
+                password = txtPassword.getText();
+                Commitee current = null;
+                boolean found = false;
 //            SystemDataIO.read();
-            System.out.println(allCommitee.size());
-            for (int i = 0; i < allCommitee.size(); i++) {
-                Commitee a = allCommitee.get(i);
-                if (cno.equals(a.getCno())) {
-                    found = true;
-                    current = a;
+                System.out.println(allCommitee.size());
+                
+                for (int i = 0; i < allCommitee.size(); i++) {
+                    Commitee a = allCommitee.get(i);
+                    if (cno.equals(a.getCno())) {
+                        found = true;
+                        current = a;
 //                    System.out.println("Checked");
-                    break;
+                        break;
+                    }
                 }
-            }
-            if (found) {
+                if (found) {
 
-                current.setUsername(username);
-                current.setPassword(password);
+                    current.setUsername(username);
+                    current.setPassword(password);
 
-                Commitee.CmodifyDetails();
+                    Commitee.CmodifyDetails();
 //                allCommitee.clear();            //if no clear, will always add record into arraylisy, cannot identify duplicates
-                ClearText();
-                AutoNumber();
-                DisplayTable();
+                    ClearText();
+                    AutoNumber();
+                    DisplayTable();
+                    
+                    JOptionPane.showMessageDialog(rootPane, "Edited successfully!");    
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "Username not found!", "Fail to edit", JOptionPane.ERROR_MESSAGE); 
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
         }
 
-       
-            //System.out.println("Hello KZ);
+        //System.out.println("Hello KZ);
 
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
     
-        try{
-            username = txtUsername.getText();
-            cno = txtCNo.getText();
-            password = txtPassword.getText();
-            Commitee current = null;
-       
-            if (username.isEmpty() || password.isEmpty()) {
-               JOptionPane.showMessageDialog(rootPane,"Please enter complete details!","Warning", JOptionPane.WARNING_MESSAGE);
-            } else {
+        if (txtCNo.getText().isEmpty() || txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Please ensure all information are entered.", "Incomplete details", JOptionPane.WARNING_MESSAGE);
+        } else {
+            int result;
+            result = JOptionPane.showConfirmDialog(null, "Are you sure to delete this information?", "Delete Information", JOptionPane.YES_NO_OPTION);
+
+            if (result == JOptionPane.YES_OPTION) {
+            try {
+                username = txtUsername.getText();
+                cno = txtCNo.getText();
+                password = txtPassword.getText();
+                Commitee current = null;
                 boolean found = false;
                 SystemDataIO.read();
 
@@ -416,12 +434,16 @@ public class CommiteeManagement extends javax.swing.JFrame {
                     System.out.println("Removed.");
                     AutoNumber();
                     DisplayTable();
-                }else{
+                    
+                    JOptionPane.showMessageDialog(rootPane, "Deleted successfully!");  
+
+                } else {
                     JOptionPane.showMessageDialog(rootPane, "User not exist!", "Fail to delete", JOptionPane.ERROR_MESSAGE);
                 }
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
+            }}
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 

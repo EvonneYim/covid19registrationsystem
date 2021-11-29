@@ -154,7 +154,7 @@ public class CommiteeLogin extends javax.swing.JFrame{
     }//GEN-LAST:event_tbtnShowActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-                  
+     try{             
         String name = txtUsername.getText();
         String password = (new String(txtPassword.getPassword()));
         
@@ -173,7 +173,9 @@ public class CommiteeLogin extends javax.swing.JFrame{
                 } else{
                     JOptionPane.showMessageDialog(rootPane,"Wrong password!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            }}
+            }}}catch(Exception e){
+                JOptionPane.showMessageDialog(rootPane,"Fail to login!","Error", JOptionPane.ERROR_MESSAGE);
+            }
         
 
     }//GEN-LAST:event_btnLoginActionPerformed

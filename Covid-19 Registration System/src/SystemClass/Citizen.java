@@ -2,20 +2,19 @@
 package SystemClass;
 
 public class Citizen extends People{
-    private int icNumber;
+    private String icNumber;
 
-    public Citizen(String peopleID, String peopleName, String address, int age, String gender, String mobileNo, String password, String nationality, int icNumber) {
+    public Citizen(String peopleID, String peopleName, String address, int age, String gender, String mobileNo, String password, String nationality) {
                super(peopleID, peopleName, address, age, gender, mobileNo, password, nationality);
-               this.icNumber = icNumber;
+               this.icNumber = peopleID;
     }
 
-    public int getIcNumber() {
+    public String getIcNumber() {
         return icNumber;
     }
 
-    public void setIcNumber(int icNumber) {
-        this.icNumber = icNumber;
-        icNumber = Integer.parseInt(getPeopleID());
+    public void setIcNumber(String icNumber) {
+        this.icNumber = getPeopleID();
     }
     
     

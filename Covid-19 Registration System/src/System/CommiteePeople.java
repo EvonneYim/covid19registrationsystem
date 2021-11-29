@@ -5,10 +5,11 @@
  */
 package System;
 
+import SystemClass.Citizen;
 import SystemClass.Commitee;
+import SystemClass.NonCitizen;
 import SystemClass.People;
 import SystemClass.SystemDataIO;
-import static SystemClass.SystemDataIO.allCommitee;
 import static SystemClass.SystemDataIO.allPeople;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -33,7 +34,7 @@ public class CommiteePeople extends javax.swing.JFrame {
         rbtnFemale.setActionCommand("Female");
         rbtnMalaysian.setActionCommand("Malaysian");
         rbtnNMalaysian.setActionCommand("Non-Malaysian");
-
+        
 
         dtm = new DefaultTableModel(columnname, 0);
         tblPeople.setModel(dtm);
@@ -266,8 +267,18 @@ public class CommiteePeople extends javax.swing.JFrame {
         txtICPassport.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         txtAge.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtAge.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAgeKeyTyped(evt);
+            }
+        });
 
         txtMobile.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtMobile.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMobileKeyTyped(evt);
+            }
+        });
 
         txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
@@ -305,6 +316,11 @@ public class CommiteePeople extends javax.swing.JFrame {
         rbtnMalaysian.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         rbtnMalaysian.setForeground(new java.awt.Color(102, 102, 102));
         rbtnMalaysian.setText("Malaysian");
+        rbtnMalaysian.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbtnMalaysianMouseClicked(evt);
+            }
+        });
         rbtnMalaysian.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtnMalaysianActionPerformed(evt);
@@ -316,6 +332,11 @@ public class CommiteePeople extends javax.swing.JFrame {
         rbtnNMalaysian.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         rbtnNMalaysian.setForeground(new java.awt.Color(102, 102, 102));
         rbtnNMalaysian.setText("Non-Malaysian");
+        rbtnNMalaysian.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbtnNMalaysianMouseClicked(evt);
+            }
+        });
         rbtnNMalaysian.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtnNMalaysianActionPerformed(evt);
@@ -450,128 +471,153 @@ public class CommiteePeople extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+
         
-        try{
-            pplID = txtICPassport.getText();
-            name = txtName.getText();
-            address = txtAddress.getText();
-            age = Integer.parseInt(txtAge.getText());
-            gender = GENDER.getSelection().getActionCommand();
-            mobile = txtMobile.getText();
-            password = txtPassword.getText();
-            nationality = NATIONALITY.getSelection().getActionCommand();
-            
-            People found = SystemDataIO.checkingPeople(pplID);
-            if (found != null) {
-                JOptionPane.showMessageDialog(rootPane, "This name has been registered!");
-                
-            } else {
-                //SystemDataIO.allPeople.clear();
-                //SystemDataIO.read();
-                People p = new People(pplID, name, address, age, gender, mobile, password, nationality);
-                System.out.println(allPeople.size());
-                allPeople.add(p);
+        if (txtICPassport.getText().isEmpty() || txtName.getText().isEmpty() || txtAddress.getText().isEmpty() || txtAge.getText().isEmpty() || 
+                GENDER.getSelection().getActionCommand().isEmpty() || txtMobile.getText().isEmpty() || 
+                txtPassword.getText().isEmpty() || NATIONALITY.getSelection().getActionCommand().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Please ensure all information are entered.", "Incomplete details", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                pplID = txtICPassport.getText();
+                name = txtName.getText();
+                address = txtAddress.getText();
+                age = Integer.parseInt(txtAge.getText());
+                gender = GENDER.getSelection().getActionCommand();
+                mobile = txtMobile.getText();
+                password = txtPassword.getText();
+                nationality = NATIONALITY.getSelection().getActionCommand();
+                People found = SystemDataIO.checkingPeople(pplID);
+                if (found != null) {
+                    JOptionPane.showMessageDialog(rootPane, "This People account has been registered!");
 
-                System.out.println(allPeople.size());
-                Commitee.PmodifyDetails();
+                } else {
+                    //SystemDataIO.allPeople.clear();
+                    //SystemDataIO.read();
+                    People p = new People(pplID, name, address, age, gender, mobile, password, nationality);
+                    System.out.println(allPeople.size());
+                    allPeople.add(p);
 
-//                ClearText();
+                    System.out.println(allPeople.size());
+                    Commitee.PmodifyDetails();
+
+                    ClearText();
 //                SystemDataIO.allPeople.clear();
-                DisplayTable();
+                    DisplayTable();
 
-                System.out.println("Added successfully!");
-                System.out.println(allPeople.size());
+                    JOptionPane.showMessageDialog(rootPane, "Added successfully!");
+                    System.out.println(allPeople.size());
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
+
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane,"Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
-            
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-         try{
-            People current = null;
-            pplID = txtICPassport.getText();
-            name = txtName.getText();
-            address = txtAddress.getText();
-            age = Integer.parseInt(txtAge.getText());
-            gender = GENDER.getSelection().getActionCommand();
-            mobile = txtMobile.getText();
-            password = txtPassword.getText();
-            nationality = NATIONALITY.getSelection().getActionCommand();
-                      
-            boolean found = false;
-            System.out.println(allPeople.size());
-            for (int i = 0; i < allPeople.size(); i++) {
-                People a = allPeople.get(i);
-                if (pplID.equals(a.getPeopleID())) {
-                    found = true;
-                    current = a;
-//                    System.out.println("Checked");
-                    break;
-                }
-            }
-            if (found) {
-
-                current.setPeopleName(name);
-                current.setAddress(address);
-                current.setAge(age);
-                current.setGender(gender);
-                current.setMobileNo(mobile);                
-                current.setPassword(password);
-                current.setNationality(nationality);
-                Commitee.PmodifyDetails();
-//                allPeople.clear();            //if no clear, will always add record into arraylisy, cannot identify duplicates
-                ClearText();
-                DisplayTable();
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_btnEditActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        try{
-            People current = null;
-            pplID = txtICPassport.getText();
-            name = txtName.getText();
-            address = txtAddress.getText();
-            age = Integer.parseInt(txtAge.getText());
-            gender = GENDER.getSelection().getActionCommand();
-            mobile = txtMobile.getText();
-            password = txtPassword.getText();
-            nationality = NATIONALITY.getSelection().getActionCommand();
-       
-            if (pplID.isEmpty() || name.isEmpty() || address.isEmpty() || age == 0 || GENDER.getSelection().getActionCommand().isEmpty() || 
-                    mobile.isEmpty() || password.isEmpty() || NATIONALITY.getSelection().getActionCommand().isEmpty()) {
-               JOptionPane.showMessageDialog(rootPane,"Please enter complete details!","Warning", JOptionPane.WARNING_MESSAGE);
-            } else {
+        
+        if (txtICPassport.getText().isEmpty() || txtName.getText().isEmpty() || txtAddress.getText().isEmpty() || txtAge.getText().isEmpty()
+                || GENDER.getSelection().getActionCommand().isEmpty() || txtMobile.getText().isEmpty()
+                || txtPassword.getText().isEmpty() || NATIONALITY.getSelection().getActionCommand().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Please ensure all information are entered.", "Incomplete details", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                pplID = txtICPassport.getText();
+                name = txtName.getText();
+                address = txtAddress.getText();
+                age = Integer.parseInt(txtAge.getText());
+                gender = GENDER.getSelection().getActionCommand();
+                mobile = txtMobile.getText();
+                password = txtPassword.getText();
+                nationality = NATIONALITY.getSelection().getActionCommand();
+                People current = null;
                 boolean found = false;
-//                SystemDataIO.read();
-
+                System.out.println(allPeople.size());
                 for (int i = 0; i < allPeople.size(); i++) {
                     People a = allPeople.get(i);
                     if (pplID.equals(a.getPeopleID())) {
                         found = true;
                         current = a;
-                        allPeople.remove(a);
+//                    System.out.println("Checked");
                         break;
                     }
                 }
-
                 if (found) {
+                    current.setPeopleID(pplID);
+                    current.setPeopleName(name);
+                    current.setAddress(address);
+                    current.setAge(age);
+                    current.setGender(gender);
+                    current.setMobileNo(mobile);
+                    current.setPassword(password);
+                    current.setNationality(nationality);
                     Commitee.PmodifyDetails();
+//                allPeople.clear();            //if no clear, will always add record into arraylisy, cannot identify duplicates
+                    ClearText();
+                    DisplayTable();
+                    
+                    JOptionPane.showMessageDialog(rootPane, "Edited successfully!");  
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "People account not found! To renew the IC/ Passport, please add" + "\n" 
+                            +"the new information again and remove the old record for security.", 
+                            "Fail to edit", JOptionPane.ERROR_MESSAGE); 
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        
+        if (txtICPassport.getText().isEmpty() || txtName.getText().isEmpty() || txtAddress.getText().isEmpty() || txtAge.getText().isEmpty()
+                || GENDER.getSelection().getActionCommand().isEmpty() || txtMobile.getText().isEmpty()
+                || txtPassword.getText().isEmpty() || NATIONALITY.getSelection().getActionCommand().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Please ensure all information are entered.", "Incomplete details", JOptionPane.WARNING_MESSAGE);
+        } else {
+            int result;
+            result = JOptionPane.showConfirmDialog(null, "Are you sure to delete this information?", "Delete Information", JOptionPane.YES_NO_OPTION);
+
+            if (result == JOptionPane.YES_OPTION) {
+            try {
+                pplID = txtICPassport.getText();
+                name = txtName.getText();
+                address = txtAddress.getText();
+                age = Integer.parseInt(txtAge.getText());
+                gender = GENDER.getSelection().getActionCommand();
+                mobile = txtMobile.getText();
+                password = txtPassword.getText();
+                nationality = NATIONALITY.getSelection().getActionCommand();
+                People current = null;
+                boolean found = false;
+//                SystemDataIO.read();
+
+                    for (int i = 0; i < allPeople.size(); i++) {
+                        People a = allPeople.get(i);
+                        if (pplID.equals(a.getPeopleID())) {
+                            found = true;
+                            current = a;
+                            allPeople.remove(a);
+                            break;
+                        }
+                    }
+
+                    if (found) {
+                        Commitee.PmodifyDetails();
 //                    allPeople.clear();
 
-                    ClearText();
-                    System.out.println("Removed.");
-                    DisplayTable();
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "User not exist!", "Fail to delete", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
+                        ClearText();
+                        DisplayTable();
+                        
+                        JOptionPane.showMessageDialog(rootPane, "Deleted successfully!");  
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "User not exist!", "Fail to delete", JOptionPane.ERROR_MESSAGE);
+                    }
+               
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
+            }}
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -641,6 +687,71 @@ public class CommiteePeople extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_tblPeopleMouseClicked
+
+    private void txtMobileKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMobileKeyTyped
+
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+        
+        if(txtMobile.getText().length() >= 11){
+            JOptionPane.showMessageDialog(rootPane, "Please input less than 12 digits!", "Invalid phone number format", JOptionPane.WARNING_MESSAGE);
+            txtMobile.setText("");
+        }
+    }//GEN-LAST:event_txtMobileKeyTyped
+
+    private void txtAgeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAgeKeyTyped
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+        
+        if(txtAge.getText().length() >= 2){
+            JOptionPane.showMessageDialog(rootPane, "Please input less than 3 digits!", "Invalid age", JOptionPane.WARNING_MESSAGE);
+            txtAge.setText("");
+        }
+    }//GEN-LAST:event_txtAgeKeyTyped
+
+    private void rbtnMalaysianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnMalaysianMouseClicked
+
+        pplID = txtICPassport.getText();
+        password = txtPassword.getText();
+        
+        if(rbtnMalaysian.isSelected()){           
+          if(pplID.isEmpty() || password.isEmpty()){
+              JOptionPane.showMessageDialog(rootPane, "Please enter your IC and Password!", "Could not verify identification", JOptionPane.ERROR_MESSAGE);
+              NATIONALITY.clearSelection();
+          }else{
+            Citizen c = new Citizen(pplID, name, address, age, gender, mobile, password, nationality);
+            c.setIcNumber(pplID);
+            c.setPassword(password);
+            System.out.println(c.getIcNumber() + c.getPassword());
+            JOptionPane.showMessageDialog(rootPane, "The IC entered will be your future login access:"
+                    +"\n" + "Username: " + c.getIcNumber() + "\n" + "Passport: " + c.getPassword() , "IC as People Account ID", JOptionPane.INFORMATION_MESSAGE);
+        }}
+     
+    }//GEN-LAST:event_rbtnMalaysianMouseClicked
+
+    private void rbtnNMalaysianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnNMalaysianMouseClicked
+        pplID = txtICPassport.getText();
+        password = txtPassword.getText();
+        
+        if(rbtnNMalaysian.isSelected()){           
+          if(pplID.isEmpty() || password.isEmpty()){
+              JOptionPane.showMessageDialog(rootPane, "Please enter your Passport and Password!", "Could not verify identification", JOptionPane.ERROR_MESSAGE);
+              NATIONALITY.clearSelection();
+          }else{
+            NonCitizen nc = new NonCitizen(pplID, name, address, age, gender, mobile, password, nationality);
+            nc.setPassportNumber(pplID);
+            nc.setPassword(password);
+            System.out.println(nc.getPassportNumber() + nc.getPassword());
+            JOptionPane.showMessageDialog(rootPane, "The Passport entered will be your future login access:"
+                    +"\n" + "Username: " + nc.getPassportNumber() + "\n" + "Passport: " + nc.getPassword() , "Passport as People Account ID", JOptionPane.INFORMATION_MESSAGE);
+        }}
+    }//GEN-LAST:event_rbtnNMalaysianMouseClicked
 
     /**
      * @param args the command line arguments

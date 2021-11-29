@@ -488,6 +488,9 @@
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAgeKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtMobile">
       <Properties>
@@ -495,6 +498,9 @@
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtMobileKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPassword">
       <Properties>
@@ -570,6 +576,7 @@
         <Property name="text" type="java.lang.String" value="Malaysian"/>
       </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rbtnMalaysianMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtnMalaysianActionPerformed"/>
       </Events>
     </Component>
@@ -590,6 +597,7 @@
         <Property name="text" type="java.lang.String" value="Non-Malaysian"/>
       </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rbtnNMalaysianMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtnNMalaysianActionPerformed"/>
       </Events>
     </Component>
