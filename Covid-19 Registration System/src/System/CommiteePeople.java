@@ -82,6 +82,7 @@ public class CommiteePeople extends javax.swing.JFrame {
         rbtnMalaysian = new javax.swing.JRadioButton();
         rbtnNMalaysian = new javax.swing.JRadioButton();
         jLabel8 = new javax.swing.JLabel();
+        btnPlaceApp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("People Management");
@@ -347,14 +348,27 @@ public class CommiteePeople extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(102, 0, 0));
         jLabel8.setText("*Double click here to reset fields");
 
+        btnPlaceApp.setBackground(new java.awt.Color(102, 102, 102));
+        btnPlaceApp.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnPlaceApp.setForeground(new java.awt.Color(204, 204, 204));
+        btnPlaceApp.setText("Place Appointment");
+        btnPlaceApp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlaceAppActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnPlaceApp, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -397,13 +411,14 @@ public class CommiteePeople extends javax.swing.JFrame {
                                         .addComponent(rbtnNMalaysian))
                                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(208, 208, 208)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)))
                 .addContainerGap(27, Short.MAX_VALUE))
@@ -444,7 +459,9 @@ public class CommiteePeople extends javax.swing.JFrame {
                     .addComponent(txtMobile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(btnPlaceApp, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -753,6 +770,64 @@ public class CommiteePeople extends javax.swing.JFrame {
         }}
     }//GEN-LAST:event_rbtnNMalaysianMouseClicked
 
+    private void btnPlaceAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceAppActionPerformed
+
+        if (txtICPassport.getText().isEmpty() || txtName.getText().isEmpty() || txtAddress.getText().isEmpty() || txtAge.getText().isEmpty()
+                || GENDER.getSelection().getActionCommand().isEmpty() || txtMobile.getText().isEmpty()
+                || txtPassword.getText().isEmpty() || NATIONALITY.getSelection().getActionCommand().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Please ensure all information are entered.", "Incomplete details", JOptionPane.WARNING_MESSAGE);
+        } else {
+            int result;
+            result = JOptionPane.showConfirmDialog(null, "Are you sure to place appointment for this account?", "Place appointmnet", JOptionPane.YES_NO_OPTION);
+
+            if (result == JOptionPane.YES_OPTION) {
+                try {
+                    pplID = txtICPassport.getText();
+                    name = txtName.getText();
+                    address = txtAddress.getText();
+                    age = Integer.parseInt(txtAge.getText());
+                    gender = GENDER.getSelection().getActionCommand();
+                    mobile = txtMobile.getText();
+                    password = txtPassword.getText();
+                    nationality = NATIONALITY.getSelection().getActionCommand();
+                    People found = SystemDataIO.checkingPeople(pplID);
+                    if (found != null) {
+                        CommiteeAppointment ca = new CommiteeAppointment();
+
+                        ca.txtICPassport.setText(pplID);
+                        ca.txtName.setText(name);
+                        ca.lblAppID.setText("not set");
+                        ca.jdAppDate.setCalendar(null);
+                        ca.cboAppTime.setSelectedItem("-");
+                        ca.cboCentre.setSelectedItem("-");
+                        ca.spinDose.setValue(1);
+                        
+                        String defaultAppStatus = "Pending";
+                        String defaultVacStatus = "Rejected";
+                        
+//                        People p = new People(pplID, name, address, age, gender, mobile, password, nationality);
+//                        System.out.println(allPeople.size());
+//                        allPeople.add(p);
+//
+//                        System.out.println(allPeople.size());
+//                        Commitee.modifyAppointment();
+//                        
+                        
+                        this.setVisible(false);
+                        ca.setVisible(true);
+                        
+                        //store in Appointment arraylist and textfile
+
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Please update this People account to proceed!", "Fail to place appointments", JOptionPane.WARNING_MESSAGE);
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnPlaceAppActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -797,6 +872,7 @@ public class CommiteePeople extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnPlaceApp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -887,9 +963,6 @@ public class CommiteePeople extends javax.swing.JFrame {
         NATIONALITY.clearSelection();
         
     }
-
-
-
 
 }
 

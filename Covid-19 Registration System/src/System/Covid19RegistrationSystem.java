@@ -1,31 +1,47 @@
 package System;
 
 import SystemClass.Commitee;
+import SystemClass.People;
 import SystemClass.SystemDataIO;
 
-public class Covid19RegistrationSystem {        //public static got prob
+public class Covid19RegistrationSystem {       
 
-    public static CommiteeLogin first;
-    public static CommiteeOperations second;
-    public static CommiteeManagement third;
-    public static CommiteePeople fourth;
-    public static CommiteeAppointment fifth;
-    public static CommiteeVaccines sixth;
+    public static CommiteeLogin cfirst;
+    public static CommiteeOperations csecond;
+    public static CommiteeManagement cthird;
+    public static CommiteePeople cfourth;
+    public static CommiteeAppointment cfifth;
+    public static CommiteeVaccines csixth;
+    
+    public static Signup pfirst;
+    public static Login psecond;
+    public static Main_Page pthird;
+    public static Register_Appointment pfourth;
+    
+    public static Home_Page main;
 
-    public static Commitee login;
+    public static Commitee clogin;
+    public static People plogin;
 
     public static void main(String[] args) {
         
 //        SystemDataIO.read();
         
-        first = new CommiteeLogin();
-        second = new CommiteeOperations();
-        third = new CommiteeManagement();
-        fourth = new CommiteePeople();
-        fifth = new CommiteeAppointment();
-        sixth = new CommiteeVaccines();
+        cfirst = new CommiteeLogin();
+        csecond = new CommiteeOperations();
+        cthird = new CommiteeManagement();
+        cfourth = new CommiteePeople();
+        cfifth = new CommiteeAppointment();
+        csixth = new CommiteeVaccines();
         
-        first.setVisible(true);
+        pfirst = new Signup();
+        psecond = new Login();
+        pthird = new Main_Page();
+        pfourth = new Register_Appointment();
+        
+        main = new Home_Page();
+        
+        main.setVisible(true);
     }
 
 }

@@ -92,7 +92,7 @@ public class Commitee {
     }
     
     public static void modifyAppointment(){
-        
+        SystemDataIO.write();
     }
     
     public static void searchVacSupply(){

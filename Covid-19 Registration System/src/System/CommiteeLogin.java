@@ -167,9 +167,9 @@ public class CommiteeLogin extends javax.swing.JFrame{
             } else{
                 
                 if(password.equals(found.getPassword())){
-                    Covid19RegistrationSystem.login = found;
+                    Covid19RegistrationSystem.clogin = found;
                     setVisible(false);
-                    Covid19RegistrationSystem.second.setVisible(true);
+                    Covid19RegistrationSystem.csecond.setVisible(true);
                 } else{
                     JOptionPane.showMessageDialog(rootPane,"Wrong password!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
