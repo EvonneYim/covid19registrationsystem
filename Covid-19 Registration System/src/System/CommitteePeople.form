@@ -87,9 +87,9 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="rbtnMalaysian" min="-2" pref="93" max="-2" attributes="0"/>
+                                      <Component id="rbtnCitizen" min="-2" pref="93" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="rbtnNMalaysian" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rbtnNCitizen" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="txtPassword" min="-2" pref="150" max="-2" attributes="0"/>
                               </Group>
@@ -105,12 +105,12 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="20" max="32767" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="940" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="27" max="32767" attributes="0"/>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -142,8 +142,8 @@
                           <Component id="jLabel11" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="rbtnMale" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="rbtnFemale" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="rbtnMalaysian" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="rbtnNMalaysian" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rbtnCitizen" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rbtnNCitizen" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="txtName" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -566,7 +566,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtnFemaleActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="rbtnMalaysian">
+    <Component class="javax.swing.JRadioButton" name="rbtnCitizen">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="99" red="99" type="rgb"/>
@@ -580,14 +580,14 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="66" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Malaysian"/>
+        <Property name="text" type="java.lang.String" value="Citizen"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rbtnMalaysianMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtnMalaysianActionPerformed"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rbtnCitizenMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtnCitizenActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="rbtnNMalaysian">
+    <Component class="javax.swing.JRadioButton" name="rbtnNCitizen">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="99" red="99" type="rgb"/>
@@ -601,11 +601,11 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="66" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Non-Malaysian"/>
+        <Property name="text" type="java.lang.String" value="Non-Citizen"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rbtnNMalaysianMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtnNMalaysianActionPerformed"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rbtnNCitizenMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtnNCitizenActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">

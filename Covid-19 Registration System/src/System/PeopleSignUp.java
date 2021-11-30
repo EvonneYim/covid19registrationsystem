@@ -27,8 +27,8 @@ public class PeopleSignUp extends javax.swing.JFrame {
         
         rbtnmale.setActionCommand("Male");
         rbtnfemale.setActionCommand("Female");
-        rbtncitizen.setActionCommand("Malaysian");
-        rbtnnoncitizen.setActionCommand("Non-Malaysian");
+        rbtncitizen.setActionCommand("Citizen");
+        rbtnnoncitizen.setActionCommand("Non-Citizen");
         SystemDataIO.read();
     }
 

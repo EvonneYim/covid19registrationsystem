@@ -32,8 +32,8 @@ public class CommitteePeople extends javax.swing.JFrame {
         
         rbtnMale.setActionCommand("Male");
         rbtnFemale.setActionCommand("Female");
-        rbtnMalaysian.setActionCommand("Malaysian");
-        rbtnNMalaysian.setActionCommand("Non-Malaysian");
+        rbtnCitizen.setActionCommand("Citizen");
+        rbtnNCitizen.setActionCommand("Non-Citizen");
         
 
         dtm = new DefaultTableModel(columnname, 0);
@@ -79,8 +79,8 @@ public class CommitteePeople extends javax.swing.JFrame {
         txtAddress = new javax.swing.JTextField();
         rbtnMale = new javax.swing.JRadioButton();
         rbtnFemale = new javax.swing.JRadioButton();
-        rbtnMalaysian = new javax.swing.JRadioButton();
-        rbtnNMalaysian = new javax.swing.JRadioButton();
+        rbtnCitizen = new javax.swing.JRadioButton();
+        rbtnNCitizen = new javax.swing.JRadioButton();
         jLabel8 = new javax.swing.JLabel();
         btnPlaceApp = new javax.swing.JButton();
 
@@ -312,35 +312,35 @@ public class CommitteePeople extends javax.swing.JFrame {
             }
         });
 
-        rbtnMalaysian.setBackground(new java.awt.Color(153, 153, 153));
-        NATIONALITY.add(rbtnMalaysian);
-        rbtnMalaysian.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        rbtnMalaysian.setForeground(new java.awt.Color(102, 102, 102));
-        rbtnMalaysian.setText("Malaysian");
-        rbtnMalaysian.addMouseListener(new java.awt.event.MouseAdapter() {
+        rbtnCitizen.setBackground(new java.awt.Color(153, 153, 153));
+        NATIONALITY.add(rbtnCitizen);
+        rbtnCitizen.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        rbtnCitizen.setForeground(new java.awt.Color(102, 102, 102));
+        rbtnCitizen.setText("Citizen");
+        rbtnCitizen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rbtnMalaysianMouseClicked(evt);
+                rbtnCitizenMouseClicked(evt);
             }
         });
-        rbtnMalaysian.addActionListener(new java.awt.event.ActionListener() {
+        rbtnCitizen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtnMalaysianActionPerformed(evt);
+                rbtnCitizenActionPerformed(evt);
             }
         });
 
-        rbtnNMalaysian.setBackground(new java.awt.Color(153, 153, 153));
-        NATIONALITY.add(rbtnNMalaysian);
-        rbtnNMalaysian.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        rbtnNMalaysian.setForeground(new java.awt.Color(102, 102, 102));
-        rbtnNMalaysian.setText("Non-Malaysian");
-        rbtnNMalaysian.addMouseListener(new java.awt.event.MouseAdapter() {
+        rbtnNCitizen.setBackground(new java.awt.Color(153, 153, 153));
+        NATIONALITY.add(rbtnNCitizen);
+        rbtnNCitizen.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        rbtnNCitizen.setForeground(new java.awt.Color(102, 102, 102));
+        rbtnNCitizen.setText("Non-Citizen");
+        rbtnNCitizen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rbtnNMalaysianMouseClicked(evt);
+                rbtnNCitizenMouseClicked(evt);
             }
         });
-        rbtnNMalaysian.addActionListener(new java.awt.event.ActionListener() {
+        rbtnNCitizen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtnNMalaysianActionPerformed(evt);
+                rbtnNCitizenActionPerformed(evt);
             }
         });
 
@@ -406,9 +406,9 @@ public class CommitteePeople extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(rbtnMalaysian, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(rbtnCitizen, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rbtnNMalaysian))
+                                        .addComponent(rbtnNCitizen))
                                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -418,10 +418,10 @@ public class CommitteePeople extends javax.swing.JFrame {
                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(20, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -449,8 +449,8 @@ public class CommitteePeople extends javax.swing.JFrame {
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(rbtnMale)
                             .addComponent(rbtnFemale)
-                            .addComponent(rbtnMalaysian)
-                            .addComponent(rbtnNMalaysian)))
+                            .addComponent(rbtnCitizen)
+                            .addComponent(rbtnNCitizen)))
                     .addComponent(txtName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -646,13 +646,13 @@ public class CommitteePeople extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rbtnFemaleActionPerformed
 
-    private void rbtnMalaysianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMalaysianActionPerformed
+    private void rbtnCitizenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnCitizenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rbtnMalaysianActionPerformed
+    }//GEN-LAST:event_rbtnCitizenActionPerformed
 
-    private void rbtnNMalaysianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnNMalaysianActionPerformed
+    private void rbtnNCitizenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnNCitizenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rbtnNMalaysianActionPerformed
+    }//GEN-LAST:event_rbtnNCitizenActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
@@ -696,11 +696,11 @@ public class CommitteePeople extends javax.swing.JFrame {
         txtPassword.setText(dtm.getValueAt(i, 6).toString());
         nationality = dtm.getValueAt(i, 7).toString();
         
-        if (nationality.equals("Malaysian")) {
-            rbtnMalaysian.setSelected(true);
+        if (nationality.equals("Citizen")) {
+            rbtnCitizen.setSelected(true);
 
         } else {
-            rbtnNMalaysian.setSelected(true);
+            rbtnNCitizen.setSelected(true);
         }
         
     }//GEN-LAST:event_tblPeopleMouseClicked
@@ -732,12 +732,12 @@ public class CommitteePeople extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtAgeKeyTyped
 
-    private void rbtnMalaysianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnMalaysianMouseClicked
+    private void rbtnCitizenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnCitizenMouseClicked
 
         pplID = txtICPassport.getText();
         password = txtPassword.getText();
         
-        if(rbtnMalaysian.isSelected()){           
+        if(rbtnCitizen.isSelected()){           
           if(pplID.isEmpty() || password.isEmpty()){
               JOptionPane.showMessageDialog(rootPane, "Please enter your IC and Password!", "Could not verify identification", JOptionPane.ERROR_MESSAGE);
               NATIONALITY.clearSelection();
@@ -750,13 +750,13 @@ public class CommitteePeople extends javax.swing.JFrame {
                     +"\n" + "Username: " + c.getIcNumber() + "\n" + "Passport: " + c.getPassword() , "IC as People Account ID", JOptionPane.INFORMATION_MESSAGE);
         }}
      
-    }//GEN-LAST:event_rbtnMalaysianMouseClicked
+    }//GEN-LAST:event_rbtnCitizenMouseClicked
 
-    private void rbtnNMalaysianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnNMalaysianMouseClicked
+    private void rbtnNCitizenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnNCitizenMouseClicked
         pplID = txtICPassport.getText();
         password = txtPassword.getText();
         
-        if(rbtnNMalaysian.isSelected()){           
+        if(rbtnNCitizen.isSelected()){           
           if(pplID.isEmpty() || password.isEmpty()){
               JOptionPane.showMessageDialog(rootPane, "Please enter your Passport and Password!", "Could not verify identification", JOptionPane.ERROR_MESSAGE);
               NATIONALITY.clearSelection();
@@ -768,7 +768,7 @@ public class CommitteePeople extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "The Passport entered will be your future login access:"
                     +"\n" + "Username: " + nc.getPassportNumber() + "\n" + "Passport: " + nc.getPassword() , "Passport as People Account ID", JOptionPane.INFORMATION_MESSAGE);
         }}
-    }//GEN-LAST:event_rbtnNMalaysianMouseClicked
+    }//GEN-LAST:event_rbtnNCitizenMouseClicked
 
     private void btnPlaceAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceAppActionPerformed
 
@@ -887,10 +887,10 @@ public class CommitteePeople extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton rbtnCitizen;
     private javax.swing.JRadioButton rbtnFemale;
-    private javax.swing.JRadioButton rbtnMalaysian;
     private javax.swing.JRadioButton rbtnMale;
-    private javax.swing.JRadioButton rbtnNMalaysian;
+    private javax.swing.JRadioButton rbtnNCitizen;
     private javax.swing.JTable tblPeople;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtAge;
