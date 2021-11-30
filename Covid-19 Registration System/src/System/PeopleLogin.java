@@ -1,7 +1,9 @@
 package System;
 
+import static System.Covid19RegistrationSystem.pthird;
 import SystemClass.People;
 import SystemClass.SystemDataIO;
+import static SystemClass.SystemDataIO.allPeople;
 import javax.swing.JOptionPane;
 
 public class PeopleLogin extends javax.swing.JFrame {
@@ -111,7 +113,8 @@ public class PeopleLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnbackActionPerformed
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
-     try{             
+    
+        try{             
         String peopleID = txticpassport.getText();
         String password = (new String(txtpassword.getPassword()));
         
@@ -121,12 +124,53 @@ public class PeopleLogin extends javax.swing.JFrame {
             People found = SystemDataIO.checkingPeople(peopleID);
             if(found == null){
                 JOptionPane.showMessageDialog(rootPane,"Account does not exist!","Warning", JOptionPane.WARNING_MESSAGE);
-            } else{
+            } else{               
                 
                 if(password.equals(found.getPassword())){
                     Covid19RegistrationSystem.plogin = found;
                     setVisible(false);
                     Covid19RegistrationSystem.pthird.setVisible(true);
+                    
+                    People current = null;
+                    boolean check = false;
+                    System.out.println(allPeople.size());
+                    for (int i = 0; i < allPeople.size(); i++) {
+                        People a = allPeople.get(i);
+                        if (peopleID.equals(a.getPeopleID())) {
+                            check = true;
+                            current = a;
+                            break;
+                        }
+                    }
+                    if (check) {                       
+                        pthird.rbtnmale.setActionCommand("Male");
+                        pthird.rbtnfemale.setActionCommand("Female");
+                        pthird.rbtncitizen.setActionCommand("Citizen");
+                        pthird.rbtnnoncitizen.setActionCommand("Non-Citizen");
+                        pthird.txtid.setText(current.getPeopleID());
+                        pthird.txtname.setText(current.getPeopleName());
+                        pthird.txtaddress.setText(current.getAddress());
+                        pthird.txtage.setText(String.valueOf(current.getAge()));
+                        if (current.getGender().equals("Male")) {
+                            pthird.rbtnmale.setSelected(true);
+
+                        } else {
+                            pthird.rbtnfemale.setSelected(true);
+                        }
+                        System.out.println(current.getGender());
+                        pthird.txtmobileno.setText(current.getMobileNo());
+                         if (current.getNationality().equals("Citizen")) {
+                            pthird.rbtncitizen.setSelected(true);
+
+                        } else {
+                            pthird.rbtnnoncitizen.setSelected(true);
+                        }
+                        pthird.txtpassword.setText(current.getPassword());
+                    }
+
+                        
+                    
+                    
                 } else{
                     JOptionPane.showMessageDialog(rootPane,"Wrong password!", "Error", JOptionPane.ERROR_MESSAGE);
                     
@@ -135,6 +179,8 @@ public class PeopleLogin extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane,"Fail to login!","Error", JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
             }
+ 
+     
     }//GEN-LAST:event_btnloginActionPerformed
 
     private void btnshowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnshowActionPerformed

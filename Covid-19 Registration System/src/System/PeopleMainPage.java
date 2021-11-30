@@ -5,6 +5,8 @@
  */
 package System;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author user
@@ -27,6 +29,8 @@ public class PeopleMainPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Gender = new javax.swing.ButtonGroup();
+        Nationality = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         lblid = new javax.swing.JLabel();
@@ -40,18 +44,34 @@ public class PeopleMainPage extends javax.swing.JFrame {
         txtname = new javax.swing.JTextField();
         txtaddress = new javax.swing.JTextField();
         txtage = new javax.swing.JTextField();
-        txtgender = new javax.swing.JTextField();
         txtmobileno = new javax.swing.JTextField();
-        txtnationality = new javax.swing.JTextField();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        btnsave = new javax.swing.JButton();
+        btnedit = new javax.swing.JButton();
+        btncancel = new javax.swing.JButton();
+        lblpassword = new javax.swing.JLabel();
+        txtpassword = new javax.swing.JTextField();
+        rbtnmale = new javax.swing.JRadioButton();
+        rbtnfemale = new javax.swing.JRadioButton();
+        rbtncitizen = new javax.swing.JRadioButton();
+        rbtnnoncitizen = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
+        lbltime = new javax.swing.JLabel();
+        txtdose = new javax.swing.JTextField();
+        txtdate = new javax.swing.JTextField();
+        lblstatus = new javax.swing.JLabel();
+        lblcentre = new javax.swing.JLabel();
+        txtstatus = new javax.swing.JTextField();
+        txttime = new javax.swing.JTextField();
+        lblvacstatus = new javax.swing.JLabel();
+        txtcentre = new javax.swing.JTextField();
+        txtvacstatus = new javax.swing.JTextField();
+        lblvaccine = new javax.swing.JLabel();
+        txtvaccine = new javax.swing.JTextField();
+        lbldate = new javax.swing.JLabel();
         btnregister = new javax.swing.JButton();
-        btnview = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        lbldose = new javax.swing.JLabel();
         lblWelcome = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        btnlogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,6 +120,11 @@ public class PeopleMainPage extends javax.swing.JFrame {
                 txtnameActionPerformed(evt);
             }
         });
+        txtname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnameKeyTyped(evt);
+            }
+        });
 
         txtaddress.setEditable(false);
         txtaddress.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -116,12 +141,9 @@ public class PeopleMainPage extends javax.swing.JFrame {
                 txtageActionPerformed(evt);
             }
         });
-
-        txtgender.setEditable(false);
-        txtgender.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        txtgender.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtgenderActionPerformed(evt);
+        txtage.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtageKeyTyped(evt);
             }
         });
 
@@ -133,77 +155,113 @@ public class PeopleMainPage extends javax.swing.JFrame {
             }
         });
 
-        txtnationality.setEditable(false);
-        txtnationality.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        txtnationality.addActionListener(new java.awt.event.ActionListener() {
+        btnsave.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnsave.setText("Save");
+        btnsave.setEnabled(false);
+        btnsave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnationalityActionPerformed(evt);
+                btnsaveActionPerformed(evt);
             }
         });
 
-        jButton7.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jButton7.setText("Save");
-        jButton7.setEnabled(false);
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btnedit.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnedit.setText("Edit");
+        btnedit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btneditActionPerformed(evt);
             }
         });
 
-        jButton8.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jButton8.setText("Edit");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        btncancel.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btncancel.setText("Cancel");
+        btncancel.setEnabled(false);
+        btncancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                btncancelActionPerformed(evt);
             }
         });
 
-        jButton9.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jButton9.setText("Cancel");
-        jButton9.setEnabled(false);
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        lblpassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblpassword.setText("Password:");
+        lblpassword.setToolTipText("");
+
+        txtpassword.setEditable(false);
+        txtpassword.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        txtpassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                txtpasswordActionPerformed(evt);
             }
         });
+
+        Gender.add(rbtnmale);
+        rbtnmale.setFont(new java.awt.Font("Verdana", 1, 13)); // NOI18N
+        rbtnmale.setText("Male");
+        rbtnmale.setEnabled(false);
+
+        Gender.add(rbtnfemale);
+        rbtnfemale.setFont(new java.awt.Font("Verdana", 1, 13)); // NOI18N
+        rbtnfemale.setText("Female");
+        rbtnfemale.setEnabled(false);
+
+        Nationality.add(rbtncitizen);
+        rbtncitizen.setFont(new java.awt.Font("Verdana", 1, 13)); // NOI18N
+        rbtncitizen.setText("Citizen");
+        rbtncitizen.setEnabled(false);
+
+        Nationality.add(rbtnnoncitizen);
+        rbtnnoncitizen.setFont(new java.awt.Font("Verdana", 1, 13)); // NOI18N
+        rbtnnoncitizen.setText("Non-Citizen");
+        rbtnnoncitizen.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblpassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbladdress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblage, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                    .addComponent(lblgender, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                    .addComponent(lblmoblieno, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                    .addComponent(lblage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblgender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblmoblieno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblnationality, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(txtage, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtgender, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtnationality, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtmobileno, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtage, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnsave, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(rbtnmale)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(rbtnfemale)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btncancel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtmobileno, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txtaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnedit, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(24, 24, 24))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(rbtncitizen)
+                                .addGap(18, 18, 18)
+                                .addComponent(rbtnnoncitizen))
+                            .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,17 +278,19 @@ public class PeopleMainPage extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbladdress, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8))
+                    .addComponent(btnedit))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblage, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtage, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7))
+                    .addComponent(btnsave))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblgender, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtgender, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton9))
+                    .addComponent(btncancel)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(rbtnmale)
+                        .addComponent(rbtnfemale)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblmoblieno, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,11 +298,97 @@ public class PeopleMainPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblnationality, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtnationality, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(rbtncitizen)
+                        .addComponent(rbtnnoncitizen)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Profile", jPanel1);
+
+        lbltime.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbltime.setText("Time:");
+        lbltime.setToolTipText("");
+
+        txtdose.setEditable(false);
+        txtdose.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        txtdose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtdoseActionPerformed(evt);
+            }
+        });
+
+        txtdate.setEditable(false);
+        txtdate.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        txtdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtdateActionPerformed(evt);
+            }
+        });
+
+        lblstatus.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblstatus.setText("Status:");
+        lblstatus.setToolTipText("");
+
+        lblcentre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblcentre.setText("Centre:");
+        lblcentre.setToolTipText("");
+
+        txtstatus.setEditable(false);
+        txtstatus.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        txtstatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtstatusActionPerformed(evt);
+            }
+        });
+
+        txttime.setEditable(false);
+        txttime.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        txttime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txttimeActionPerformed(evt);
+            }
+        });
+
+        lblvacstatus.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblvacstatus.setText("Vaccination:");
+        lblvacstatus.setToolTipText("");
+
+        txtcentre.setEditable(false);
+        txtcentre.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        txtcentre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcentreActionPerformed(evt);
+            }
+        });
+
+        txtvacstatus.setEditable(false);
+        txtvacstatus.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        txtvacstatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtvacstatusActionPerformed(evt);
+            }
+        });
+
+        lblvaccine.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblvaccine.setText("Vaccine:");
+        lblvaccine.setToolTipText("");
+
+        txtvaccine.setEditable(false);
+        txtvaccine.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        txtvaccine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtvaccineActionPerformed(evt);
+            }
+        });
+
+        lbldate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbldate.setText("Date:");
+        lbldate.setToolTipText("");
 
         btnregister.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         btnregister.setText("Register");
@@ -252,13 +398,9 @@ public class PeopleMainPage extends javax.swing.JFrame {
             }
         });
 
-        btnview.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        btnview.setText("View");
-        btnview.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnviewActionPerformed(evt);
-            }
-        });
+        lbldose.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbldose.setText("Dose:");
+        lbldose.setToolTipText("");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -266,44 +408,88 @@ public class PeopleMainPage extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnregister, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addComponent(btnview, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblvacstatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblstatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbldose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbldate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbltime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblcentre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblvaccine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txtvacstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtdose, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtdate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txttime, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(10, 10, 10))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(txtvaccine, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnregister, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtcentre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnregister, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnview, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(263, Short.MAX_VALUE))
+                    .addComponent(lbldate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtdate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbltime, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txttime, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblcentre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtcentre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblvaccine, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtvaccine, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnregister, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbldose, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtdose, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(lblstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblvacstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtvacstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Appointment", jPanel2);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 452, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 333, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Vaccine Status", jPanel3);
-
         lblWelcome.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         lblWelcome.setText("Hello, username");
 
-        jButton4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jButton4.setText("Logout");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnlogout.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnlogout.setText("Logout");
+        btnlogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnlogoutActionPerformed(evt);
             }
         });
 
@@ -320,7 +506,7 @@ public class PeopleMainPage extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnlogout, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -329,7 +515,7 @@ public class PeopleMainPage extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnlogout, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
@@ -338,34 +524,26 @@ public class PeopleMainPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregisterActionPerformed
-        this.setVisible(false);
-          new PeopleRegisterAppointment().setVisible(true);
-    }//GEN-LAST:event_btnregisterActionPerformed
+    private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
+        int result;
+        result = JOptionPane.showConfirmDialog(null, "Are you sure?", "Log Out", JOptionPane.YES_NO_OPTION);
 
-    private void btnviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnviewActionPerformed
+        if (result == JOptionPane.YES_OPTION) {
+            PeopleLogin login;
+            login = new PeopleLogin();
+            this.setVisible(false);
+            new PeopleLogin().setVisible(true);
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        }
+    }//GEN-LAST:event_btnlogoutActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void txtnationalityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnationalityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnationalityActionPerformed
+    }//GEN-LAST:event_btnsaveActionPerformed
 
     private void txtmobilenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmobilenoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtmobilenoActionPerformed
-
-    private void txtgenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtgenderActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtgenderActionPerformed
 
     private void txtageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtageActionPerformed
         // TODO add your handling code here:
@@ -383,13 +561,75 @@ public class PeopleMainPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
+        txtname.setEditable(true);
+        txtaddress.setEditable(true);
+        txtage.setEditable(true);
+        rbtnmale.setEnabled(true);
+        rbtnfemale.setEnabled(true);
+        txtmobileno.setEditable(true);
+        rbtncitizen.setEnabled(true);
+        rbtnnoncitizen.setEnabled(true);
+        txtpassword.setEditable(true);
+       
+    }//GEN-LAST:event_btneditActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void btncancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_btncancelActionPerformed
+
+    private void txtdoseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdoseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtdoseActionPerformed
+
+    private void txtdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtdateActionPerformed
+
+    private void txtstatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtstatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtstatusActionPerformed
+
+    private void txttimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttimeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txttimeActionPerformed
+
+    private void txtcentreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcentreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcentreActionPerformed
+
+    private void txtvacstatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtvacstatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtvacstatusActionPerformed
+
+    private void txtvaccineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtvaccineActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtvaccineActionPerformed
+
+    private void btnregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregisterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnregisterActionPerformed
+
+    private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpasswordActionPerformed
+
+    private void txtnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnameKeyTyped
+        
+    }//GEN-LAST:event_txtnameKeyTyped
+
+    private void txtageKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtageKeyTyped
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+
+        if (txtage.getText().length() >= 2) {
+            JOptionPane.showMessageDialog(rootPane, "Please input less than 3 digits!", "Invalid age", JOptionPane.WARNING_MESSAGE);
+            txtage.setText("");
+        }
+    }//GEN-LAST:event_txtageKeyTyped
 
     /**
      * @param args the command line arguments
@@ -434,30 +674,48 @@ public class PeopleMainPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    protected static javax.swing.ButtonGroup Gender;
+    protected static javax.swing.ButtonGroup Nationality;
+    private javax.swing.JButton btncancel;
+    private javax.swing.JButton btnedit;
+    private javax.swing.JButton btnlogout;
     private javax.swing.JButton btnregister;
-    private javax.swing.JButton btnview;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton btnsave;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblWelcome;
     private javax.swing.JLabel lbladdress;
     private javax.swing.JLabel lblage;
+    private javax.swing.JLabel lblcentre;
+    private javax.swing.JLabel lbldate;
+    private javax.swing.JLabel lbldose;
     private javax.swing.JLabel lblgender;
     private javax.swing.JLabel lblid;
     private javax.swing.JLabel lblmoblieno;
     private javax.swing.JLabel lblname;
     private javax.swing.JLabel lblnationality;
-    private javax.swing.JTextField txtaddress;
-    private javax.swing.JTextField txtage;
-    private javax.swing.JTextField txtgender;
-    private javax.swing.JTextField txtid;
-    private javax.swing.JTextField txtmobileno;
-    private javax.swing.JTextField txtname;
-    private javax.swing.JTextField txtnationality;
+    private javax.swing.JLabel lblpassword;
+    private javax.swing.JLabel lblstatus;
+    private javax.swing.JLabel lbltime;
+    private javax.swing.JLabel lblvaccine;
+    private javax.swing.JLabel lblvacstatus;
+    protected static javax.swing.JRadioButton rbtncitizen;
+    protected static javax.swing.JRadioButton rbtnfemale;
+    protected static javax.swing.JRadioButton rbtnmale;
+    protected static javax.swing.JRadioButton rbtnnoncitizen;
+    protected static javax.swing.JTextField txtaddress;
+    protected static javax.swing.JTextField txtage;
+    private javax.swing.JTextField txtcentre;
+    private javax.swing.JTextField txtdate;
+    private javax.swing.JTextField txtdose;
+    protected static javax.swing.JTextField txtid;
+    protected static javax.swing.JTextField txtmobileno;
+    protected static javax.swing.JTextField txtname;
+    protected static javax.swing.JTextField txtpassword;
+    private javax.swing.JTextField txtstatus;
+    private javax.swing.JTextField txttime;
+    private javax.swing.JTextField txtvaccine;
+    private javax.swing.JTextField txtvacstatus;
     // End of variables declaration//GEN-END:variables
 }
