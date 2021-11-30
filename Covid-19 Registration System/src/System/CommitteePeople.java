@@ -817,6 +817,7 @@ public class CommitteePeople extends javax.swing.JFrame {
                         ca.setVisible(true);
                         
                         //store in Appointment arraylist and textfile
+                        //then save and delete
 
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Please update this People account to proceed!", "Fail to place appointments", JOptionPane.WARNING_MESSAGE);
