@@ -14,8 +14,8 @@ public class SystemDataIO {
             = new ArrayList<Vaccines>();
     public static ArrayList<People> allPeople
             = new ArrayList<People>();
-    public static ArrayList<Commitee> allCommitee
-            = new ArrayList<Commitee>();
+    public static ArrayList<Committee> allCommitee
+            = new ArrayList<Committee>();
 
     public static void read() {
         try {
@@ -39,7 +39,7 @@ public class SystemDataIO {
                     password = wordsinLine[2];
                 }
 
-                Commitee c = new Commitee(cno, username, password);
+                Committee c = new Committee(cno, username, password);
                 allCommitee.add(c);
             }
 
@@ -80,8 +80,8 @@ public class SystemDataIO {
 
                 People ppl = checkingPeople(null);
                 int appID = Integer.parseInt(null);
-                int appDate = Integer.parseInt(null);
-                int appTime = Integer.parseInt(null);
+                String appDate = null;
+                String appTime = null;
                 int dose = Integer.parseInt(null);
                 String appStatus = null;
                 String vacStatus = null;
@@ -96,8 +96,8 @@ public class SystemDataIO {
                     x = wordsinLine[0];
                     y = wordsinLine[1];
                     appID = Integer.parseInt(wordsinLine[2]);
-                    appDate = Integer.parseInt(wordsinLine[3]);
-                    appTime = Integer.parseInt(wordsinLine[4]);
+                    appDate = wordsinLine[3];
+                    appTime = wordsinLine[4];
                     dose = Integer.parseInt(wordsinLine[5]);
                     appStatus = wordsinLine[6];
                     vacStatus = wordsinLine[7];
@@ -196,7 +196,7 @@ public class SystemDataIO {
         }
     }
 
-    public static Commitee checkingCommitee(String x) {
+    public static Committee checkingCommitee(String x) {
 //        System.out.println(allCommitee.size());
         //read();
         System.out.println(allCommitee.size());

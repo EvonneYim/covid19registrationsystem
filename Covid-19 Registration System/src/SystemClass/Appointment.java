@@ -3,8 +3,8 @@ package SystemClass;
 
 public class Appointment {
     private int appointmentID;
-    private int appointmentDate;
-    private int appointmentTime;
+    private String appointmentDate;
+    private String appointmentTime;
     private int dose;
     private String appointmentStatus;
     private String vaccinationStatus;
@@ -14,7 +14,7 @@ public class Appointment {
     private String PeopleID = ppl.getPeopleID();
     private String PeopleName = ppl.getPeopleName();
 
-    public Appointment(String PeopleID, String PeopleName, int appointmentID, int appointmentDate, int appointmentTime, int dose, 
+    public Appointment(String PeopleID, String PeopleName, int appointmentID, String appointmentDate, String appointmentTime, int dose, 
              Centre place, String appointmentStatus, String vaccinationStatus) {
         this.appointmentID = appointmentID;
         this.appointmentDate = appointmentDate;
@@ -36,19 +36,19 @@ public class Appointment {
         this.appointmentID = appointmentID;
     }
 
-    public int getAppointmentDate() {
+    public String getAppointmentDate() {
         return appointmentDate;
     }
 
-    public void setAppointmentDate(int appointmentDate) {
+    public void setAppointmentDate(String appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
 
-    public int getAppointmentTime() {
+    public String getAppointmentTime() {
         return appointmentTime;
     }
 
-    public void setAppointmentTime(int appointmentTime) {
+    public void setAppointmentTime(String appointmentTime) {
         this.appointmentTime = appointmentTime;
     }
 

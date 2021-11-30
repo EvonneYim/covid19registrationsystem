@@ -1,45 +1,45 @@
 package System;
 
-import SystemClass.Commitee;
+import SystemClass.Committee;
 import SystemClass.People;
 import SystemClass.SystemDataIO;
 
 public class Covid19RegistrationSystem {       
 
-    public static CommiteeLogin cfirst;
-    public static CommiteeOperations csecond;
-    public static CommiteeManagement cthird;
-    public static CommiteePeople cfourth;
-    public static CommiteeAppointment cfifth;
-    public static CommiteeVaccines csixth;
+    public static CommitteeLogin cfirst;
+    public static CommitteeOperations csecond;
+    public static CommitteeManagement cthird;
+    public static CommitteePeople cfourth;
+    public static CommitteeAppointment cfifth;
+    public static CommitteeVaccines csixth;
     
-    public static Signup pfirst;
-    public static Login psecond;
-    public static Main_Page pthird;
-    public static Register_Appointment pfourth;
+    public static PeopleSignUp pfirst;
+    public static PeopleLogin psecond;
+    public static PeopleMainPage pthird;
+    public static PeopleRegisterAppointment pfourth;
     
-    public static Home_Page main;
+    public static SystemHomePage main;
 
-    public static Commitee clogin;
+    public static Committee clogin;
     public static People plogin;
 
     public static void main(String[] args) {
         
 //        SystemDataIO.read();
         
-        cfirst = new CommiteeLogin();
-        csecond = new CommiteeOperations();
-        cthird = new CommiteeManagement();
-        cfourth = new CommiteePeople();
-        cfifth = new CommiteeAppointment();
-        csixth = new CommiteeVaccines();
+        cfirst = new CommitteeLogin();
+        csecond = new CommitteeOperations();
+        cthird = new CommitteeManagement();
+        cfourth = new CommitteePeople();
+        cfifth = new CommitteeAppointment();
+        csixth = new CommitteeVaccines();
         
-        pfirst = new Signup();
-        psecond = new Login();
-        pthird = new Main_Page();
-        pfourth = new Register_Appointment();
+        pfirst = new PeopleSignUp();
+        psecond = new PeopleLogin();
+        pthird = new PeopleMainPage();
+        pfourth = new PeopleRegisterAppointment();
         
-        main = new Home_Page();
+        main = new SystemHomePage();
         
         main.setVisible(true);
     }
