@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 public class PeopleLogin extends javax.swing.JFrame {
     public PeopleLogin() {
         initComponents();
+        SystemDataIO.read();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -115,7 +116,7 @@ public class PeopleLogin extends javax.swing.JFrame {
         String password = (new String(txtpassword.getPassword()));
         
         if(peopleID.isEmpty() || password.isEmpty()){
-            JOptionPane.showMessageDialog(rootPane,"Please enter IC/Passort or Password!","Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane,"Please enter IC/Passport or Password!","Warning", JOptionPane.WARNING_MESSAGE);
         }else{
             People found = SystemDataIO.checkingPeople(peopleID);
             if(found == null){
@@ -128,9 +129,11 @@ public class PeopleLogin extends javax.swing.JFrame {
                     Covid19RegistrationSystem.pthird.setVisible(true);
                 } else{
                     JOptionPane.showMessageDialog(rootPane,"Wrong password!", "Error", JOptionPane.ERROR_MESSAGE);
+                    
                 }
             }}}catch(Exception e){
                 JOptionPane.showMessageDialog(rootPane,"Fail to login!","Error", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
             }
     }//GEN-LAST:event_btnloginActionPerformed
 

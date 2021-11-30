@@ -6,19 +6,19 @@ import SystemClass.SystemDataIO;
 
 public class Covid19RegistrationSystem {       
 
-    public static CommitteeLogin cfirst;
-    public static CommitteeOperations csecond;
-    public static CommitteeManagement cthird;
-    public static CommitteePeople cfourth;
-    public static CommitteeAppointment cfifth;
-    public static CommitteeVaccines csixth;
+    public static CommitteeLogin cfirst = new CommitteeLogin();
+    public static CommitteeOperations csecond = new CommitteeOperations();
+    public static CommitteeManagement cthird = new CommitteeManagement();
+    public static CommitteePeople cfourth = new CommitteePeople();
+    public static CommitteeAppointment cfifth = new CommitteeAppointment();
+    public static CommitteeVaccines csixth = new CommitteeVaccines();
     
-    public static PeopleSignUp pfirst;
-    public static PeopleLogin psecond;
-    public static PeopleMainPage pthird;
-    public static PeopleRegisterAppointment pfourth;
+    public static PeopleSignUp pfirst = new PeopleSignUp();
+    public static PeopleLogin psecond = new PeopleLogin();
+    public static PeopleMainPage pthird = new PeopleMainPage();
+    public static PeopleRegisterAppointment pfourth = new PeopleRegisterAppointment();
     
-    public static SystemHomePage main;
+    public static SystemHomePage main = new SystemHomePage();
 
     public static Committee clogin;
     public static People plogin;
@@ -26,20 +26,6 @@ public class Covid19RegistrationSystem {
     public static void main(String[] args) {
         
 //        SystemDataIO.read();
-        
-        cfirst = new CommitteeLogin();
-        csecond = new CommitteeOperations();
-        cthird = new CommitteeManagement();
-        cfourth = new CommitteePeople();
-        cfifth = new CommitteeAppointment();
-        csixth = new CommitteeVaccines();
-        
-        pfirst = new PeopleSignUp();
-        psecond = new PeopleLogin();
-        pthird = new PeopleMainPage();
-        pfourth = new PeopleRegisterAppointment();
-        
-        main = new SystemHomePage();
         
         main.setVisible(true);
     }

@@ -62,9 +62,9 @@ public class CommitteeAppointment extends javax.swing.JFrame {
         rbtnAcc = new javax.swing.JRadioButton();
         rbtnIncomplete = new javax.swing.JRadioButton();
         rbtnComplete = new javax.swing.JRadioButton();
-        jdAppDate = new com.toedter.calendar.JDateChooser();
         cboAppTime = new javax.swing.JComboBox<>();
         rbtnPending = new javax.swing.JRadioButton();
+        jdAppDate = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Appointment Management");
@@ -530,7 +530,7 @@ public class CommitteeAppointment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    protected static com.toedter.calendar.JDateChooser jdAppDate;
+    public static com.toedter.calendar.JDateChooser jdAppDate;
     protected static javax.swing.JLabel lblAppID;
     private javax.swing.JRadioButton rbtnAcc;
     private javax.swing.JRadioButton rbtnComplete;
