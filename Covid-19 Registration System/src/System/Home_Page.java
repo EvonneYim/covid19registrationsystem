@@ -108,7 +108,8 @@ public class Home_Page extends javax.swing.JFrame {
     }//GEN-LAST:event_btnuserActionPerformed
 
     private void btnsignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsignupActionPerformed
-        // TODO add your handling code here:
+          this.setVisible(false);
+          new Signup().setVisible(true);
     }//GEN-LAST:event_btnsignupActionPerformed
 
     /**

@@ -102,7 +102,7 @@ public class People {
     
     
     public static void PmodifyDetails(){
-        
+        SystemDataIO.write();
     }
     
     public static void viewDetails(){
