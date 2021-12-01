@@ -15,7 +15,8 @@ import javax.swing.JOptionPane;
  * @author user
  */
 public class PeopleMainPage extends javax.swing.JFrame {
-
+    String pplID, name, address, gender, mobile, password, nationality;
+    int age;
     /**
      * Creates new form COVID
      */
@@ -500,14 +501,14 @@ public class PeopleMainPage extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30)
                 .addComponent(btnlogout, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -540,7 +541,59 @@ public class PeopleMainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnlogoutActionPerformed
 
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
-        
+            try {
+                pplID = txtid.getText();
+                name = txtname.getText();
+                address = txtaddress.getText();
+                age = Integer.parseInt(txtage.getText());
+                gender = Gender.getSelection().getActionCommand();
+                mobile = txtmobileno.getText();
+                password = txtpassword.getText();
+                nationality = Nationality.getSelection().getActionCommand();
+                People current = null;
+                boolean found = false;
+                System.out.println(allPeople.size());
+                for (int i = 0; i < allPeople.size(); i++) {
+                    People a = allPeople.get(i);
+                    if (pplID.equals(a.getPeopleID())) {
+                        found = true;
+                        current = a;
+//                    System.out.println("Checked");
+                        break;
+                    }
+                }
+                if (found) {
+                    current.setPeopleName(name);
+                    current.setAddress(address);
+                    current.setAge(age);
+                    current.setGender(gender);
+                    current.setMobileNo(mobile);
+                    current.setPassword(password);
+                    current.setNationality(nationality);
+                    People.PmodifyDetails();
+//                allPeople.clear();            //if no clear, will always add record into arraylisy, cannot identify duplicates
+                    JOptionPane.showMessageDialog(rootPane, "Profile edited successfully!"); 
+                    
+                    txtname.setEditable(false);
+                    txtaddress.setEditable(false);
+                    txtage.setEditable(false);
+                    rbtnmale.setEnabled(false);
+                    rbtnfemale.setEnabled(false);
+                    txtmobileno.setEditable(false);
+                    rbtncitizen.setEnabled(false);
+                    rbtnnoncitizen.setEnabled(false);
+                    txtpassword.setEditable(false);
+                    btnsave.setEnabled(false);
+                    btncancel.setEnabled(false);
+                    btnedit.setEnabled(true);
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "People account not found! To renew the IC/ Passport, please add" + "\n" 
+                            +"the new information again and remove the old record for security.", 
+                            "Fail to edit", JOptionPane.ERROR_MESSAGE); 
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
+            }
     }//GEN-LAST:event_btnsaveActionPerformed
 
     private void txtmobilenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmobilenoActionPerformed
@@ -575,6 +628,7 @@ public class PeopleMainPage extends javax.swing.JFrame {
         txtpassword.setEditable(true);
         btnsave.setEnabled(true);
         btncancel.setEnabled(true);
+        btnedit.setEnabled(false);
        
     }//GEN-LAST:event_btneditActionPerformed
 
@@ -627,6 +681,7 @@ public class PeopleMainPage extends javax.swing.JFrame {
             txtpassword.setEditable(false);
             btnsave.setEnabled(false);
             btncancel.setEnabled(false);
+            btnedit.setEnabled(true);
         }
 
     }//GEN-LAST:event_btncancelActionPerformed
@@ -670,8 +725,10 @@ public class PeopleMainPage extends javax.swing.JFrame {
     private void txtnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnameKeyTyped
         char c = evt.getKeyChar();
 
-        if (!Character.isAlphabetic(c)) {
-            evt.consume();
+        if (Character.isAlphabetic(c) || Character.isWhitespace(c)|| Character.isISOControl(c)) {
+            txtname.setEditable(true);
+        } else{
+            txtname.setEditable(false);
         }
     }//GEN-LAST:event_txtnameKeyTyped
 
@@ -754,7 +811,7 @@ public class PeopleMainPage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JLabel lblWelcome;
+    protected static javax.swing.JLabel lblWelcome;
     private javax.swing.JLabel lbladdress;
     private javax.swing.JLabel lblage;
     private javax.swing.JLabel lblcentre;

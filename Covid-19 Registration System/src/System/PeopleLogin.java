@@ -131,6 +131,7 @@ public class PeopleLogin extends javax.swing.JFrame {
                     setVisible(false);
                     Covid19RegistrationSystem.pthird.setVisible(true);
                     
+                    
                     People current = null;
                     boolean check = false;
                     System.out.println(allPeople.size());
@@ -158,7 +159,7 @@ public class PeopleLogin extends javax.swing.JFrame {
                         } else {
                             pthird.rbtnfemale.setSelected(true);
                         }
-                        System.out.println(current.getGender());
+//                        System.out.println(current.getGender());
                         pthird.txtmobileno.setText(current.getMobileNo());
                          if (current.getNationality().equals("Citizen")) {
                             pthird.rbtncitizen.setSelected(true);
@@ -167,6 +168,7 @@ public class PeopleLogin extends javax.swing.JFrame {
                             pthird.rbtnnoncitizen.setSelected(true);
                         }
                         pthird.txtpassword.setText(current.getPassword());
+                        pthird.lblWelcome.setText("Hello,"+current.getPeopleName());
                     }
 
                         
