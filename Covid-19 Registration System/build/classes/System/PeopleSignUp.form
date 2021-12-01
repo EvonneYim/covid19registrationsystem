@@ -245,6 +245,7 @@
     <Component class="javax.swing.JTextField" name="txtname">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtnameActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtnameKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtaddress">
@@ -255,11 +256,13 @@
     <Component class="javax.swing.JTextField" name="txtage">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtageActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtageKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtmobileno">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtmobilenoActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtmobilenoKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnregister">

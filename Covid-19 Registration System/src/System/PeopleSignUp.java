@@ -112,6 +112,11 @@ public class PeopleSignUp extends javax.swing.JFrame {
                 txtnameActionPerformed(evt);
             }
         });
+        txtname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnameKeyTyped(evt);
+            }
+        });
 
         txtaddress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,10 +129,20 @@ public class PeopleSignUp extends javax.swing.JFrame {
                 txtageActionPerformed(evt);
             }
         });
+        txtage.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtageKeyTyped(evt);
+            }
+        });
 
         txtmobileno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtmobilenoActionPerformed(evt);
+            }
+        });
+        txtmobileno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtmobilenoKeyTyped(evt);
             }
         });
 
@@ -338,7 +353,7 @@ public class PeopleSignUp extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane, "Account Registered Successfully!");
                     System.out.println(allPeople.size());
 
-                    Covid19RegistrationSystem.pfirst.setVisible(false);
+                    setVisible(false);
                     Covid19RegistrationSystem.psecond.setVisible(true);
                 }
             } catch (Exception e) {
@@ -347,6 +362,42 @@ public class PeopleSignUp extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnregisterActionPerformed
+
+    private void txtageKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtageKeyTyped
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+
+        if (txtage.getText().length() >= 2) {
+            JOptionPane.showMessageDialog(rootPane, "Please input less than 3 digits!", "Invalid age", JOptionPane.WARNING_MESSAGE);
+            txtage.setText("");
+        }
+    }//GEN-LAST:event_txtageKeyTyped
+
+    private void txtnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnameKeyTyped
+        char c = evt.getKeyChar();
+
+        if (Character.isAlphabetic(c) || Character.isWhitespace(c) || Character.isISOControl(c)) {
+            txtname.setEditable(true);
+        } else {
+            txtname.setEditable(false);
+        }
+    }//GEN-LAST:event_txtnameKeyTyped
+
+    private void txtmobilenoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmobilenoKeyTyped
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+
+        if (txtmobileno.getText().length() >= 10) {
+            JOptionPane.showMessageDialog(rootPane, "Please input less than 10 digits!", "Invalid mobile number", JOptionPane.WARNING_MESSAGE);
+            txtmobileno.setText("");
+        }
+    }//GEN-LAST:event_txtmobilenoKeyTyped
 
     /**
      * @param args the command line arguments
