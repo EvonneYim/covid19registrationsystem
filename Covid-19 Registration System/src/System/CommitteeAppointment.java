@@ -5,11 +5,13 @@
  */
 package System;
 
+import SystemClass.Centre;
 import SystemClass.SystemDataIO;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Date;
 import java.util.Scanner;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -25,8 +27,9 @@ public class CommitteeAppointment extends javax.swing.JFrame {
         initComponents();
         dtm = new DefaultTableModel(columnname, 0);
         tblAppointment.setModel(dtm);
-        SystemDataIO.read();            //*readPeople();
+        SystemDataIO.read();       
         DisplayTable();
+        loadCenter();
     }
     
     @SuppressWarnings("unchecked")
@@ -220,8 +223,6 @@ public class CommitteeAppointment extends javax.swing.JFrame {
         jLabel9.setText("Centre");
         jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        cboCentre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "APA", "APE", "API", "APO", "APU" }));
-
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel10.setText("Appointment Status");
         jLabel10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -270,7 +271,7 @@ public class CommitteeAppointment extends javax.swing.JFrame {
             }
         });
 
-        cboAppTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "9.00am", "9.20am", "9.40am", "10.00am", "10.20am", "11.40am", "12.00pm", "12.20pm", "12.40pm", "1.00pm", "1.20pm", "1.40pm", "2.00pm" }));
+        cboAppTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "9.00am", "9.20am", "9.40am", "10.00am", "10.20am", "10.40am", "11.00am", "11.20am", "11.40am", "12.00pm", "12.20pm", "12.40pm", "1.00pm", "1.20pm", "1.40pm", "2.00pm", "2.20pm", "2.40pm", "3.00pm", "3.20pm", "3.40pm", "4.00pm", "4.20pm", "4.40pm", "5.00pm" }));
 
         rbtnPending.setBackground(new java.awt.Color(153, 153, 153));
         APP_STATUS.add(rbtnPending);
@@ -517,7 +518,7 @@ public class CommitteeAppointment extends javax.swing.JFrame {
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnSave;
     protected static javax.swing.JComboBox<String> cboAppTime;
-    protected static javax.swing.JComboBox<String> cboCentre;
+    protected static javax.swing.JComboBox<Centre> cboCentre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -600,10 +601,13 @@ public class CommitteeAppointment extends javax.swing.JFrame {
         lblAppID.setText("not set");
         jdAppDate.setCalendar(null);
         cboAppTime.setSelectedItem("-");
-        cboCentre.setSelectedItem("-");
+        cboCentre.setSelectedItem("notset");
         spinDose.setValue(0);
     }
 
+    private void loadCenter() {
+        cboCentre.setModel(new DefaultComboBoxModel<>(Centre.values()));
+    }
 
 
 }

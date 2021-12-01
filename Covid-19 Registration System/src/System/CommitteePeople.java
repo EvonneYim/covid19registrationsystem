@@ -5,6 +5,8 @@
  */
 package System;
 
+import SystemClass.Appointment;
+import SystemClass.Centre;
 import SystemClass.Citizen;
 import SystemClass.Committee;
 import SystemClass.NonCitizen;
@@ -13,6 +15,7 @@ import SystemClass.SystemDataIO;
 import static SystemClass.SystemDataIO.allPeople;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -796,22 +799,46 @@ public class CommitteePeople extends javax.swing.JFrame {
 
                         ca.txtICPassport.setText(pplID);
                         ca.txtName.setText(name);
-                        ca.lblAppID.setText("not set");
-                        ca.jdAppDate.setCalendar(null);
+                        ca.lblAppID.setText(String.valueOf(0));
+                        ca.jdAppDate.setCalendar(null);         //prob starts here
                         ca.cboAppTime.setSelectedItem("-");
-                        ca.cboCentre.setSelectedItem("-");
+                        ca.cboCentre.setSelectedItem("notset");
                         ca.spinDose.setValue(1);
+                        
+                        String AID = ca.txtICPassport.getText();
+                        String AName = ca.txtName.getText();
+                        int AppID = Integer.parseInt(ca.lblAppID.getText());
+                        
+                        String AppDate = ca.jdAppDate.getDateFormatString();
+                        SimpleDateFormat sdf = new SimpleDateFormat("d MMM y");
+                        AppDate = sdf.format(ca.jdAppDate.getDate());       //prob
+                        
+                        String AppTime = ca.cboAppTime.getSelectedItem().toString();
+                        int Adose = (Integer)ca.spinDose.getValue();
+                        Centre Acentre = (Centre) ca.cboCentre.getSelectedItem();
+                        
+                        System.out.println(AppTime);
                         
                         String defaultAppStatus = "Pending";
                         String defaultVacStatus = "Rejected";
                         
-//                        People p = new People(pplID, name, address, age, gender, mobile, password, nationality);
-//                        System.out.println(allPeople.size());
-//                        allPeople.add(p);
+                        Appointment a = new Appointment(AID, AName, AppID, AppDate, AppTime, Adose, Acentre, defaultAppStatus, defaultVacStatus);
+                        System.out.println(allPeople.size());
+//                        allAppointments.add(a);
 //
-//                        System.out.println(allPeople.size());
+//                        System.out.println(allAppointments.size());
 //                        Committee.modifyAppointment();
-//                        
+
+
+//                    start = startDate.getDateFormatString();
+//                    end = endDate.getDateFormatString();
+//
+//                    SimpleDateFormat sdf = new SimpleDateFormat("d MMM y");
+//                    start = sdf.format(startDate.getDate());
+//                    end = sdf.format(endDate.getDate());
+//
+//                    System.out.println("Start date:" + start + " " + "End date:" + end);
+// 
                         
                         this.setVisible(false);
                         ca.setVisible(true);
