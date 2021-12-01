@@ -5,6 +5,9 @@
  */
 package System;
 
+import SystemClass.People;
+import SystemClass.SystemDataIO;
+import static SystemClass.SystemDataIO.allPeople;
 import javax.swing.JOptionPane;
 
 /**
@@ -154,6 +157,11 @@ public class PeopleMainPage extends javax.swing.JFrame {
                 txtmobilenoActionPerformed(evt);
             }
         });
+        txtmobileno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtmobilenoKeyTyped(evt);
+            }
+        });
 
         btnsave.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         btnsave.setText("Save");
@@ -285,22 +293,22 @@ public class PeopleMainPage extends javax.swing.JFrame {
                     .addComponent(txtage, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnsave))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblgender, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btncancel)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(rbtnmale)
-                        .addComponent(rbtnfemale)))
+                        .addComponent(rbtnfemale)
+                        .addComponent(btncancel))
+                    .addComponent(lblgender, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblmoblieno, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtmobileno, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblnationality, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(rbtncitizen)
-                        .addComponent(rbtnnoncitizen)))
+                        .addComponent(rbtnnoncitizen))
+                    .addComponent(lblnationality, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -424,14 +432,8 @@ public class PeopleMainPage extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtdose, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtdate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txttime, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(10, 10, 10))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtdate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txttime, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(txtvaccine, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -538,7 +540,7 @@ public class PeopleMainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnlogoutActionPerformed
 
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnsaveActionPerformed
 
     private void txtmobilenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmobilenoActionPerformed
@@ -571,11 +573,62 @@ public class PeopleMainPage extends javax.swing.JFrame {
         rbtncitizen.setEnabled(true);
         rbtnnoncitizen.setEnabled(true);
         txtpassword.setEditable(true);
+        btnsave.setEnabled(true);
+        btncancel.setEnabled(true);
        
     }//GEN-LAST:event_btneditActionPerformed
 
     private void btncancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelActionPerformed
-        // TODO add your handling code here:
+        People current = null;
+        boolean check = false;
+        System.out.println(allPeople.size());
+        for (int i = 0; i < allPeople.size(); i++) {
+            People a = allPeople.get(i);
+            if (txtid.getText().equals(a.getPeopleID())) {
+                check = true;
+                current = a;
+                break;
+            }
+        }
+        if (check) {
+            rbtnmale.setActionCommand("Male");
+            rbtnfemale.setActionCommand("Female");
+            rbtncitizen.setActionCommand("Citizen");
+            rbtnnoncitizen.setActionCommand("Non-Citizen");
+
+            txtid.setText(current.getPeopleID());
+            txtname.setText(current.getPeopleName());
+            txtaddress.setText(current.getAddress());
+            txtage.setText(String.valueOf(current.getAge()));
+            if (current.getGender().equals("Male")) {
+                rbtnmale.setSelected(true);
+
+            } else {
+                rbtnfemale.setSelected(true);
+            }
+            System.out.println(current.getGender());
+            txtmobileno.setText(current.getMobileNo());
+            if (current.getNationality().equals("Citizen")) {
+                rbtncitizen.setSelected(true);
+
+            } else {
+                rbtnnoncitizen.setSelected(true);
+            }
+            txtpassword.setText(current.getPassword());
+
+            txtname.setEditable(false);
+            txtaddress.setEditable(false);
+            txtage.setEditable(false);
+            rbtnmale.setEnabled(false);
+            rbtnfemale.setEnabled(false);
+            txtmobileno.setEditable(false);
+            rbtncitizen.setEnabled(false);
+            rbtnnoncitizen.setEnabled(false);
+            txtpassword.setEditable(false);
+            btnsave.setEnabled(false);
+            btncancel.setEnabled(false);
+        }
+
     }//GEN-LAST:event_btncancelActionPerformed
 
     private void txtdoseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdoseActionPerformed
@@ -615,7 +668,11 @@ public class PeopleMainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_txtpasswordActionPerformed
 
     private void txtnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnameKeyTyped
-        
+        char c = evt.getKeyChar();
+
+        if (!Character.isAlphabetic(c)) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtnameKeyTyped
 
     private void txtageKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtageKeyTyped
@@ -630,6 +687,19 @@ public class PeopleMainPage extends javax.swing.JFrame {
             txtage.setText("");
         }
     }//GEN-LAST:event_txtageKeyTyped
+
+    private void txtmobilenoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmobilenoKeyTyped
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+
+        if (txtmobileno.getText().length() >= 10) {
+            JOptionPane.showMessageDialog(rootPane, "Please input less than 10 digits!", "Invalid mobile number", JOptionPane.WARNING_MESSAGE);
+            txtmobileno.setText("");
+        }
+    }//GEN-LAST:event_txtmobilenoKeyTyped
 
     /**
      * @param args the command line arguments

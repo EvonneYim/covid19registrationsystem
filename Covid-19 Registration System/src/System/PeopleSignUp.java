@@ -311,9 +311,9 @@ public class PeopleSignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_btnbackActionPerformed
 
     private void btnregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregisterActionPerformed
-                if (txticpassport.getText().isEmpty() || txtname.getText().isEmpty() || txtaddress.getText().isEmpty() || txtage.getText().isEmpty() || 
-                GENDER.getSelection().getActionCommand().isEmpty() || txtmobileno.getText().isEmpty() || 
-                txtpassword.getText().isEmpty() || NATIONALITY.getSelection().getActionCommand().isEmpty()) {
+        if (txticpassport.getText().isEmpty() || txtname.getText().isEmpty() || txtaddress.getText().isEmpty() || txtage.getText().isEmpty()
+                || GENDER.getSelection().getActionCommand().isEmpty() || txtmobileno.getText().isEmpty()
+                || txtpassword.getText().isEmpty() || NATIONALITY.getSelection().getActionCommand().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Please ensure all information are entered.", "Incomplete details", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
@@ -337,7 +337,7 @@ public class PeopleSignUp extends javax.swing.JFrame {
 
                     JOptionPane.showMessageDialog(rootPane, "Account Registered Successfully!");
                     System.out.println(allPeople.size());
-                    
+
                     Covid19RegistrationSystem.pfirst.setVisible(false);
                     Covid19RegistrationSystem.psecond.setVisible(true);
                 }

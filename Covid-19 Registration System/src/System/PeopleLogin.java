@@ -147,6 +147,7 @@ public class PeopleLogin extends javax.swing.JFrame {
                         pthird.rbtnfemale.setActionCommand("Female");
                         pthird.rbtncitizen.setActionCommand("Citizen");
                         pthird.rbtnnoncitizen.setActionCommand("Non-Citizen");
+                        
                         pthird.txtid.setText(current.getPeopleID());
                         pthird.txtname.setText(current.getPeopleName());
                         pthird.txtaddress.setText(current.getAddress());

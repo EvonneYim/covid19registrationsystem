@@ -1,0 +1,7 @@
+010230098712;Wellington;1, Jalan 22/22, 46000 PJ;15;Male;0176549876;1234567;Citizen;
+q23333;Wendy;Tokyo, Japan;12;Male;0198988765;4455;Non-Citizen;
+0190876754;Kingster;23, Jalan 223/22, 44500 PJ;23;Male;0198765443;1212121;Citizen;
+990230127891;Roy Lim Weng Jin;2, Jalan SS 3/9, 47000 PJ;21;Male;0187655432;123123;Citizen;
+0988776655;Ching;BeiJing China;29;Female;017788564;qwert;Non-Citizen;
+0988445563;Chong;BeiJing China;29;Female;017788564;qwert;Non-Citizen;
+010821101095;Woon Kay Zen;Kajang, Selangor;20;Male;0122267321;kayzen0821;Citizen;
