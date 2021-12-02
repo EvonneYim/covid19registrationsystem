@@ -1,50 +1,40 @@
 package SystemClass;
 
-public class Vaccines {
-    private int SupplyID;
-    private Centre place;
-    private int vacamount;
-    private int supplyamount;
-    private String condition;
+import System.CommitteeManagement;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-    public Vaccines(int SupplyID, Centre place, int vacamount, int supplyamount, String condition) {
+public class Vaccines {
+    private String SupplyID;
+    private Centre place;
+    private int supplyamount;
+    
+    public Vaccines(Centre place, int supplyamount,String SupplyID) {
         this.SupplyID = SupplyID;
-        Centre c = place;
-        this.vacamount = vacamount;
+        this.place = place;
         this.supplyamount = supplyamount;
-        this.condition = condition;
+    }
+    
+    public Vaccines(Centre place, int supplyamount) {
+        this.SupplyID = AutoNumber();
+        this.place = place;
+        this.supplyamount = supplyamount;
+    }
+    
+    public Vaccines(){
+        
     }
 
-    public int getSupplyID() {
+    public String getSupplyID() {
         return SupplyID;
     }
 
-    public void setSupplyID(int SupplyID) {
+    public void setSupplyID(String SupplyID) {
         this.SupplyID = SupplyID;
-    }
-
-    public Centre getPlace() {
-        return place;
-    }
-
-    public void setPlace(Centre place) {
-        this.place = place;
-    }
-
-    public int getVacAmount() {
-        return vacamount;
-    }
-
-    public void setVacAmount(int amount) {
-        this.vacamount = vacamount;
-    }
-
-    public String getCondition() {
-        return condition;
-    }
-
-    public void setCondition(String condition) {
-        this.condition = condition;
     }
 
     public int getSupplyamount() {
@@ -54,5 +44,49 @@ public class Vaccines {
     public void setSupplyamount(int supplyamount) {
         this.supplyamount = supplyamount;
     }
-       
+
+    public Centre getPlace() {
+        return place;
+    }
+
+    public void setPlace(Centre place) {
+        this.place = place;
+    }
+    
+    public String AutoNumber() {
+        DecimalFormat df = new DecimalFormat("00000");
+        try {
+            String filepath = "Vaccines.txt";
+            FileReader fr = new FileReader(filepath);
+            BufferedReader br = new BufferedReader(fr);
+            String LastRecord = "", temp;
+
+            while ((temp = br.readLine()) != null) {
+                LastRecord = temp;
+            }
+            
+            String finalapp = "S00001";
+            
+            if (!LastRecord.equals("")) {
+                String[] lastrec = LastRecord.split(";");
+                String lastapp = lastrec[0];
+
+                String appNumber = lastapp.substring(1);
+
+                int newapp = Integer.parseInt(appNumber) + 1;
+                String prefix = "S";
+                finalapp = prefix + df.format(newapp);
+            }
+
+            fr.close();
+            br.close();
+
+            return finalapp;
+            
+        } catch (IOException ex) {
+            Logger.getLogger(CommitteeManagement.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
 }

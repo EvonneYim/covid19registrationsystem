@@ -12,11 +12,14 @@ import SystemClass.Committee;
 import SystemClass.NonCitizen;
 import SystemClass.People;
 import SystemClass.SystemDataIO;
+import static SystemClass.SystemDataIO.allAppointments;
 import static SystemClass.SystemDataIO.allPeople;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -774,8 +777,7 @@ public class CommitteePeople extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtnNCitizenMouseClicked
 
     private void btnPlaceAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceAppActionPerformed
-
-        if (txtICPassport.getText().isEmpty() || txtName.getText().isEmpty() || txtAddress.getText().isEmpty() || txtAge.getText().isEmpty()
+ if (txtICPassport.getText().isEmpty() || txtName.getText().isEmpty() || txtAddress.getText().isEmpty() || txtAge.getText().isEmpty()
                 || GENDER.getSelection().getActionCommand().isEmpty() || txtMobile.getText().isEmpty()
                 || txtPassword.getText().isEmpty() || NATIONALITY.getSelection().getActionCommand().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Please ensure all information are entered.", "Incomplete details", JOptionPane.WARNING_MESSAGE);
@@ -793,64 +795,65 @@ public class CommitteePeople extends javax.swing.JFrame {
                     mobile = txtMobile.getText();
                     password = txtPassword.getText();
                     nationality = NATIONALITY.getSelection().getActionCommand();
+
                     People found = SystemDataIO.checkingPeople(pplID);
+                    People current = null;
                     if (found != null) {
                         CommitteeAppointment ca = new CommitteeAppointment();
-
+                        current = found;
+                        
+                        Appointment a = new Appointment();
+                        
                         ca.txtICPassport.setText(pplID);
                         ca.txtName.setText(name);
-                        ca.lblAppID.setText(String.valueOf(0));
-                        ca.jdAppDate.setCalendar(null);         //prob starts here
-                        ca.cboAppTime.setSelectedItem("-");
-                        ca.cboCentre.setSelectedItem("notset");
-                        ca.spinDose.setValue(1);
+                        ca.lblAppID.setText(a.AutoNumber());
+                        
+                        Calendar c = Calendar.getInstance();
+                        c.add(Calendar.DATE, 7);
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+                        
+                        String datestr = sdf.format(c.getTime());
+                        Date defaultdate = sdf.parse(datestr);
+                                              
+                                                                 
+                        ca.jdAppDate.setDate(defaultdate);        
+                        
+                        ca.cboAppTime.getModel().setSelectedItem("-");
+                        
+                        ca.cboCentre.getModel().setSelectedItem(Centre.notset);   
+                        ca.spinDose.setValue(0);
+                        ca.rbtnPending.setSelected(true);
+                        ca.rbtnIncomplete.setSelected(true);
                         
                         String AID = ca.txtICPassport.getText();
                         String AName = ca.txtName.getText();
-                        int AppID = Integer.parseInt(ca.lblAppID.getText());
-                        
-                        String AppDate = ca.jdAppDate.getDateFormatString();
-                        SimpleDateFormat sdf = new SimpleDateFormat("d MMM y");
-                        AppDate = sdf.format(ca.jdAppDate.getDate());       //prob
                         
                         String AppTime = ca.cboAppTime.getSelectedItem().toString();
                         int Adose = (Integer)ca.spinDose.getValue();
-                        Centre Acentre = (Centre) ca.cboCentre.getSelectedItem();
-                        
-                        System.out.println(AppTime);
+                        Centre Acentre = (Centre) ca.cboCentre.getModel().getSelectedItem();       
+                        System.out.println(Acentre);
                         
                         String defaultAppStatus = "Pending";
-                        String defaultVacStatus = "Rejected";
+                        String defaultVacStatus = "Incomplete";
                         
-                        Appointment a = new Appointment(AID, AName, AppID, AppDate, AppTime, Adose, Acentre, defaultAppStatus, defaultVacStatus);
-                        System.out.println(allPeople.size());
-//                        allAppointments.add(a);
-//
-//                        System.out.println(allAppointments.size());
-//                        Committee.modifyAppointment();
+                        a = new Appointment(current, datestr, AppTime, Adose, Acentre, defaultAppStatus, defaultVacStatus);  
+                        System.out.println("Initial app size: " + allAppointments.size());
+                        allAppointments.add(a);
 
-
-//                    start = startDate.getDateFormatString();
-//                    end = endDate.getDateFormatString();
-//
-//                    SimpleDateFormat sdf = new SimpleDateFormat("d MMM y");
-//                    start = sdf.format(startDate.getDate());
-//                    end = sdf.format(endDate.getDate());
-//
-//                    System.out.println("Start date:" + start + " " + "End date:" + end);
-// 
-                        
+                        System.out.println("Latest app size: " + allAppointments.size());
+                        Committee.modifyAppointment();
+//                        
                         this.setVisible(false);
                         ca.setVisible(true);
                         
-                        //store in Appointment arraylist and textfile
-                        //then save and delete
+                        ca.DisplayTable();                       
 
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Please update this People account to proceed!", "Fail to place appointments", JOptionPane.WARNING_MESSAGE);
                     }
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
+                    e.printStackTrace();
                 }
             }
         }

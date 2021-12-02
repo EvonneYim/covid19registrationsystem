@@ -1,5 +1,6 @@
 package SystemClass;
 
+import System.CommitteeVaccines;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
@@ -12,17 +13,21 @@ public class SystemDataIO {
             = new ArrayList<Appointment>();
     public static ArrayList<Vaccines> allVaccines
             = new ArrayList<Vaccines>();
+    public static ArrayList<CentreVaccines> allCentreVaccines
+            = new ArrayList<CentreVaccines>();
     public static ArrayList<People> allPeople
             = new ArrayList<People>();
     public static ArrayList<Committee> allCommitee
             = new ArrayList<Committee>();
-
+    public static CommitteeVaccines cvFrame = new CommitteeVaccines();
+                    
     public static void read() {
         try {
             allAppointments.clear();
             allVaccines.clear();
             allPeople.clear();
             allCommitee.clear();
+            allCentreVaccines.clear();
             
             Scanner s1 = new Scanner(new File("Commitee.txt"));
             while (s1.hasNext()) {
@@ -76,62 +81,75 @@ public class SystemDataIO {
             Scanner s3 = new Scanner(new File("Appointment.txt"));
             while (s3.hasNext()) {
                 String line = s3.nextLine();
-                String[] wordsinLine;
-
-                People ppl = checkingPeople(null);
-                int appID = Integer.parseInt(null);
-                String appDate = null;
-                String appTime = null;
-                int dose = Integer.parseInt(null);
-                String appStatus = null;
-                String vacStatus = null;
-                Centre centre = Centre.valueOf(null);
-
-                String x = ppl.getPeopleID();
-                String y = ppl.getPeopleName();
-
+               
+                                            
+//                String pplID = null;
+//                String pplname = null;
+//                ppl.setPeopleID(null);
+//                ppl.setPeopleName(null);
+                
+//                int appID = 0;
+//                String appDate = null;
+//                String appTime = null;
+//                int dose = 0;
+//                String appStatus = null;
+//                String vacStatus = null;
+//                Centre centre = null;
+                              
                 if (!(line.isEmpty())) {
-
-                    wordsinLine = line.split(";");
-                    x = wordsinLine[0];
-                    y = wordsinLine[1];
-                    appID = Integer.parseInt(wordsinLine[2]);
-                    appDate = wordsinLine[3];
-                    appTime = wordsinLine[4];
-                    dose = Integer.parseInt(wordsinLine[5]);
-                    appStatus = wordsinLine[6];
-                    vacStatus = wordsinLine[7];
-                    centre = Centre.valueOf(wordsinLine[8]);
+                    String[] wordsinLine = line.split(";");
+                    String x = wordsinLine[0];
+                    
+                    People ppl = checkingPeople(x);
+                     
+//                    String y = ppl.getPeopleName();
+                 
+                    String y = wordsinLine[1];
+                    String appID = wordsinLine[2];
+                    String appDate = wordsinLine[3];
+                    String appTime = wordsinLine[4];
+                    int dose = Integer.parseInt(wordsinLine[5]);
+                    Centre centre = Centre.valueOf(wordsinLine[6]);
+                    String appStatus = wordsinLine[7];
+                    String vacStatus = wordsinLine[8];
+                          
+                    Appointment a = new Appointment(ppl,appDate, appTime, dose, centre, appStatus, vacStatus, appID);
+                    allAppointments.add(a);
+                    ppl.getMyAppointment().add(a);
                 }
 
-                Appointment a = new Appointment(x, y, appID, appDate, appTime, dose, centre, appStatus, vacStatus);
-                allAppointments.add(a);
-                ppl.getMyAppointment().add(a);
+               
+//                ppl.getMyAppointment().add(a);
             }
 
             Scanner s4 = new Scanner(new File("Vaccines.txt"));
             while (s4.hasNext()) {
-                String line = s3.nextLine();
+                String line = s4.nextLine();
                 String[] wordsinLine;
-
-                int SupplyId = Integer.parseInt(null);
-                Centre centre = Centre.valueOf(null);
-                int vacamount = Integer.parseInt(null);
-                int supplyamount = Integer.parseInt(null);
-                String condition = null;
 
                 if (!(line.isEmpty())) {
 
                     wordsinLine = line.split(";");
-                    SupplyId = Integer.parseInt(wordsinLine[0]);
-                    centre = Centre.valueOf(wordsinLine[1]);
-                    vacamount = Integer.parseInt(wordsinLine[2]);
-                    supplyamount = Integer.parseInt(wordsinLine[3]);
-                    condition = wordsinLine[4];
+                    String SupplyId = wordsinLine[0];
+                    Centre place = Centre.valueOf(wordsinLine[1]);
+                    int supplyamount = Integer.parseInt(wordsinLine[2]);
+                    Vaccines v = new Vaccines(place, supplyamount,SupplyId);
+                    allVaccines.add(v);
                 }
-
-                Vaccines v = new Vaccines(SupplyId, centre, vacamount, supplyamount, condition);
-                allVaccines.add(v);
+            }
+            
+            Scanner s5 = new Scanner(new File("CentreVaccines.txt"));
+            while (s5.hasNext()) {
+                String line = s5.nextLine();
+                String[] wordsinLine;
+                
+                if (!(line.isEmpty())) {
+                    wordsinLine = line.split(";");
+                    Centre centre = Centre.valueOf(wordsinLine[0]);
+                    int vacAmount = Integer.parseInt(wordsinLine[1]);
+                    CentreVaccines cv = new CentreVaccines(centre, vacAmount);
+                    allCentreVaccines.add(cv);
+                }
             }
 
         } catch (Exception e) {
@@ -167,8 +185,8 @@ public class SystemDataIO {
 
             PrintWriter p3 = new PrintWriter("Appointment.txt");
             for (int i = 0; i < allAppointments.size(); i++) {
-                p3.print(allAppointments.get(i).getPeopleID() + ";");
-                p3.print(allAppointments.get(i).getPeopleName() + ";");
+                p3.print(allAppointments.get(i).getPpl().getPeopleID() + ";");
+                p3.print(allAppointments.get(i).getPpl().getPeopleName() + ";");
                 p3.print(allAppointments.get(i).getAppointmentID() + ";");
                 p3.print(allAppointments.get(i).getAppointmentDate() + ";");
                 p3.print(allAppointments.get(i).getAppointmentTime() + ";");
@@ -184,22 +202,28 @@ public class SystemDataIO {
             for (int i = 0; i < allVaccines.size(); i++) {
                 p4.print(allVaccines.get(i).getSupplyID() + ";");
                 p4.print(allVaccines.get(i).getPlace() + ";");
-                p4.print(allVaccines.get(i).getVacAmount() + ";");
                 p4.print(allVaccines.get(i).getSupplyamount() + ";");
-                p4.print(allVaccines.get(i).getCondition() + ";");
                 p4.println();
             }
             p4.close();
 
+            PrintWriter p5 = new PrintWriter("CentreVaccines.txt");
+            
+            for (int i = 0; i < allCentreVaccines.size(); i++) {
+                String l = allCentreVaccines.get(i).getCentre().toString();
+                String va = allCentreVaccines.get(i).getVacamount() + "";
+                p5.print(l + ";");
+                p5.print(va + ";");
+                p5.println();
+            }
+            p5.close();
+            
         } catch (Exception e) {
             System.out.println("Error in write!");
         }
     }
 
     public static Committee checkingCommitee(String x) {
-//        System.out.println(allCommitee.size());
-        //read();
-        System.out.println(allCommitee.size());
         for (int i = 0; i < allCommitee.size(); i++) {
             if (x.equals(allCommitee.get(i).getUsername())) {
                 return allCommitee.get(i);
@@ -210,8 +234,6 @@ public class SystemDataIO {
 
     public static People checkingPeople(String x) {
         
-        //read();
-        System.out.println(allPeople.size());
         for (int i = 0; i < allPeople.size(); i++) {
             if (x.equals(allPeople.get(i).getPeopleID())) {
                 return allPeople.get(i);

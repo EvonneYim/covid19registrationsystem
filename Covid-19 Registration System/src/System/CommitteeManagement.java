@@ -32,8 +32,9 @@ public class CommitteeManagement extends javax.swing.JFrame {
         
 
         SystemDataIO.read();       //readCommitee();
-        AutoNumber();
         DisplayTable();
+        Committee comm = new Committee();
+        txtCNo.setText(comm.AutoNumber());
         
     }
 
@@ -336,7 +337,6 @@ public class CommitteeManagement extends javax.swing.JFrame {
                     Committee.CmodifyDetails();
                     System.out.println(c.toString());
 
-                    AutoNumber();
                     ClearText();
                     //SystemDataIO.allCommitee.clear();
                     DisplayTable();
@@ -383,7 +383,6 @@ public class CommitteeManagement extends javax.swing.JFrame {
                     Committee.CmodifyDetails();
 //                allCommitee.clear();            //if no clear, will always add record into arraylisy, cannot identify duplicates
                     ClearText();
-                    AutoNumber();
                     DisplayTable();
                     
                     JOptionPane.showMessageDialog(rootPane, "Edited successfully!");    
@@ -400,10 +399,7 @@ public class CommitteeManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-    
-        if (txtCNo.getText().isEmpty() || txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Please ensure all information are entered.", "Incomplete details", JOptionPane.WARNING_MESSAGE);
-        } else {
+
             int result;
             result = JOptionPane.showConfirmDialog(null, "Are you sure to delete this information?", "Delete Information", JOptionPane.YES_NO_OPTION);
 
@@ -428,11 +424,8 @@ public class CommitteeManagement extends javax.swing.JFrame {
 
                 if (found) {
                     Committee.CmodifyDetails();
-                    allCommitee.clear();
 
                     ClearText();
-                    System.out.println("Removed.");
-                    AutoNumber();
                     DisplayTable();
                     
                     JOptionPane.showMessageDialog(rootPane, "Deleted successfully!");  
@@ -444,7 +437,7 @@ public class CommitteeManagement extends javax.swing.JFrame {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
             }}
-        }
+        
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
@@ -473,7 +466,6 @@ public class CommitteeManagement extends javax.swing.JFrame {
         if (evt.getClickCount() == 2 && !evt.isConsumed()) {
             evt.consume();
             ClearText();
-            AutoNumber();
             DisplayTable();
             System.out.println("Double Clicked");
         }
@@ -535,35 +527,6 @@ public class CommitteeManagement extends javax.swing.JFrame {
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 
-    public void AutoNumber() {
-        DecimalFormat df = new DecimalFormat("000");
-        try {
-            String filepath = "Commitee.txt";
-            FileReader fr = new FileReader(filepath);
-            BufferedReader br = new BufferedReader(fr);
-            String LastRecord = "", temp;
-
-            while ((temp = br.readLine()) != null) {
-                LastRecord = temp;
-            }
-            String[] lastrec = LastRecord.split(";");
-            String lastcNO = lastrec[0];
-
-            String cnoNumber = lastcNO.substring(1);
-
-            int newcNo = Integer.parseInt(cnoNumber) + 1;
-            String prefix = "C";
-            String finalCNO = prefix + df.format(newcNo);
-
-            fr.close();
-            br.close();
-
-            txtCNo.setText(finalCNO);
-
-        } catch (IOException ex) {
-            Logger.getLogger(CommitteeManagement.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     public void DisplayTable(JTable ctable) {
         dtm.setRowCount(0);
@@ -621,6 +584,8 @@ public class CommitteeManagement extends javax.swing.JFrame {
         txtUsername.setText("");
         txtPassword.setText("");
         txtSearch.setText("");
+        Committee comm = new Committee();
+        txtCNo.setText(comm.AutoNumber());
         
     }
 }

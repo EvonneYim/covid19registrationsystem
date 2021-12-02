@@ -1,8 +1,16 @@
 
 package SystemClass;
 
+import System.CommitteeManagement;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Appointment {
-    private int appointmentID;
+    private String appointmentID;
     private String appointmentDate;
     private String appointmentTime;
     private int dose;
@@ -10,29 +18,42 @@ public class Appointment {
     private String vaccinationStatus;
     private People ppl;
     private Centre place;
-    
-    private String PeopleID = ppl.getPeopleID();
-    private String PeopleName = ppl.getPeopleName();
 
-    public Appointment(String PeopleID, String PeopleName, int appointmentID, String appointmentDate, String appointmentTime, int dose, 
-             Centre place, String appointmentStatus, String vaccinationStatus) {
+    public Appointment(People ppl, String appointmentDate, String appointmentTime, int dose, 
+             Centre place, String appointmentStatus, String vaccinationStatus) {    //this want is without app_ID
+        this.appointmentID = AutoNumber();
+        this.appointmentDate = appointmentDate;
+        this.appointmentTime = appointmentTime;
+        this.dose = dose;
+        this.appointmentStatus = appointmentStatus;
+        this.vaccinationStatus = vaccinationStatus;
+        this.place = place;
+        this.ppl = ppl;
+        
+    }
+    
+     public Appointment(People ppl, String appointmentDate, String appointmentTime, int dose, 
+             Centre place, String appointmentStatus, String vaccinationStatus, String appointmentID) {        //poly exits here
         this.appointmentID = appointmentID;
         this.appointmentDate = appointmentDate;
         this.appointmentTime = appointmentTime;
         this.dose = dose;
         this.appointmentStatus = appointmentStatus;
         this.vaccinationStatus = vaccinationStatus;
-        Centre centre = place;
-        this.PeopleID = PeopleID;
-        this.PeopleName = PeopleName;
+        this.place = place;
+        this.ppl = ppl;
         
     }
+     
+     public Appointment(){
+         
+     }
 
-    public int getAppointmentID() {
+    public String getAppointmentID() {
         return appointmentID;
     }
 
-    public void setAppointmentID(int appointmentID) {
+    public void setAppointmentID(String appointmentID) {
         this.appointmentID = appointmentID;
     }
 
@@ -86,20 +107,50 @@ public class Appointment {
         this.place = place;
     }
 
-    public String getPeopleID() {
-        return PeopleID;
+    public People getPpl() {
+        return ppl;
     }
 
-    public void setPeopleID(String PeopleID) {
-        this.PeopleID = PeopleID;
+    public void setPpl(People ppl) {
+        this.ppl = ppl;
     }
 
-    public String getPeopleName() {
-        return PeopleName;
+    public String AutoNumber() {
+        DecimalFormat df = new DecimalFormat("00000");
+        try {
+            String filepath = "Appointment.txt";
+            FileReader fr = new FileReader(filepath);
+            BufferedReader br = new BufferedReader(fr);
+            String LastRecord = "", temp;
+
+            while ((temp = br.readLine()) != null) {
+                LastRecord = temp;
+            }
+            
+            String finalapp = "A00001";
+            
+            if (!LastRecord.equals("")) {
+                String[] lastrec = LastRecord.split(";");
+                String lastapp = lastrec[2];
+
+                String appNumber = lastapp.substring(1);
+
+                int newapp = Integer.parseInt(appNumber) + 1;
+                String prefix = "A";
+                finalapp = prefix + df.format(newapp);
+            }
+
+            fr.close();
+            br.close();
+
+            return finalapp;
+            
+        } catch (IOException ex) {
+            Logger.getLogger(CommitteeManagement.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 
-    public void setPeopleName(String PeopleName) {
-        this.PeopleName = PeopleName;
-    }
+    
     
 }
