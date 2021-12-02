@@ -16,7 +16,6 @@ public class Covid19RegistrationSystem {
     public static PeopleSignUp pfirst = new PeopleSignUp();
     public static PeopleLogin psecond = new PeopleLogin();
     public static PeopleMainPage pthird = new PeopleMainPage();
-    public static PeopleRegisterAppointment pfourth = new PeopleRegisterAppointment();
     
     public static SystemHomePage main = new SystemHomePage();
 

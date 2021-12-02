@@ -1,16 +1,20 @@
 package System;
 
 import static System.Covid19RegistrationSystem.pthird;
+import SystemClass.Appointment;
 import SystemClass.People;
 import SystemClass.SystemDataIO;
+import static SystemClass.SystemDataIO.allAppointments;
 import static SystemClass.SystemDataIO.allPeople;
 import javax.swing.JOptionPane;
 
 public class PeopleLogin extends javax.swing.JFrame {
+
     public PeopleLogin() {
         initComponents();
         SystemDataIO.read();
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -113,77 +117,116 @@ public class PeopleLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnbackActionPerformed
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
-    
-        try{             
-        String peopleID = txticpassport.getText();
-        String password = (new String(txtpassword.getPassword()));
-        
-        if(peopleID.isEmpty() || password.isEmpty()){
-            JOptionPane.showMessageDialog(rootPane,"Please enter IC/Passport or Password!","Warning", JOptionPane.WARNING_MESSAGE);
-        }else{
-            People found = SystemDataIO.checkingPeople(peopleID);
-            if(found == null){
-                JOptionPane.showMessageDialog(rootPane,"Account does not exist!","Warning", JOptionPane.WARNING_MESSAGE);
-            } else{               
-                
-                if(password.equals(found.getPassword())){
-                    Covid19RegistrationSystem.plogin = found;
-                    setVisible(false);
-                    Covid19RegistrationSystem.pthird.setVisible(true);
-                    
-                    
-                    People current = null;
-                    boolean check = false;
-                    System.out.println(allPeople.size());
-                    for (int i = 0; i < allPeople.size(); i++) {
-                        People a = allPeople.get(i);
-                        if (peopleID.equals(a.getPeopleID())) {
-                            check = true;
-                            current = a;
-                            break;
-                        }
-                    }
-                    if (check) {                       
-                        pthird.rbtnmale.setActionCommand("Male");
-                        pthird.rbtnfemale.setActionCommand("Female");
-                        pthird.rbtncitizen.setActionCommand("Citizen");
-                        pthird.rbtnnoncitizen.setActionCommand("Non-Citizen");
-                        
-                        pthird.txtid.setText(current.getPeopleID());
-                        pthird.txtname.setText(current.getPeopleName());
-                        pthird.txtaddress.setText(current.getAddress());
-                        pthird.txtage.setText(String.valueOf(current.getAge()));
-                        if (current.getGender().equals("Male")) {
-                            pthird.rbtnmale.setSelected(true);
 
-                        } else {
-                            pthird.rbtnfemale.setSelected(true);
-                        }
-//                        System.out.println(current.getGender());
-                        pthird.txtmobileno.setText(current.getMobileNo());
-                         if (current.getNationality().equals("Citizen")) {
-                            pthird.rbtncitizen.setSelected(true);
+        try {
+            String peopleID = txticpassport.getText();
+            String password = (new String(txtpassword.getPassword()));
 
-                        } else {
-                            pthird.rbtnnoncitizen.setSelected(true);
-                        }
-                        pthird.txtpassword.setText(current.getPassword());
-                        pthird.lblWelcome.setText("Hello,"+current.getPeopleName());
-                    }
+            if (peopleID.isEmpty() || password.isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "Please enter IC/Passport or Password!", "Warning", JOptionPane.WARNING_MESSAGE);
+            } else {
+                People found = SystemDataIO.checkingPeople(peopleID);
+                if (found == null) {
+                    JOptionPane.showMessageDialog(rootPane, "Account does not exist!", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else {
 
-                        
-                    
-                    
-                } else{
-                    JOptionPane.showMessageDialog(rootPane,"Wrong password!", "Error", JOptionPane.ERROR_MESSAGE);
-                    
-                }
-            }}}catch(Exception e){
-                JOptionPane.showMessageDialog(rootPane,"Fail to login!","Error", JOptionPane.ERROR_MESSAGE);
-                e.printStackTrace();
-            }
+                    if (password.equals(found.getPassword())) {
+                        Covid19RegistrationSystem.plogin = found;
+                        setVisible(false);
+                        Covid19RegistrationSystem.pthird.setVisible(true);
+
+                        People current = null;
+                        boolean check = false;
  
-     
+                        for (int i = 0; i < allPeople.size(); i++) {
+                            People a = allPeople.get(i);
+                            if (peopleID.equals(a.getPeopleID())) {
+                                check = true;
+                                current = a;
+                                break;
+                            }
+                        }
+                        if (check) {
+                            pthird.rbtnmale.setActionCommand("Male");
+                            pthird.rbtnfemale.setActionCommand("Female");
+                            pthird.rbtncitizen.setActionCommand("Citizen");
+                            pthird.rbtnnoncitizen.setActionCommand("Non-Citizen");
+
+                            pthird.txtid.setText(current.getPeopleID());
+                            pthird.txtname.setText(current.getPeopleName());
+                            pthird.txtaddress.setText(current.getAddress());
+                            pthird.txtage.setText(String.valueOf(current.getAge()));
+                            if (current.getGender().equals("Male")) {
+                                pthird.rbtnmale.setSelected(true);
+
+                            } else {
+                                pthird.rbtnfemale.setSelected(true);
+                            }
+//                        System.out.println(current.getGender());
+                            pthird.txtmobileno.setText(current.getMobileNo());
+                            if (current.getNationality().equals("Citizen")) {
+                                pthird.rbtncitizen.setSelected(true);
+
+                            } else {
+                                pthird.rbtnnoncitizen.setSelected(true);
+                            }
+                            pthird.txtpassword.setText(current.getPassword());
+                            pthird.lblWelcome.setText("Hello," + current.getPeopleName());
+                        }
+
+                        Appointment current1 = null;
+                        boolean check1 = false;
+                        System.out.println(allAppointments.size());
+                        for (int i = 0; i < allAppointments.size(); i++) {
+                            Appointment b = allAppointments.get(i);
+                            if (peopleID.equals(b.getPpl().getPeopleID())) {
+                                check1 = true;
+                                current1 = b;
+                                break;
+                            }
+                        }
+                        if (check1) {
+                            pthird.txtaid.setText(current1.getAppointmentID());
+                            pthird.txtdate.setText(current1.getAppointmentDate());
+                            pthird.txttime.setText(current1.getAppointmentTime());
+                            pthird.txtcentre.setText(current1.getPlace().toString());
+                            pthird.txtdose.setText(String.valueOf(current1.getDose()));
+                            pthird.txtstatus.setText(current1.getAppointmentStatus());
+                            pthird.txtvacstatus.setText(current1.getVaccinationStatus());
+                            
+//                            if (pthird.txtvacstatus.getText().equals("Completed") && pthird.txtstatus.getText().equals("Accepted")) {
+//                                pthird.btnregister.setEnabled(false);
+//                                pthird.btncancelappointment.setEnabled(false);
+//                                pthird.lblnotice.setText("You are partially vaccinated!");
+//                           } else if(pthird.txtvacstatus.getText().equals("Incomplete") && pthird.txtstatus.getText().equals("Pending")){
+//                               pthird.lblnotice.setText("Your appointment request has submitted, kindly wait for approval.");
+//                           } else if(pthird.txtstatus.getText().equals("Rejected")){
+//                               pthird.lblreject.setText("Your appointment has been rejected.");
+//                           } 
+                            if ((!pthird.txtid.getText().isEmpty() || !pthird.txtdate.getText().isEmpty() || !pthird.txttime.getText().isEmpty() || !pthird.txtcentre.getText().isEmpty()
+                                    || !pthird.txtdose.getText().isEmpty() || !pthird.txtstatus.getText().isEmpty() || !pthird.txtvacstatus.getText().isEmpty())) {
+                                pthird.btnregister.setEnabled(false);
+                                pthird.btncancelappointment.setEnabled(true);
+                            } else {
+                                pthird.btnregister.setEnabled(true);
+                                pthird.btncancelappointment.setEnabled(false);
+                            }
+
+
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Wrong password!", "Error", JOptionPane.ERROR_MESSAGE);
+
+                    }
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Fail to login!", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+
+
     }//GEN-LAST:event_btnloginActionPerformed
 
     private void btnshowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnshowActionPerformed

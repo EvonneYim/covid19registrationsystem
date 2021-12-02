@@ -115,9 +115,12 @@ public class People {
     }
     
     public static void makeAppointment(){
-        
+        SystemDataIO.write();
     }
     
+    public static void cancelAppointment() {
+        SystemDataIO.write();
+    }
     public static void viewAppointment(){
         
     }
