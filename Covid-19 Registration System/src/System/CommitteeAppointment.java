@@ -8,6 +8,7 @@ package System;
 import SystemClass.Appointment;
 import SystemClass.Centre;
 import SystemClass.Committee;
+import SystemClass.People;
 import SystemClass.SystemDataIO;
 import static SystemClass.SystemDataIO.allAppointments;
 import static SystemClass.SystemDataIO.allCentreVaccines;
@@ -83,6 +84,7 @@ public class CommitteeAppointment extends javax.swing.JFrame {
         cboAppTime = new javax.swing.JComboBox<>();
         rbtnPending = new javax.swing.JRadioButton();
         jdAppDate = new com.toedter.calendar.JDateChooser();
+        btnReset = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Appointment Management");
@@ -211,7 +213,7 @@ public class CommitteeAppointment extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(btnBack)
-                .addGap(307, 307, 307)
+                .addGap(286, 286, 286)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(81, 81, 81)
                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -228,7 +230,7 @@ public class CommitteeAppointment extends javax.swing.JFrame {
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -238,6 +240,8 @@ public class CommitteeAppointment extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel7.setText("Dose");
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        spinDose.setEnabled(false);
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel9.setText("Centre");
@@ -303,6 +307,16 @@ public class CommitteeAppointment extends javax.swing.JFrame {
             }
         });
 
+        btnReset.setBackground(new java.awt.Color(0, 102, 102));
+        btnReset.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnReset.setForeground(new java.awt.Color(255, 255, 255));
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -328,35 +342,36 @@ public class CommitteeAppointment extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cboAppTime, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(67, 67, 67)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(spinDose, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(spinDose))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cboCentre, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
+                        .addGap(114, 114, 114)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(77, 77, 77)
+                                .addGap(38, 38, 38)
                                 .addComponent(rbtnAcc, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(rbtnRej, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(rbtnPending, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(132, 132, 132)
+                                .addGap(93, 93, 93)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(25, 25, 25)
@@ -365,7 +380,7 @@ public class CommitteeAppointment extends javax.swing.JFrame {
                                         .addComponent(rbtnIncomplete, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(rbtnComplete, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(27, Short.MAX_VALUE))))
+                        .addContainerGap(18, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -377,6 +392,10 @@ public class CommitteeAppointment extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnReset)
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -405,11 +424,9 @@ public class CommitteeAppointment extends javax.swing.JFrame {
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jdAppDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
-                                        .addComponent(txtName)))
+                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(spinDose, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -421,9 +438,7 @@ public class CommitteeAppointment extends javax.swing.JFrame {
                         .addGap(7, 7, 7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboAppTime, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cboAppTime, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -436,8 +451,11 @@ public class CommitteeAppointment extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rbtnIncomplete)
-                            .addComponent(rbtnComplete))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(rbtnComplete))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(btnReset)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -463,7 +481,8 @@ public class CommitteeAppointment extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-              if (txtICPassport.getText().isEmpty() || txtName.getText().isEmpty() || lblAppID.getText().isEmpty() || cboAppTime.getSelectedItem().equals("-")
+                    
+        if (txtICPassport.getText().isEmpty() || txtName.getText().isEmpty() || lblAppID.getText().isEmpty() || cboAppTime.getSelectedItem().equals("-")
                 || cboCentre.getSelectedItem().equals("notset") || APP_STATUS.getSelection().getActionCommand().isEmpty()
                 || VAC_STATUS.getSelection().getActionCommand().isEmpty() || spinDose.getValue().toString().equals("0")) {
             JOptionPane.showMessageDialog(rootPane, "Please ensure all information are entered and valid.", "Incomplete details", JOptionPane.WARNING_MESSAGE);
@@ -495,6 +514,10 @@ public class CommitteeAppointment extends javax.swing.JFrame {
              return; 
             }
 
+            if(rbtnPending.isSelected()){
+              JOptionPane.showMessageDialog(rootPane, "Please update the appointment status to Accepted before proceed", "Invalid appointment status", JOptionPane.WARNING_MESSAGE);  
+              return;
+            }else{
             
             try {
                 pplID = txtICPassport.getText();
@@ -510,8 +533,6 @@ public class CommitteeAppointment extends javax.swing.JFrame {
                 Appointment current = null;
                 boolean found = false;
                 
-                System.out.println(allAppointments.size());
-                
                 for (int i = 0; i < allAppointments.size(); i++) {
                     Appointment a = allAppointments.get(i);
                     
@@ -522,14 +543,15 @@ public class CommitteeAppointment extends javax.swing.JFrame {
                     }
                 }
                 if (found) {
-                    
-                   if(current.getVaccinationStatus().equals("Incomplete") && vacStatus.equals("Completed")){        //from Incomplete status to Completed, 1 bottle of vaccines will be deducted
-                    for (int i = 0; i < allCentreVaccines.size(); i++) {
-                        if (allCentreVaccines.get(i).getCentre().toString().equals(centre.toString())) {
-                            allCentreVaccines.get(i).setVacamount(allCentreVaccines.get(i).getVacamount()-1);
-                            break;
+
+                    if (current.getVaccinationStatus().equals("Incomplete") && vacStatus.equals("Completed") && appStatus.equals("Accepted")) {        //from Incomplete status to Completed, 1 bottle of vaccines will be deducted
+                        for (int i = 0; i < allCentreVaccines.size(); i++) {
+                            if (allCentreVaccines.get(i).getCentre().toString().equals(centre.toString())) {
+                                allCentreVaccines.get(i).setVacamount(allCentreVaccines.get(i).getVacamount() - 1);
+                                break;
+                            }
                         }
-                    }}
+                    }
 
                     current.setAppointmentDate(datestr);
                     current.setAppointmentTime(appTime);
@@ -537,19 +559,56 @@ public class CommitteeAppointment extends javax.swing.JFrame {
                     current.setPlace(centre);
                     current.setVaccinationStatus(vacStatus);
                     current.setAppointmentStatus(appStatus);
-                    
+
+                    Calendar cd = Calendar.getInstance();
+                    boolean isFound = false;
+
+                    for (int i = 0; i < allAppointments.size(); i++) {
+                        if (allAppointments.get(i).getPpl().getPeopleID().equals(pplID)
+                                && !allAppointments.get(i).getAppointmentID().equals(appID)) {
+                            cd.setTime(sdf.parse(allAppointments.get(i).getAppointmentDate()));
+                            isFound = true;
+                        }
+                    }
+                    //sout tab = system.out.println
+
+                    cd.add(Calendar.DATE, 7);
+                    Date defaultdate1 = cd.getTime();
+
+                    if (appDate.before(defaultdate1) && isFound) {
+                        JOptionPane.showMessageDialog(rootPane, "Second appointment can only be placed after 1 week!", "Invalid appointment date", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+
+                    if (current.getDose() == 1 && vacStatus.equals("Completed") && appStatus.equals("Accepted")) {
+
+                        cd.setTime(appDate);
+                        cd.add(Calendar.DATE, 7);
+                        String datestr1 = sdf.format(cd.getTime());
+                        String apptime = "-", appstatus = "Pending", vacstatus = "Incomplete";
+                        int dose = 2;
+
+                        People ppl = new People(pplID, name);
+                        Appointment b = new Appointment();
+                        Appointment a = new Appointment(ppl, datestr1, apptime, dose, Centre.notset, appstatus, vacstatus, b.AutoNumber());
+
+                        allAppointments.add(a);
+                    }
+
                     Committee.modifyAppointment();
                     ClearText();
-                    DisplayTable();                                                                          
-                    JOptionPane.showMessageDialog(rootPane, "Updated successfully!");  
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "People account not found! To renew the IC/ Passport, please add" + "\n" 
-                            +"the new information again and remove the old record for security.", 
-                            "Fail to edit", JOptionPane.ERROR_MESSAGE); 
+                    DisplayTable();
+                    JOptionPane.showMessageDialog(rootPane, "Updated successfully!");
+
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "People account not found! To renew the IC/ Passport, please add" + "\n"
+                            + "the new information again and remove the old record for security.",
+                            "Fail to edit", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
             }
+        }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -631,9 +690,9 @@ public class CommitteeAppointment extends javax.swing.JFrame {
         date = new SimpleDateFormat("dd MMM yyyy").parse((String) dtm.getValueAt(i, 3));
         jdAppDate.setDate(date);
         
-        cboAppTime.setSelectedItem(dtm.getValueAt(i, 4).toString());
+        cboAppTime.getModel().setSelectedItem(dtm.getValueAt(i, 4).toString());
         spinDose.setValue(Integer.parseInt(dtm.getValueAt(i, 5).toString()));
-        cboCentre.setSelectedItem(dtm.getValueAt(i, 6).toString());
+        cboCentre.getModel().setSelectedItem(dtm.getValueAt(i, 6).toString());
         
         appStatus = dtm.getValueAt(i, 7).toString();
         
@@ -661,6 +720,11 @@ public class CommitteeAppointment extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_tblAppointmentMouseClicked
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        ClearText();
+        DisplayTable();
+    }//GEN-LAST:event_btnResetActionPerformed
 
     /**
      * @param args the command line arguments
@@ -704,6 +768,7 @@ public class CommitteeAppointment extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSave;
     protected static javax.swing.JComboBox<String> cboAppTime;
     protected static javax.swing.JComboBox<Centre> cboCentre;

@@ -5,6 +5,7 @@
  */
 package System;
 
+import SystemClass.Report;
 import SystemClass.SystemDataIO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -188,7 +189,8 @@ public class CommitteeOperations extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVacActionPerformed
 
     private void btnSummaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSummaryActionPerformed
-       //put dialog here to show summary report
+        Report r = new Report();
+        JOptionPane.showMessageDialog(rootPane, r.getReport(), "Statistical Report", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnSummaryActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed

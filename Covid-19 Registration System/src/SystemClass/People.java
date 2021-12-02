@@ -24,7 +24,12 @@ public class People {
         this.password = password;
         this.nationality = nationality;
     }
-
+    
+    public People(String peopleID, String peopleName){
+        this.peopleID = peopleID;
+        this.peopleName = peopleName;
+    }
+    
     public String getPeopleID() {
         return peopleID;
     }
