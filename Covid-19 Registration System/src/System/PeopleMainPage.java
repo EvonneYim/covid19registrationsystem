@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package System;
 
 import SystemClass.Appointment;
@@ -15,20 +10,15 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author user
- */
 public class PeopleMainPage extends javax.swing.JFrame {
 
     String pplID, name, address, gender, mobile, password, nationality;
     int age;
 
-    /**
-     * Creates new form COVID
-     */
     public PeopleMainPage() {
         initComponents();
+        People.viewDetails();
+        People.viewAppointment();
     }
 
     public void ClearProfile() {
@@ -822,7 +812,7 @@ public class PeopleMainPage extends javax.swing.JFrame {
                 if (pplID.equals(a.getPeopleID())) {
                     found = true;
                     current = a;
-//                    System.out.println("Checked");
+
                     break;
                 }
             }
@@ -835,7 +825,7 @@ public class PeopleMainPage extends javax.swing.JFrame {
                 current.setPassword(password);
                 current.setNationality(nationality);
                 People.PmodifyDetails();
-//                allPeople.clear();            //if no clear, will always add record into arraylisy, cannot identify duplicates
+
                 JOptionPane.showMessageDialog(rootPane, "Profile edited successfully!");
 
                 txtname.setEditable(false);
@@ -857,23 +847,23 @@ public class PeopleMainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnsaveActionPerformed
 
     private void txtmobilenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmobilenoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtmobilenoActionPerformed
 
     private void txtageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtageActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtageActionPerformed
 
     private void txtaddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtaddressActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtaddressActionPerformed
 
     private void txtnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnameActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtnameActionPerformed
 
     private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtidActionPerformed
 
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
@@ -947,31 +937,31 @@ public class PeopleMainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btncanceleditActionPerformed
 
     private void txtdoseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdoseActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtdoseActionPerformed
 
     private void txtdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdateActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtdateActionPerformed
 
     private void txtstatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtstatusActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtstatusActionPerformed
 
     private void txttimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttimeActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txttimeActionPerformed
 
     private void txtcentreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcentreActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtcentreActionPerformed
 
     private void txtvacstatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtvacstatusActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtvacstatusActionPerformed
 
     private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtpasswordActionPerformed
 
     private void txtnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnameKeyTyped
@@ -1015,7 +1005,7 @@ public class PeopleMainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_txtaddressKeyTyped
 
     private void txtaidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtaidActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtaidActionPerformed
 
     private void btncancelappointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelappointmentActionPerformed
@@ -1113,27 +1103,27 @@ public class PeopleMainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnregisterActionPerformed
 
     private void txtdose2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdose2ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtdose2ActionPerformed
 
     private void txtdate2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdate2ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtdate2ActionPerformed
 
     private void txtstatus2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtstatus2ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtstatus2ActionPerformed
 
     private void txttime2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttime2ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txttime2ActionPerformed
 
     private void txtcentre2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcentre2ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtcentre2ActionPerformed
 
     private void txtvacstatus2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtvacstatus2ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtvacstatus2ActionPerformed
 
     private void btnregister2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregister2ActionPerformed
@@ -1180,19 +1170,6 @@ public class PeopleMainPage extends javax.swing.JFrame {
                     allAppointments.add(a);
 
                     People.makeAppointment();
-//                    if (txtvacstatus.getText().equals("Completed") && txtstatus.getText().equals("Accepted")) {
-//                        btnregister.setEnabled(false);
-//                        btncancelappointment.setEnabled(false);
-//                        lblnotice.setText("You are partially vaccinated!");
-//                    } else if (txtvacstatus.getText().equals("Incomplete") && txtstatus.getText().equals("Pending")) {
-//                        lblnotice.setText("Your appointment request has submitted, kindly wait for approval.");
-//                    } else if (txtstatus.getText().equals("Rejected")) {
-//                        lblreject.setText("Your appointment has been rejected.");
-//                    }
-//                        this.setVisible(false);
-//                        ca.setVisible(true);
-//                        
-//                        ca.DisplayTable();                       
 
                 }
             } catch (Exception e) {
@@ -1203,7 +1180,7 @@ public class PeopleMainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnregister2ActionPerformed
 
     private void txtaid2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtaid2ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtaid2ActionPerformed
 
     private void btncancelappointment2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelappointment2ActionPerformed
@@ -1233,6 +1210,7 @@ public class PeopleMainPage extends javax.swing.JFrame {
 
                     Clear2ndDose();
                     btnregister2.setEnabled(true);
+                    btncancelappointment2.setEnabled(false);
                     JOptionPane.showMessageDialog(rootPane, "2nd Dose Appointment Canceled Successfully!");
                 }
 
@@ -1242,41 +1220,8 @@ public class PeopleMainPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btncancelappointment2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PeopleMainPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PeopleMainPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PeopleMainPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PeopleMainPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PeopleMainPage().setVisible(true);

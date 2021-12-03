@@ -1,11 +1,11 @@
-
 package System;
+
 import SystemClass.Committee;
 import SystemClass.SystemDataIO;
 import javax.swing.JOptionPane;
 
-public class CommitteeLogin extends javax.swing.JFrame{
-  
+public class CommitteeLogin extends javax.swing.JFrame {
+
     public CommitteeLogin() {
         initComponents();
         SystemDataIO.read();
@@ -175,30 +175,32 @@ public class CommitteeLogin extends javax.swing.JFrame{
     }//GEN-LAST:event_tbtnShowActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-     try{             
-        String name = txtUsername.getText();
-        String password = (new String(txtPassword.getPassword()));
-        
-        if(name.isEmpty() || password.isEmpty()){
-            JOptionPane.showMessageDialog(rootPane,"Please enter complete details!","Warning", JOptionPane.WARNING_MESSAGE);
-        }else{
-            Committee found = SystemDataIO.checkingCommitee(name);
-            if(found == null){
-                JOptionPane.showMessageDialog(rootPane,"You haven't registered!","Warning", JOptionPane.WARNING_MESSAGE);
-            } else{
-                
-                if(password.equals(found.getPassword())){
-                    Covid19RegistrationSystem.clogin = found;
-                    setVisible(false);
-                    Covid19RegistrationSystem.csecond.setVisible(true);
-                } else{
-                    JOptionPane.showMessageDialog(rootPane,"Wrong password!", "Error", JOptionPane.ERROR_MESSAGE);
+        try {
+            String name = txtUsername.getText();
+            String password = (new String(txtPassword.getPassword()));
+
+            if (name.isEmpty() || password.isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "Please enter complete details!", "Warning", JOptionPane.WARNING_MESSAGE);
+            } else {
+                Committee found = SystemDataIO.checkingCommitee(name);
+                if (found == null) {
+                    JOptionPane.showMessageDialog(rootPane, "You haven't registered!", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else {
+
+                    if (password.equals(found.getPassword())) {
+                        Covid19RegistrationSystem.clogin = found;
+                        setVisible(false);
+                        Covid19RegistrationSystem.csecond.setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Wrong password!", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
-            }}}catch(Exception e){
-                JOptionPane.showMessageDialog(rootPane,"Fail to login!","Error", JOptionPane.ERROR_MESSAGE);
-                e.printStackTrace();
             }
-        
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Fail to login!", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+
 
     }//GEN-LAST:event_btnLoginActionPerformed
 

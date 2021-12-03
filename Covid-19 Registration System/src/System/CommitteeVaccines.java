@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package System;
 
 import SystemClass.Centre;
@@ -19,22 +14,19 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author User
- */
 public class CommitteeVaccines extends javax.swing.JFrame {
+
     DefaultTableModel dtm;
     String columnname[] = new String[]{"ID", "Centre", "Supply Amount"};
     String id;
     Centre centre;
     int supply;
-    
+
     public CommitteeVaccines() {
         initComponents();
         dtm = new DefaultTableModel(columnname, 0);
         tblVacSupply.setModel(dtm);
-        SystemDataIO.read();            //*readPeople();
+        SystemDataIO.read();
         DisplayTable();
         setLabelText();
         loadCentre();
@@ -484,17 +476,17 @@ public class CommitteeVaccines extends javax.swing.JFrame {
                 id = txtSID.getText();
                 centre = (Centre) cboxCentre.getSelectedItem();
                 supply = Integer.parseInt(txtSuppAmount.getText());
-                
-                for(int i =0; i< allVaccines.size();i++){
-                    if(allVaccines.get(i).getSupplyID().equals(id)){
-                       JOptionPane.showMessageDialog(rootPane, "Duplicated SupplyID! Please update by enter Edit", "Repeated SupplyID", JOptionPane.WARNING_MESSAGE); 
-                       return;
+
+                for (int i = 0; i < allVaccines.size(); i++) {
+                    if (allVaccines.get(i).getSupplyID().equals(id)) {
+                        JOptionPane.showMessageDialog(rootPane, "Duplicated SupplyID! Please update by enter Edit", "Repeated SupplyID", JOptionPane.WARNING_MESSAGE);
+                        return;
                     }
                 }
 
                 Vaccines v = new Vaccines(centre, supply);
                 SystemDataIO.allVaccines.add(v);
-               
+
                 System.out.println(v.toString());
 
                 for (int i = 0; i < allCentreVaccines.size(); i++) {
@@ -528,11 +520,10 @@ public class CommitteeVaccines extends javax.swing.JFrame {
                 id = txtSID.getText();
                 centre = Centre.valueOf((cboxCentre.getSelectedItem().toString()));
                 supply = Integer.parseInt(txtSuppAmount.getText());
-                
-                
+
                 Vaccines current = null;
                 boolean found = false;
-                
+
                 for (int i = 0; i < allVaccines.size(); i++) {
                     Vaccines b = allVaccines.get(i);
                     if (id.equals(b.getSupplyID())) {
@@ -543,13 +534,13 @@ public class CommitteeVaccines extends javax.swing.JFrame {
                 }
                 if (found) {
 
-                    for(int i = 0; i < allCentreVaccines.size(); i++){
-                    if(allCentreVaccines.get(i).getCentre().toString().equals(centre.toString())){
-                        int total = allCentreVaccines.get(i).getVacamount() + supply - current.getSupplyamount();
-                        allCentreVaccines.get(i).setVacamount(total); 
-                                                                     
-                    }                  
-                }
+                    for (int i = 0; i < allCentreVaccines.size(); i++) {
+                        if (allCentreVaccines.get(i).getCentre().toString().equals(centre.toString())) {
+                            int total = allCentreVaccines.get(i).getVacamount() + supply - current.getSupplyamount();
+                            allCentreVaccines.get(i).setVacamount(total);
+
+                        }
+                    }
                     current.setPlace(centre);
                     current.setSupplyamount(supply);
 
@@ -557,27 +548,28 @@ public class CommitteeVaccines extends javax.swing.JFrame {
                     setLabelText();
                     ClearText();
                     DisplayTable();
-                    
-                    JOptionPane.showMessageDialog(rootPane, "Edited successfully!");    
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "Username not found!", "Fail to edit", JOptionPane.ERROR_MESSAGE); 
+
+                    JOptionPane.showMessageDialog(rootPane, "Edited successfully!");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Username not found!", "Fail to edit", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
                 e.printStackTrace();
-            }}
+            }
+        }
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int result;
-            result = JOptionPane.showConfirmDialog(null, "Are you sure to delete this information?", "Delete Information", JOptionPane.YES_NO_OPTION);
+        result = JOptionPane.showConfirmDialog(null, "Are you sure to delete this information?", "Delete Information", JOptionPane.YES_NO_OPTION);
 
-            if (result == JOptionPane.YES_OPTION) {
+        if (result == JOptionPane.YES_OPTION) {
             try {
                 id = txtSID.getText();
                 centre = Centre.valueOf((cboxCentre.getSelectedItem().toString()));
                 supply = Integer.parseInt(txtSuppAmount.getText());
-                
+
                 Vaccines current = null;
                 boolean found = false;
                 SystemDataIO.read();
@@ -594,23 +586,22 @@ public class CommitteeVaccines extends javax.swing.JFrame {
 
                 if (found) {
                     Committee.modifyAppointment();
-//                    allAppointments.clear();
 
                     ClearText();
                     DisplayTable();
-                    
-                    JOptionPane.showMessageDialog(rootPane, "Deleted successfully!");  
+
+                    JOptionPane.showMessageDialog(rootPane, "Deleted successfully!");
 
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "User not exist!", "Fail to delete", JOptionPane.ERROR_MESSAGE);
                 }
-                
+
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
             }
         }
-        
-        
+
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void lblAPAPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_lblAPAPropertyChange
@@ -627,20 +618,21 @@ public class CommitteeVaccines extends javax.swing.JFrame {
     }//GEN-LAST:event_tblVacSupplyMouseClicked
 
     private void cboxCentreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxCentreActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_cboxCentreActionPerformed
 
     private void txtSuppAmountKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSuppAmountKeyReleased
-        try{
+        try {
             int value = Integer.parseInt(txtSuppAmount.getText());
 
-            if (value < 0 ) {
-                //            JOptionPane.showMessageDialog(rootPane, "Please set the dose within 1 or 2 only!", "Invalid dosage!", JOptionPane.WARNING_MESSAGE);
+            if (value < 0) {
+
                 txtSuppAmount.setText("1");
                 return;
-            }}catch(Exception e){
-                txtSuppAmount.setText("1");
             }
+        } catch (Exception e) {
+            txtSuppAmount.setText("1");
+        }
     }//GEN-LAST:event_txtSuppAmountKeyReleased
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
@@ -652,37 +644,8 @@ public class CommitteeVaccines extends javax.swing.JFrame {
         DisplayTable();
     }//GEN-LAST:event_btnReset1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CommitteeVaccines.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CommitteeVaccines.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CommitteeVaccines.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CommitteeVaccines.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CommitteeVaccines().setVisible(true);
@@ -728,7 +691,7 @@ public class CommitteeVaccines extends javax.swing.JFrame {
     public void setLabelText() {
         for (int i = 0; i < allCentreVaccines.size(); i++) {
             int vacAmount = allCentreVaccines.get(i).getVacamount();
-            String va  = vacAmount + "";
+            String va = vacAmount + "";
             String l = allCentreVaccines.get(i).getCentre().toString();
 
             String condition = (vacAmount <= 10 ? "Urgent" : vacAmount <= 20 ? "Moderate" : "Sufficient");
@@ -778,7 +741,7 @@ public class CommitteeVaccines extends javax.swing.JFrame {
 
     }
 
-     public void Search() {
+    public void Search() {
         String searchAppointment;
         searchAppointment = txtSearch.getText();
         dtm.setRowCount(0);
@@ -802,25 +765,16 @@ public class CommitteeVaccines extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Please ensure all procedures are in correct manner.", "Error", JOptionPane.WARNING_MESSAGE);
         }
     }
-     
-     private void ClearText(){
-         cboxCentre.getModel().setSelectedItem("notset");
-         txtSuppAmount.setText("1");
-         Vaccines v = new Vaccines();
-         txtSID.setText(v.AutoNumber());    
-     }
 
-     private void loadCentre() {
+    private void ClearText() {
+        cboxCentre.getModel().setSelectedItem("notset");
+        txtSuppAmount.setText("1");
+        Vaccines v = new Vaccines();
+        txtSID.setText(v.AutoNumber());
+    }
+
+    private void loadCentre() {
         cboxCentre.setModel(new DefaultComboBoxModel<>(Centre.values()));
     }
 
-
-
-
-
-
-
-
-
 }
-

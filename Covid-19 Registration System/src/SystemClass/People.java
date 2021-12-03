@@ -1,9 +1,9 @@
-
 package SystemClass;
 
 import java.util.ArrayList;
 
 public class People {
+
     private String peopleID;
     private String peopleName;
     private String address;
@@ -24,12 +24,12 @@ public class People {
         this.password = password;
         this.nationality = nationality;
     }
-    
-    public People(String peopleID, String peopleName){
+
+    public People(String peopleID, String peopleName) { //Polymorphism
         this.peopleID = peopleID;
         this.peopleName = peopleName;
     }
-    
+
     public String getPeopleID() {
         return peopleID;
     }
@@ -101,31 +101,25 @@ public class People {
     public void setMyAppointment(ArrayList<Appointment> myAppointment) {
         this.myAppointment = myAppointment;
     }
-        
-    
-    
-    
-    
-    public static void PmodifyDetails(){
+
+    public static void PmodifyDetails() {
         SystemDataIO.write();
     }
-    
-    public static void viewDetails(){
-        
+
+    public static void viewDetails() {
+        SystemDataIO.read();
     }
-    
-    public static void makeAppointment(){
+
+    public static void makeAppointment() {
         SystemDataIO.write();
     }
-    
+
     public static void cancelAppointment() {
         SystemDataIO.write();
     }
-    public static void viewAppointment(){
-        
+
+    public static void viewAppointment() {
+        SystemDataIO.read();
     }
-    
-    public static void viewVacStatus(){
-        
-    }
+
 }

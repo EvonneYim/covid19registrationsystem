@@ -1,4 +1,3 @@
-
 package SystemClass;
 
 import System.CommitteeManagement;
@@ -10,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Appointment {
+
     private String appointmentID;
     private String appointmentDate;
     private String appointmentTime;
@@ -19,8 +19,8 @@ public class Appointment {
     private People ppl;
     private Centre place;
 
-    public Appointment(People ppl, String appointmentDate, String appointmentTime, int dose, 
-             Centre place, String appointmentStatus, String vaccinationStatus) {    //this want is without app_ID
+    public Appointment(People ppl, String appointmentDate, String appointmentTime, int dose,
+            Centre place, String appointmentStatus, String vaccinationStatus) {    //this want is without app_ID
         this.appointmentID = AutoNumber();
         this.appointmentDate = appointmentDate;
         this.appointmentTime = appointmentTime;
@@ -29,11 +29,11 @@ public class Appointment {
         this.vaccinationStatus = vaccinationStatus;
         this.place = place;
         this.ppl = ppl;
-        
+
     }
-    
-     public Appointment(People ppl, String appointmentDate, String appointmentTime, int dose, 
-             Centre place, String appointmentStatus, String vaccinationStatus, String appointmentID) {        //poly exits here
+
+    public Appointment(People ppl, String appointmentDate, String appointmentTime, int dose,
+            Centre place, String appointmentStatus, String vaccinationStatus, String appointmentID) {        //poly exits here
         this.appointmentID = appointmentID;
         this.appointmentDate = appointmentDate;
         this.appointmentTime = appointmentTime;
@@ -42,12 +42,12 @@ public class Appointment {
         this.vaccinationStatus = vaccinationStatus;
         this.place = place;
         this.ppl = ppl;
-        
+
     }
-     
-     public Appointment(){
-         
-     }
+
+    public Appointment() {
+
+    }
 
     public String getAppointmentID() {
         return appointmentID;
@@ -81,7 +81,6 @@ public class Appointment {
         this.dose = dose;
     }
 
-
     public void setAppointmentStatus(String appointmentStatus) {
         this.appointmentStatus = appointmentStatus;
     }
@@ -93,7 +92,6 @@ public class Appointment {
     public String getVaccinationStatus() {
         return vaccinationStatus;
     }
-
 
     public void setVaccinationStatus(String vaccinationStatus) {
         this.vaccinationStatus = vaccinationStatus;
@@ -126,9 +124,9 @@ public class Appointment {
             while ((temp = br.readLine()) != null) {
                 LastRecord = temp;
             }
-            
+
             String finalapp = "A00001";
-            
+
             if (!LastRecord.equals("")) {
                 String[] lastrec = LastRecord.split(";");
                 String lastapp = lastrec[2];
@@ -144,13 +142,11 @@ public class Appointment {
             br.close();
 
             return finalapp;
-            
+
         } catch (IOException ex) {
             Logger.getLogger(CommitteeManagement.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
 
-    
-    
 }

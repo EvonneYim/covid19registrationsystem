@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package System;
 
 import SystemClass.Appointment;
@@ -26,13 +21,14 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class CommitteeAppointment extends javax.swing.JFrame {
+
     DefaultTableModel dtm;
     String columnname[] = new String[]{"ID", "Name", "App_ID", "App_Date", "App_Time", "Dose", "Centre", "App_Status", "Vac_Status"};
     String pplID, name, appID, appTime, appStatus, vacStatus;
     Centre centre;
     int dose;
     Date appDate;
-    
+
     public CommitteeAppointment() {
         initComponents();
         rbtnAcc.setActionCommand("Accepted");
@@ -40,14 +36,14 @@ public class CommitteeAppointment extends javax.swing.JFrame {
         rbtnPending.setActionCommand("Pending");
         rbtnComplete.setActionCommand("Completed");
         rbtnIncomplete.setActionCommand("Incomplete");
-        
+
         dtm = new DefaultTableModel(columnname, 0);
         tblAppointment.setModel(dtm);
-        SystemDataIO.read();       
+        SystemDataIO.read();
         DisplayTable();
         loadCenter();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -468,8 +464,8 @@ public class CommitteeAppointment extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-         int result;
-         result = JOptionPane.showConfirmDialog(null, "Are you sure to log out?", "System Log Out", JOptionPane.YES_NO_OPTION);
+        int result;
+        result = JOptionPane.showConfirmDialog(null, "Are you sure to log out?", "System Log Out", JOptionPane.YES_NO_OPTION);
 
         if (result == JOptionPane.YES_OPTION) {
             CommitteeLogin login;
@@ -481,7 +477,7 @@ public class CommitteeAppointment extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-                    
+
         if (txtICPassport.getText().isEmpty() || txtName.getText().isEmpty() || lblAppID.getText().isEmpty() || cboAppTime.getSelectedItem().equals("-")
                 || cboCentre.getSelectedItem().equals("notset") || APP_STATUS.getSelection().getActionCommand().isEmpty()
                 || VAC_STATUS.getSelection().getActionCommand().isEmpty() || spinDose.getValue().toString().equals("0")) {
@@ -490,167 +486,167 @@ public class CommitteeAppointment extends javax.swing.JFrame {
             Calendar c = Calendar.getInstance();
             c.add(Calendar.DATE, 6);
             Date defaultdate = c.getTime();
-            
+
             if (jdAppDate.getDate().before(defaultdate)) {
                 JOptionPane.showMessageDialog(rootPane, "Please set the appointment after 1 week!", "Invalid appointment date", JOptionPane.WARNING_MESSAGE);
                 return;         //means the function had completed, no need to run forward
             }
-            
-            int count =0;     
+
+            int count = 0;
             SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
             String datestr = sdf.format(jdAppDate.getDate());
-             
-            for(int i =0; i<allAppointments.size(); i++){               
-                             
-              if(allAppointments.get(i).getAppointmentDate().equals(datestr) && 
-                 allAppointments.get(i).getAppointmentTime().equals(cboAppTime.getSelectedItem()) &&
-                 allAppointments.get(i).getPlace().equals(cboCentre.getSelectedItem())){
-                  count ++;            
-              }              
-            }
-            
-            if(count >= 5){
-             JOptionPane.showMessageDialog(rootPane, "This slot is fully booked! Please select another date, time or centre!", "Placement is fully booked!", JOptionPane.WARNING_MESSAGE);
-             return; 
-            }
 
-            if(rbtnPending.isSelected()){
-              JOptionPane.showMessageDialog(rootPane, "Please update the appointment status to Accepted before proceed", "Invalid appointment status", JOptionPane.WARNING_MESSAGE);  
-              return;
-            }else{
-            
-            try {
-                pplID = txtICPassport.getText();
-                name = txtName.getText();
-                appID = lblAppID.getText();
-                appDate = jdAppDate.getDate();
-                appTime = cboAppTime.getSelectedItem().toString();
-                dose = Integer.parseInt(spinDose.getValue().toString());
-                centre = Centre.valueOf((cboCentre.getSelectedItem().toString()));
-                appStatus = APP_STATUS.getSelection().getActionCommand();
-                vacStatus = VAC_STATUS.getSelection().getActionCommand();
-                
-                Appointment current = null;
-                boolean found = false;
-                
-                for (int i = 0; i < allAppointments.size(); i++) {
-                    Appointment a = allAppointments.get(i);
-                    
-                    if (appID.equals(a.getAppointmentID())) {
-                        found = true;
-                        current = a;
-                        break;
-                    }
+            for (int i = 0; i < allAppointments.size(); i++) {
+
+                if (allAppointments.get(i).getAppointmentDate().equals(datestr)
+                        && allAppointments.get(i).getAppointmentTime().equals(cboAppTime.getSelectedItem())
+                        && allAppointments.get(i).getPlace().equals(cboCentre.getSelectedItem())) {
+                    count++;
                 }
-                if (found) {
+            }
 
-                    if (current.getVaccinationStatus().equals("Incomplete") && vacStatus.equals("Completed") && appStatus.equals("Accepted")) {        //from Incomplete status to Completed, 1 bottle of vaccines will be deducted
-                        for (int i = 0; i < allCentreVaccines.size(); i++) {
-                            if (allCentreVaccines.get(i).getCentre().toString().equals(centre.toString())) {
-                                allCentreVaccines.get(i).setVacamount(allCentreVaccines.get(i).getVacamount() - 1);
-                                break;
-                            }
-                        }
-                    }
+            if (count >= 5) {
+                JOptionPane.showMessageDialog(rootPane, "This slot is fully booked! Please select another date, time or centre!", "Placement is fully booked!", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
 
-                    current.setAppointmentDate(datestr);
-                    current.setAppointmentTime(appTime);
-                    current.setDose(dose);
-                    current.setPlace(centre);
-                    current.setVaccinationStatus(vacStatus);
-                    current.setAppointmentStatus(appStatus);
+            if (rbtnPending.isSelected()) {
+                JOptionPane.showMessageDialog(rootPane, "Please update the appointment status to Accepted before proceed", "Invalid appointment status", JOptionPane.WARNING_MESSAGE);
+                return;
+            } else {
 
-                    Calendar cd = Calendar.getInstance();
-                    boolean isFound = false;
+                try {
+                    pplID = txtICPassport.getText();
+                    name = txtName.getText();
+                    appID = lblAppID.getText();
+                    appDate = jdAppDate.getDate();
+                    appTime = cboAppTime.getSelectedItem().toString();
+                    dose = Integer.parseInt(spinDose.getValue().toString());
+                    centre = Centre.valueOf((cboCentre.getSelectedItem().toString()));
+                    appStatus = APP_STATUS.getSelection().getActionCommand();
+                    vacStatus = VAC_STATUS.getSelection().getActionCommand();
+
+                    Appointment current = null;
+                    boolean found = false;
 
                     for (int i = 0; i < allAppointments.size(); i++) {
-                        if (allAppointments.get(i).getPpl().getPeopleID().equals(pplID)
-                                && !allAppointments.get(i).getAppointmentID().equals(appID)) {
-                            cd.setTime(sdf.parse(allAppointments.get(i).getAppointmentDate()));
-                            isFound = true;
+                        Appointment a = allAppointments.get(i);
+
+                        if (appID.equals(a.getAppointmentID())) {
+                            found = true;
+                            current = a;
+                            break;
                         }
                     }
-                    //sout tab = system.out.println
+                    if (found) {
 
-                    cd.add(Calendar.DATE, 7);
-                    Date defaultdate1 = cd.getTime();
+                        if (current.getVaccinationStatus().equals("Incomplete") && vacStatus.equals("Completed") && appStatus.equals("Accepted")) {        //from Incomplete status to Completed, 1 bottle of vaccines will be deducted
+                            for (int i = 0; i < allCentreVaccines.size(); i++) {
+                                if (allCentreVaccines.get(i).getCentre().toString().equals(centre.toString())) {
+                                    allCentreVaccines.get(i).setVacamount(allCentreVaccines.get(i).getVacamount() - 1);
+                                    break;
+                                }
+                            }
+                        }
 
-                    if (appDate.before(defaultdate1) && isFound) {
-                        JOptionPane.showMessageDialog(rootPane, "Second appointment can only be placed after 1 week!", "Invalid appointment date", JOptionPane.WARNING_MESSAGE);
-                        return;
-                    }
+                        current.setAppointmentDate(datestr);
+                        current.setAppointmentTime(appTime);
+                        current.setDose(dose);
+                        current.setPlace(centre);
+                        current.setVaccinationStatus(vacStatus);
+                        current.setAppointmentStatus(appStatus);
 
-                    if (current.getDose() == 1 && vacStatus.equals("Completed") && appStatus.equals("Accepted")) {
+                        Calendar cd = Calendar.getInstance();
+                        boolean isFound = false;
 
-                        cd.setTime(appDate);
+                        for (int i = 0; i < allAppointments.size(); i++) {
+                            if (allAppointments.get(i).getPpl().getPeopleID().equals(pplID)
+                                    && !allAppointments.get(i).getAppointmentID().equals(appID)) {
+                                cd.setTime(sdf.parse(allAppointments.get(i).getAppointmentDate()));
+                                isFound = true;
+                            }
+                        }
+                        //sout tab = system.out.println
+
                         cd.add(Calendar.DATE, 7);
-                        String datestr1 = sdf.format(cd.getTime());
-                        String apptime = "-", appstatus = "Pending", vacstatus = "Incomplete";
-                        int dose = 2;
+                        Date defaultdate1 = cd.getTime();
 
-                        People ppl = new People(pplID, name);
-                        Appointment b = new Appointment();
-                        Appointment a = new Appointment(ppl, datestr1, apptime, dose, Centre.notset, appstatus, vacstatus, b.AutoNumber());
+                        if (appDate.before(defaultdate1) && isFound) {
+                            JOptionPane.showMessageDialog(rootPane, "Second appointment can only be placed after 1 week!", "Invalid appointment date", JOptionPane.WARNING_MESSAGE);
+                            return;
+                        }
 
-                        allAppointments.add(a);
+                        if (current.getDose() == 1 && vacStatus.equals("Completed") && appStatus.equals("Accepted")) {
+
+                            cd.setTime(appDate);
+                            cd.add(Calendar.DATE, 7);
+                            String datestr1 = sdf.format(cd.getTime());
+                            String apptime = "-", appstatus = "Pending", vacstatus = "Incomplete";
+                            int dose = 2;
+
+                            People ppl = new People(pplID, name); //Polymorphism
+                            Appointment b = new Appointment();    //Modularity
+                            Appointment a = new Appointment(ppl, datestr1, apptime, dose, Centre.notset, appstatus, vacstatus, b.AutoNumber());
+
+                            allAppointments.add(a);
+                        }
+
+                        Committee.modifyAppointment();
+                        ClearText();
+                        DisplayTable();
+                        JOptionPane.showMessageDialog(rootPane, "Updated successfully!");
+
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "People account not found! To renew the IC/ Passport, please add" + "\n"
+                                + "the new information again and remove the old record for security.",
+                                "Fail to edit", JOptionPane.ERROR_MESSAGE);
                     }
-
-                    Committee.modifyAppointment();
-                    ClearText();
-                    DisplayTable();
-                    JOptionPane.showMessageDialog(rootPane, "Updated successfully!");
-
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "People account not found! To renew the IC/ Passport, please add" + "\n"
-                            + "the new information again and remove the old record for security.",
-                            "Fail to edit", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
                 }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
             }
-        }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        
-            int result;
-            result = JOptionPane.showConfirmDialog(null, "Are you sure to delete this information?", "Delete Information", JOptionPane.YES_NO_OPTION);
 
-            if (result == JOptionPane.YES_OPTION) {
+        int result;
+        result = JOptionPane.showConfirmDialog(null, "Are you sure to delete this information?", "Delete Information", JOptionPane.YES_NO_OPTION);
+
+        if (result == JOptionPane.YES_OPTION) {
             try {
                 appID = lblAppID.getText();
-                
+
                 Appointment current = null;
                 boolean found = false;
 
-                    for (int i = 0; i < allAppointments.size(); i++) {
-                        Appointment a = allAppointments.get(i);
-                        if (appID.equals(a.getAppointmentID())) {
-                            found = true;
-                            current = a;
-                            allAppointments.remove(a);
-                            break;
-                        }
+                for (int i = 0; i < allAppointments.size(); i++) {
+                    Appointment a = allAppointments.get(i);
+                    if (appID.equals(a.getAppointmentID())) {
+                        found = true;
+                        current = a;
+                        allAppointments.remove(a);
+                        break;
                     }
+                }
 
-                    if (found) {
-                        Committee.modifyAppointment();
+                if (found) {
+                    Committee.modifyAppointment();
 
-                        ClearText();
-                        DisplayTable();
-                        
-                        JOptionPane.showMessageDialog(rootPane, "Deleted successfully!");  
-                    } else {
-                        JOptionPane.showMessageDialog(rootPane, "User not exist!", "Fail to delete", JOptionPane.ERROR_MESSAGE);
-                    }
-               
+                    ClearText();
+                    DisplayTable();
+
+                    JOptionPane.showMessageDialog(rootPane, "Deleted successfully!");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "User not exist!", "Fail to delete", JOptionPane.ERROR_MESSAGE);
+                }
+
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
             }
         }
-               
-                                             
+
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void rbtnRejActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnRejActionPerformed
@@ -680,45 +676,46 @@ public class CommitteeAppointment extends javax.swing.JFrame {
     private void tblAppointmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAppointmentMouseClicked
         int i;
         Date date;
-        
-      try{  
-        i = tblAppointment.getSelectedRow();
-        txtICPassport.setText(dtm.getValueAt(i, 0).toString());
-        txtName.setText(dtm.getValueAt(i, 1).toString());
-        lblAppID.setText(dtm.getValueAt(i, 2).toString());
-        
-        date = new SimpleDateFormat("dd MMM yyyy").parse((String) dtm.getValueAt(i, 3));
-        jdAppDate.setDate(date);
-        
-        cboAppTime.getModel().setSelectedItem(dtm.getValueAt(i, 4).toString());
-        spinDose.setValue(Integer.parseInt(dtm.getValueAt(i, 5).toString()));
-        cboCentre.getModel().setSelectedItem(dtm.getValueAt(i, 6).toString());
-        
-        appStatus = dtm.getValueAt(i, 7).toString();
-        
-        if (appStatus.equals("Accepted")) {
-            rbtnAcc.setSelected(true);
 
-        } else if(appStatus.equals("Rejected")){
-            rbtnRej.setSelected(true);
-            
-        }else{
-            rbtnPending.setSelected(true);
-        }
-        
-        vacStatus = dtm.getValueAt(i, 8).toString();
-        
-        if (vacStatus.equals("Incomplete")) {
-            rbtnIncomplete.setSelected(true);
+        try {
+            i = tblAppointment.getSelectedRow();
+            txtICPassport.setText(dtm.getValueAt(i, 0).toString());
+            txtName.setText(dtm.getValueAt(i, 1).toString());
+            lblAppID.setText(dtm.getValueAt(i, 2).toString());
 
-        } else {
-            rbtnComplete.setSelected(true);
-            
-        }}catch(Exception ex){
+            date = new SimpleDateFormat("dd MMM yyyy").parse((String) dtm.getValueAt(i, 3));
+            jdAppDate.setDate(date);
+
+            cboAppTime.getModel().setSelectedItem(dtm.getValueAt(i, 4).toString());
+            spinDose.setValue(Integer.parseInt(dtm.getValueAt(i, 5).toString()));
+            cboCentre.getModel().setSelectedItem(dtm.getValueAt(i, 6).toString());
+
+            appStatus = dtm.getValueAt(i, 7).toString();
+
+            if (appStatus.equals("Accepted")) {
+                rbtnAcc.setSelected(true);
+
+            } else if (appStatus.equals("Rejected")) {
+                rbtnRej.setSelected(true);
+
+            } else {
+                rbtnPending.setSelected(true);
+            }
+
+            vacStatus = dtm.getValueAt(i, 8).toString();
+
+            if (vacStatus.equals("Incomplete")) {
+                rbtnIncomplete.setSelected(true);
+
+            } else {
+                rbtnComplete.setSelected(true);
+
+            }
+        } catch (Exception ex) {
             Logger.getLogger(CommitteeAppointment.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
+
     }//GEN-LAST:event_tblAppointmentMouseClicked
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -825,7 +822,7 @@ public class CommitteeAppointment extends javax.swing.JFrame {
 
     }
 
-     public void Search() {
+    public void Search() {
         String searchAppointment;
         searchAppointment = txtSearch.getText();
         dtm.setRowCount(0);
@@ -865,6 +862,5 @@ public class CommitteeAppointment extends javax.swing.JFrame {
     private void loadCenter() {
         cboCentre.setModel(new DefaultComboBoxModel<>(Centre.values()));
     }
-
 
 }

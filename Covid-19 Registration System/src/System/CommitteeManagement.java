@@ -3,39 +3,32 @@ package System;
 import SystemClass.Committee;
 import SystemClass.SystemDataIO;
 import static SystemClass.SystemDataIO.allCommitee;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class CommitteeManagement extends javax.swing.JFrame {
-   
+
     private static ArrayList<Committee> c = new ArrayList<Committee>();
     DefaultTableModel dtm;
     String columnname[] = new String[]{"CNO.", "Username", "Password"};
-    
+
     String cno, username, password;
-         
+
     public CommitteeManagement() {
         initComponents();
         dtm = new DefaultTableModel(columnname, 0);
         tblCommitee.setModel(dtm);
-        
 
-        SystemDataIO.read();       //readCommitee();
+        SystemDataIO.read();
         DisplayTable();
         Committee comm = new Committee();
         txtCNo.setText(comm.AutoNumber());
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -317,7 +310,7 @@ public class CommitteeManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        
+
         if (txtCNo.getText().isEmpty() || txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Please ensure all information are entered.", "Incomplete details", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -326,14 +319,13 @@ public class CommitteeManagement extends javax.swing.JFrame {
                 username = txtUsername.getText();
                 cno = txtCNo.getText();
                 password = txtPassword.getText();
-                
+
                 Committee found = SystemDataIO.checkingCommitee(username);
                 if (found != null) {
                     JOptionPane.showMessageDialog(rootPane, "The name has been used!");
 
                 } else {
-//                SystemDataIO.allCommitee.clear();
-//                SystemDataIO.read();
+
                     Committee c = new Committee(cno, username, password);
                     SystemDataIO.allCommitee.add(c);
 
@@ -341,10 +333,9 @@ public class CommitteeManagement extends javax.swing.JFrame {
                     System.out.println(c.toString());
 
                     ClearText();
-                    //SystemDataIO.allCommitee.clear();
                     DisplayTable();
 
-                    JOptionPane.showMessageDialog(rootPane, "Added successfully!");                   
+                    JOptionPane.showMessageDialog(rootPane, "Added successfully!");
                     System.out.println("Added successfully!");
                 }
             } catch (Exception e) {
@@ -357,7 +348,7 @@ public class CommitteeManagement extends javax.swing.JFrame {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
 
-         if (txtCNo.getText().isEmpty() || txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty()) {
+        if (txtCNo.getText().isEmpty() || txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Please ensure all information are entered.", "Incomplete details", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
@@ -366,15 +357,15 @@ public class CommitteeManagement extends javax.swing.JFrame {
                 password = txtPassword.getText();
                 Committee current = null;
                 boolean found = false;
-//            SystemDataIO.read();
+
                 System.out.println(allCommitee.size());
-                
+
                 for (int i = 0; i < allCommitee.size(); i++) {
                     Committee a = allCommitee.get(i);
                     if (cno.equals(a.getCno())) {
                         found = true;
                         current = a;
-//                    System.out.println("Checked");
+
                         break;
                     }
                 }
@@ -384,29 +375,28 @@ public class CommitteeManagement extends javax.swing.JFrame {
                     current.setPassword(password);
 
                     Committee.CmodifyDetails();
-//                allCommitee.clear();            //if no clear, will always add record into arraylisy, cannot identify duplicates
+
                     ClearText();
                     DisplayTable();
-                    
-                    JOptionPane.showMessageDialog(rootPane, "Edited successfully!");    
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "Username not found!", "Fail to edit", JOptionPane.ERROR_MESSAGE); 
+
+                    JOptionPane.showMessageDialog(rootPane, "Edited successfully!");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Username not found!", "Fail to edit", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
             }
         }
 
-        //System.out.println("Hello KZ);
 
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
 
-            int result;
-            result = JOptionPane.showConfirmDialog(null, "Are you sure to delete this information?", "Delete Information", JOptionPane.YES_NO_OPTION);
+        int result;
+        result = JOptionPane.showConfirmDialog(null, "Are you sure to delete this information?", "Delete Information", JOptionPane.YES_NO_OPTION);
 
-            if (result == JOptionPane.YES_OPTION) {
+        if (result == JOptionPane.YES_OPTION) {
             try {
                 username = txtUsername.getText();
                 cno = txtCNo.getText();
@@ -430,17 +420,18 @@ public class CommitteeManagement extends javax.swing.JFrame {
 
                     ClearText();
                     DisplayTable();
-                    
-                    JOptionPane.showMessageDialog(rootPane, "Deleted successfully!");  
+
+                    JOptionPane.showMessageDialog(rootPane, "Deleted successfully!");
 
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "User not exist!", "Fail to delete", JOptionPane.ERROR_MESSAGE);
                 }
-                
+
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
-            }}
-        
+            }
+        }
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
@@ -454,7 +445,7 @@ public class CommitteeManagement extends javax.swing.JFrame {
         txtCNo.setText(dtm.getValueAt(i, 0).toString());
         txtUsername.setText(dtm.getValueAt(i, 1).toString());
         txtPassword.setText(dtm.getValueAt(i, 2).toString());
-        
+
     }//GEN-LAST:event_tblCommiteeMouseClicked
 
     private void txtSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyTyped
@@ -535,7 +526,6 @@ public class CommitteeManagement extends javax.swing.JFrame {
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 
-
     public void DisplayTable(JTable ctable) {
         dtm.setRowCount(0);
         try {
@@ -594,6 +584,6 @@ public class CommitteeManagement extends javax.swing.JFrame {
         txtSearch.setText("");
         Committee comm = new Committee();
         txtCNo.setText(comm.AutoNumber());
-        
+
     }
 }

@@ -164,7 +164,6 @@ public class PeopleLogin extends javax.swing.JFrame {
                             } else {
                                 pthird.rbtnfemale.setSelected(true);
                             }
-//                        System.out.println(current.getGender());
                             pthird.txtmobileno.setText(current.getMobileNo());
                             if (current.getNationality().equals("Citizen")) {
                                 pthird.rbtncitizen.setSelected(true);
@@ -173,7 +172,7 @@ public class PeopleLogin extends javax.swing.JFrame {
                                 pthird.rbtnnoncitizen.setSelected(true);
                             }
                             pthird.txtpassword.setText(current.getPassword());
-                            pthird.lblWelcome.setText("Hello," + current.getPeopleName());
+                            pthird.lblWelcome.setText("Hello, " + current.getPeopleName());
                         }
                         //1st Dose Appointment
                         Appointment current1 = null;
@@ -204,6 +203,10 @@ public class PeopleLogin extends javax.swing.JFrame {
                                 pthird.btnregister.setEnabled(true);
                                 pthird.btncancelappointment.setEnabled(false);
                             }
+                            if (pthird.txtstatus.getText().equals("Accepted") && pthird.txtvacstatus.getText().equals("Completed")) {
+                                pthird.btnregister.setEnabled(false);
+                                pthird.btncancelappointment.setEnabled(false);
+                            }
 
                         }
                         //2nd Dose Appointment
@@ -219,7 +222,6 @@ public class PeopleLogin extends javax.swing.JFrame {
                             }
                         }
                         if (check2) {
-                            System.out.println("Hi");
                             pthird.txtaid2.setText(current2.getAppointmentID());
                             pthird.txtdate2.setText(current2.getAppointmentDate());
                             pthird.txttime2.setText(current2.getAppointmentTime());
@@ -233,6 +235,10 @@ public class PeopleLogin extends javax.swing.JFrame {
                                 pthird.btnregister2.setEnabled(false);
                                 pthird.btncancelappointment2.setEnabled(true);
                             } else {
+                                pthird.btnregister2.setEnabled(false);
+                                pthird.btncancelappointment2.setEnabled(false);
+                            }
+                            if (pthird.txtstatus2.getText().equals("Accepted") && pthird.txtvacstatus2.getText().equals("Completed")) {
                                 pthird.btnregister2.setEnabled(false);
                                 pthird.btncancelappointment2.setEnabled(false);
                             }
