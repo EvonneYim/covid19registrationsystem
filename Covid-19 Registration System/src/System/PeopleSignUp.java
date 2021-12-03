@@ -68,27 +68,27 @@ public class PeopleSignUp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblnationality.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblnationality.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblnationality.setText("Nationality:");
         lblnationality.setToolTipText("");
 
-        lblmobileno.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblmobileno.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblmobileno.setText("MobileNo:");
         lblmobileno.setToolTipText("");
 
-        lblgender.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblgender.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblgender.setText("Gender:");
         lblgender.setToolTipText("");
 
-        lblage.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblage.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblage.setText("Age:");
         lblage.setToolTipText("");
 
-        lbladdress.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbladdress.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lbladdress.setText("Address:");
         lbladdress.setToolTipText("");
 
-        lblname.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblname.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblname.setText("Full Name:");
         lblname.setToolTipText("");
 
@@ -131,7 +131,8 @@ public class PeopleSignUp extends javax.swing.JFrame {
             }
         });
 
-        btnregister.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        btnregister.setBackground(new java.awt.Color(102, 102, 255));
+        btnregister.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnregister.setText("Register");
         btnregister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,15 +140,17 @@ public class PeopleSignUp extends javax.swing.JFrame {
             }
         });
 
-        btnback.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        btnback.setText("Back");
+        btnback.setBackground(new java.awt.Color(204, 255, 204));
+        btnback.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnback.setForeground(new java.awt.Color(51, 51, 51));
+        btnback.setText("<< Back");
         btnback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnbackActionPerformed(evt);
             }
         });
 
-        lblicpassport.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblicpassport.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblicpassport.setText("IC/Passport:");
         lblicpassport.setToolTipText("");
 
@@ -157,15 +160,17 @@ public class PeopleSignUp extends javax.swing.JFrame {
             }
         });
 
+        rbtncitizen.setBackground(new java.awt.Color(102, 102, 102));
         NATIONALITY.add(rbtncitizen);
-        rbtncitizen.setFont(new java.awt.Font("Verdana", 1, 13)); // NOI18N
+        rbtncitizen.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         rbtncitizen.setText("Citizen");
 
+        rbtnnoncitizen.setBackground(new java.awt.Color(102, 102, 102));
         NATIONALITY.add(rbtnnoncitizen);
-        rbtnnoncitizen.setFont(new java.awt.Font("Verdana", 1, 13)); // NOI18N
+        rbtnnoncitizen.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         rbtnnoncitizen.setText("Non-Citizen");
 
-        lblpassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblpassword.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblpassword.setText("Password:");
         lblpassword.setToolTipText("");
 
@@ -175,12 +180,14 @@ public class PeopleSignUp extends javax.swing.JFrame {
             }
         });
 
+        rbtnmale.setBackground(new java.awt.Color(102, 102, 102));
         GENDER.add(rbtnmale);
-        rbtnmale.setFont(new java.awt.Font("Verdana", 1, 13)); // NOI18N
+        rbtnmale.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         rbtnmale.setText("Male");
 
+        rbtnfemale.setBackground(new java.awt.Color(102, 102, 102));
         GENDER.add(rbtnfemale);
-        rbtnfemale.setFont(new java.awt.Font("Verdana", 1, 13)); // NOI18N
+        rbtnfemale.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         rbtnfemale.setText("Female");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -188,56 +195,57 @@ public class PeopleSignUp extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbladdress, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblage, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblicpassport, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblname, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbladdress, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblage, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblnationality, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblpassword, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnback)
+                                .addGap(12, 12, 12))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblgender, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblmobileno, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtage, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txticpassport, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtmobileno, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(rbtnmale)
-                                .addGap(18, 18, 18)
-                                .addComponent(rbtnfemale))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblname, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblicpassport, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txticpassport, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(lblgender, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblnationality, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnregister, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblmobileno, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblpassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(10, 10, 10)
-                                    .addComponent(rbtncitizen)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(rbtnnoncitizen))
-                                .addComponent(txtmobileno, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(rbtnmale)
+                                        .addGap(31, 31, 31)
+                                        .addComponent(rbtnfemale))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(rbtncitizen)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rbtnnoncitizen)))))
+                        .addContainerGap(83, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnregister)
+                        .addGap(17, 17, 17))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txticpassport, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblicpassport, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -262,19 +270,22 @@ public class PeopleSignUp extends javax.swing.JFrame {
                     .addComponent(txtmobileno, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblmobileno, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblnationality, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rbtncitizen)
-                    .addComponent(rbtnnoncitizen))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnregister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblnationality, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rbtncitizen)
+                            .addComponent(rbtnnoncitizen))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                        .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnregister, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         pack();

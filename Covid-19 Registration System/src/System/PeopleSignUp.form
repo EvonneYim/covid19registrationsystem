@@ -70,65 +70,67 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="lbladdress" alignment="1" min="-2" pref="91" max="-2" attributes="0"/>
-                          <Component id="lblage" alignment="1" min="-2" pref="91" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtage" min="-2" pref="330" max="-2" attributes="0"/>
-                          <Component id="txtaddress" min="-2" pref="330" max="-2" attributes="0"/>
+                          <Component id="lblicpassport" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblname" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbladdress" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblage" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblnationality" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblpassword" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                              <Component id="rbtnmale" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="rbtnfemale" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnback" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblname" min="-2" pref="91" max="-2" attributes="0"/>
-                          <Component id="lblicpassport" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="txtname" min="-2" pref="330" max="-2" attributes="0"/>
-                          <Component id="txticpassport" min="-2" pref="330" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Component id="lblgender" min="-2" pref="91" max="-2" attributes="0"/>
-                  <Component id="lblnationality" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="btnregister" min="-2" pref="104" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnback" min="-2" pref="104" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblmobileno" min="-2" pref="91" max="-2" attributes="0"/>
-                              <Component id="lblpassword" alignment="1" min="-2" pref="91" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                  <Component id="rbtncitizen" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="rbtnnoncitizen" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="txtmobileno" min="-2" pref="330" max="-2" attributes="0"/>
-                              <Component id="txtpassword" alignment="0" min="-2" pref="330" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="lblgender" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblmobileno" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="23" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtage" min="-2" pref="330" max="-2" attributes="0"/>
+                          <Component id="txtaddress" min="-2" pref="330" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="txtname" min="-2" pref="330" max="-2" attributes="0"/>
+                              <Component id="txticpassport" min="-2" pref="330" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="txtmobileno" min="-2" pref="330" max="-2" attributes="0"/>
+                          <Component id="txtpassword" alignment="0" min="-2" pref="330" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="rbtnmale" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                      <Component id="rbtnfemale" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="rbtncitizen" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="rbtnnoncitizen" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="83" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnregister" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -136,9 +138,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txticpassport" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="lblicpassport" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="txticpassport" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="lblicpassport" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -167,22 +169,27 @@
                   <Component id="lblmobileno" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblnationality" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="rbtncitizen" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="rbtnnoncitizen" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblnationality" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="rbtncitizen" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rbtnnoncitizen" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtpassword" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="lblpassword" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="23" max="32767" attributes="0"/>
+                      <Component id="btnback" min="-2" pref="32" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnregister" min="-2" pref="43" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtpassword" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="lblpassword" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="btnregister" max="32767" attributes="0"/>
-                  <Component id="btnback" min="-2" pref="43" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -191,7 +198,7 @@
     <Component class="javax.swing.JLabel" name="lblnationality">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="1"/>
+          <Font name="Times New Roman" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Nationality:"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -200,7 +207,7 @@
     <Component class="javax.swing.JLabel" name="lblmobileno">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="1"/>
+          <Font name="Times New Roman" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="MobileNo:"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -209,7 +216,7 @@
     <Component class="javax.swing.JLabel" name="lblgender">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="1"/>
+          <Font name="Times New Roman" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Gender:"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -218,7 +225,7 @@
     <Component class="javax.swing.JLabel" name="lblage">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="1"/>
+          <Font name="Times New Roman" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Age:"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -227,7 +234,7 @@
     <Component class="javax.swing.JLabel" name="lbladdress">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="1"/>
+          <Font name="Times New Roman" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Address:"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -236,7 +243,7 @@
     <Component class="javax.swing.JLabel" name="lblname">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="1"/>
+          <Font name="Times New Roman" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Full Name:"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -267,8 +274,11 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnregister">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="66" red="66" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Verdana" size="14" style="1"/>
+          <Font name="Tahoma" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Register"/>
       </Properties>
@@ -278,10 +288,16 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnback">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Verdana" size="14" style="1"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="ff" red="cc" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Back"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="12" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="33" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&lt;&lt; Back"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnbackActionPerformed"/>
@@ -290,7 +306,7 @@
     <Component class="javax.swing.JLabel" name="lblicpassport">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="1"/>
+          <Font name="Times New Roman" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="IC/Passport:"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -303,22 +319,28 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="rbtncitizen">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="66" type="rgb"/>
+        </Property>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="NATIONALITY"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Verdana" size="13" style="1"/>
+          <Font name="Times New Roman" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Citizen"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="rbtnnoncitizen">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="66" type="rgb"/>
+        </Property>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="NATIONALITY"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Verdana" size="13" style="1"/>
+          <Font name="Times New Roman" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Non-Citizen"/>
       </Properties>
@@ -326,7 +348,7 @@
     <Component class="javax.swing.JLabel" name="lblpassword">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="1"/>
+          <Font name="Times New Roman" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Password:"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -339,22 +361,28 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="rbtnmale">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="66" type="rgb"/>
+        </Property>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="GENDER"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Verdana" size="13" style="1"/>
+          <Font name="Times New Roman" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Male"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="rbtnfemale">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="66" type="rgb"/>
+        </Property>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="GENDER"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Verdana" size="13" style="1"/>
+          <Font name="Times New Roman" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Female"/>
       </Properties>

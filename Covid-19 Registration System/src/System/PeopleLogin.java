@@ -26,19 +26,23 @@ public class PeopleLogin extends javax.swing.JFrame {
         btnback = new javax.swing.JButton();
         txtpassword = new javax.swing.JPasswordField();
         btnshow = new javax.swing.JToggleButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("People Channel");
         setName("login"); // NOI18N
 
-        lblicpassport.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        lblicpassport.setText("IC/Passport:");
+        lblicpassport.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        lblicpassport.setForeground(new java.awt.Color(0, 51, 51));
+        lblicpassport.setText("IC/Passport");
 
-        txticpassport.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        lblpassword.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        lblpassword.setForeground(new java.awt.Color(0, 51, 51));
+        lblpassword.setText("Password");
 
-        lblpassword.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        lblpassword.setText("Password:");
-
-        btnlogin.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        btnlogin.setBackground(new java.awt.Color(0, 102, 102));
+        btnlogin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnlogin.setForeground(new java.awt.Color(51, 51, 51));
         btnlogin.setText("Login");
         btnlogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -46,15 +50,15 @@ public class PeopleLogin extends javax.swing.JFrame {
             }
         });
 
-        btnback.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        btnback.setText("Back");
+        btnback.setBackground(new java.awt.Color(204, 255, 204));
+        btnback.setFont(new java.awt.Font("Microsoft Tai Le", 1, 12)); // NOI18N
+        btnback.setForeground(new java.awt.Color(51, 51, 51));
+        btnback.setText("<< Back");
         btnback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnbackActionPerformed(evt);
             }
         });
-
-        txtpassword.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
         btnshow.setBackground(new java.awt.Color(102, 102, 102));
         btnshow.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
@@ -65,47 +69,60 @@ public class PeopleLogin extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Calisto MT", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel3.setText("Covid-19 Registration System");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(btnlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblicpassport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblpassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(10, 10, 10)
+                        .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txticpassport, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnshow)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblpassword)
+                                    .addComponent(lblicpassport, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txticpassport, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnshow))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnback)
+                                .addGap(48, 48, 48)
+                                .addComponent(btnlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel3)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txticpassport, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblicpassport, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblicpassport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txticpassport, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnshow))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(txtpassword, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(btnshow)
+                    .addComponent(lblpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnlogin, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                    .addComponent(btnback, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31))))
         );
 
         pack();
@@ -281,6 +298,7 @@ public class PeopleLogin extends javax.swing.JFrame {
     private javax.swing.JButton btnback;
     private javax.swing.JButton btnlogin;
     private javax.swing.JToggleButton btnshow;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblicpassport;
     private javax.swing.JLabel lblpassword;
     private javax.swing.JTextField txticpassport;

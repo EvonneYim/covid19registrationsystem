@@ -173,11 +173,11 @@ public class Report {
         for(i=0; i < apprecords.size(); i++){
             tot_app +=1;
             
-            boolean isFound =false;
+            boolean isFound =false;             
             
             for(int j =0; j < ac.size(); j++){
-                if(ac.get(j).place.equals(apprecords.get(i).getPlace().toString())){
-                    isFound = true;
+                if(ac.get(j).place.equals(apprecords.get(i).getPlace().toString())){        //search for the place
+                    isFound = true;                                                         // if found, then the app count total will add one
                     ac.get(j).setTotal(ac.get(j).getTotal()+1);
                     
                     if(apprecords.get(i).getVaccinationStatus().equals("Completed")){
@@ -189,9 +189,9 @@ public class Report {
                 }               
             }
             
-            if(!isFound){
+            if(!isFound){                                                                   //if not found, then add a new appointment count into ac
                 AppointmentCount a = new AppointmentCount(apprecords.get(i).getPlace().toString(), 
-                apprecords.get(i).getVaccinationStatus().equals("Completed"));
+                apprecords.get(i).getVaccinationStatus().equals("Completed"));              //AppointmentCount x = new AppointmentCount(place, boolean)
                 ac.add(a);
                 
             }
@@ -200,7 +200,7 @@ public class Report {
         appDetails = ""; 
    
             for (i = 0; i < ac.size(); i++) {
-                int vacAmount1 = allCentreVaccines.get(i).getVacamount();
+                int vacAmount1 = ac.get(i).getVacamount();
                 String condition = (vacAmount1 <= 10 ? "Urgent" : vacAmount1 <= 20 ? "Moderate" : "Sufficient");
                 
                 appDetails += "Centre: " + ac.get(i).getPlace() + "\nTotal: " + ac.get(i).getTotal() + "\nCompleted: "
@@ -221,8 +221,8 @@ public class Report {
           tot_citizen = "Total registered citizen: " + registered_citizen;
           tot_ncitizen = "Total registered non-citizen: " + registered_ncitizen;
                    
-          info = "Report generated on " + datestr + "\n\n"+ "People\n" + tot_ppl + "\n" + 
-          tot_male + "\n" + tot_female + "\n" + tot_citizen + "\n" + tot_ncitizen + "\n\nTotal appointments and vaccines supply of each centre\n" + appDetails ;       
+          info = "Report generated on " + datestr + "\n\n"+ "**People**\n" + tot_ppl + "\n" + 
+          tot_male + "\n" + tot_female + "\n" + tot_citizen + "\n" + tot_ncitizen + "\n\n**Total appointments and vaccines supply of each centre**\n" + appDetails ;       
           return info;
     }
 }

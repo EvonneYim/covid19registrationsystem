@@ -551,7 +551,7 @@ public class CommitteeVaccines extends javax.swing.JFrame {
 
                     JOptionPane.showMessageDialog(rootPane, "Edited successfully!");
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "Username not found!", "Fail to edit", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(rootPane, "SupplyID not found!", "Fail to edit", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
