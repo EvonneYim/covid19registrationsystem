@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class CommitteeManagement extends javax.swing.JFrame {
+public class CommitteeManagement extends javax.swing.JFrame implements DisplayTableandSearch{
 
     private static ArrayList<Committee> c = new ArrayList<Committee>();
     DefaultTableModel dtm;

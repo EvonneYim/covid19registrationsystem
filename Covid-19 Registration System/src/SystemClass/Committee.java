@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class Committee {
+public class Committee implements AutoNumber{
     private String cno;
     private String username;
     private String password;

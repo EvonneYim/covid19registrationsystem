@@ -8,7 +8,7 @@ import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Appointment {
+public class Appointment implements AutoNumber{
 
     private String appointmentID;
     private String appointmentDate;

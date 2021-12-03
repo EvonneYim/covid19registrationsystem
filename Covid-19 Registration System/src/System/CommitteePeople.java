@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class CommitteePeople extends javax.swing.JFrame {
+public class CommitteePeople extends javax.swing.JFrame implements DisplayTableandSearch{
 
     private static ArrayList<People> p = new ArrayList<People>();
     DefaultTableModel dtm;

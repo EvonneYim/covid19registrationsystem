@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class CommitteeAppointment extends javax.swing.JFrame {
+public class CommitteeAppointment extends javax.swing.JFrame implements DisplayTableandSearch{
 
     DefaultTableModel dtm;
     String columnname[] = new String[]{"ID", "Name", "App_ID", "App_Date", "App_Time", "Dose", "Centre", "App_Status", "Vac_Status"};

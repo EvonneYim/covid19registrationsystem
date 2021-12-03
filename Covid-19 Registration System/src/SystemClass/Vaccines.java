@@ -8,7 +8,7 @@ import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Vaccines {
+public class Vaccines implements AutoNumber{
     private String SupplyID;
     private Centre place;
     private int supplyamount;
