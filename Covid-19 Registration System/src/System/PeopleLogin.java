@@ -121,6 +121,7 @@ public class PeopleLogin extends javax.swing.JFrame {
         try {
             String peopleID = txticpassport.getText();
             String password = (new String(txtpassword.getPassword()));
+            String second = "2";
 
             if (peopleID.isEmpty() || password.isEmpty()) {
                 JOptionPane.showMessageDialog(rootPane, "Please enter IC/Passport or Password!", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -135,9 +136,10 @@ public class PeopleLogin extends javax.swing.JFrame {
                         setVisible(false);
                         Covid19RegistrationSystem.pthird.setVisible(true);
 
+                        //Profile
                         People current = null;
                         boolean check = false;
- 
+
                         for (int i = 0; i < allPeople.size(); i++) {
                             People a = allPeople.get(i);
                             if (peopleID.equals(a.getPeopleID())) {
@@ -173,7 +175,7 @@ public class PeopleLogin extends javax.swing.JFrame {
                             pthird.txtpassword.setText(current.getPassword());
                             pthird.lblWelcome.setText("Hello," + current.getPeopleName());
                         }
-
+                        //1st Dose Appointment
                         Appointment current1 = null;
                         boolean check1 = false;
                         System.out.println(allAppointments.size());
@@ -203,6 +205,37 @@ public class PeopleLogin extends javax.swing.JFrame {
                                 pthird.btncancelappointment.setEnabled(false);
                             }
 
+                        }
+                        //2nd Dose Appointment
+                        Appointment current2 = null;
+                        boolean check2 = false;
+                        System.out.println(allAppointments.size());
+                        for (int i = 0; i < allAppointments.size(); i++) {
+                            Appointment c = allAppointments.get(i);
+                            if (peopleID.equals(c.getPpl().getPeopleID()) && second.equals(String.valueOf(c.getDose()))) {
+                                check2 = true;
+                                current2 = c;
+                                break;
+                            }
+                        }
+                        if (check2) {
+                            System.out.println("Hi");
+                            pthird.txtaid2.setText(current2.getAppointmentID());
+                            pthird.txtdate2.setText(current2.getAppointmentDate());
+                            pthird.txttime2.setText(current2.getAppointmentTime());
+                            pthird.txtcentre2.setText(current2.getPlace().toString());
+                            pthird.txtdose2.setText(String.valueOf(current2.getDose()));
+                            pthird.txtstatus2.setText(current2.getAppointmentStatus());
+                            pthird.txtvacstatus2.setText(current2.getVaccinationStatus());
+
+                            if ((!pthird.txtaid2.getText().isEmpty() || !pthird.txtdate2.getText().isEmpty() || !pthird.txttime2.getText().isEmpty() || !pthird.txtcentre2.getText().isEmpty()
+                                    || !pthird.txtdose2.getText().isEmpty() || !pthird.txtstatus2.getText().isEmpty() || !pthird.txtvacstatus2.getText().isEmpty())) {
+                                pthird.btnregister2.setEnabled(false);
+                                pthird.btncancelappointment2.setEnabled(true);
+                            } else {
+                                pthird.btnregister2.setEnabled(false);
+                                pthird.btncancelappointment2.setEnabled(false);
+                            }
 
                         }
 

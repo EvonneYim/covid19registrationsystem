@@ -13,7 +13,6 @@ import static SystemClass.SystemDataIO.allAppointments;
 import static SystemClass.SystemDataIO.allPeople;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -31,15 +30,20 @@ public class PeopleMainPage extends javax.swing.JFrame {
     public PeopleMainPage() {
         initComponents();
     }
-    public void ClearProfile(){
+
+    public void ClearProfile() {
         txtid.setText("");
         txtname.setText("");
         txtaddress.setText("");
         txtage.setText("");
         txtmobileno.setText("");
         txtpassword.setText("");
+        btnedit.setEnabled(true);
+        btnsave.setEnabled(false);
+        btncanceledit.setEnabled(false);
     }
-    public void Clear1stDose(){
+
+    public void Clear1stDose() {
         txtaid.setText("");
         txtdate.setText("");
         txtdate.setText("");
@@ -48,8 +52,21 @@ public class PeopleMainPage extends javax.swing.JFrame {
         txtdose.setText("");
         txtstatus.setText("");
         txtvacstatus.setText("");
+        btnregister.setEnabled(true);
+        btncancelappointment.setEnabled(false);
     }
-    
+
+    public void Clear2ndDose() {
+        txtaid2.setText("");
+        txtdate2.setText("");
+        txtdate2.setText("");
+        txttime2.setText("");
+        txtcentre2.setText("");
+        txtdose2.setText("");
+        txtstatus2.setText("");
+        txtvacstatus2.setText("");
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -282,7 +299,7 @@ public class PeopleMainPage extends javax.swing.JFrame {
                     .addComponent(lblage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblgender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblmoblieno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblnationality, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
+                    .addComponent(lblnationality, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -618,6 +635,7 @@ public class PeopleMainPage extends javax.swing.JFrame {
 
         btnregister2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         btnregister2.setText("Register");
+        btnregister2.setEnabled(false);
         btnregister2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnregister2ActionPerformed(evt);
@@ -774,6 +792,10 @@ public class PeopleMainPage extends javax.swing.JFrame {
         if (result == JOptionPane.YES_OPTION) {
             ClearProfile();
             Clear1stDose();
+            Clear2ndDose();
+            btnregister2.setEnabled(false);
+            btncancelappointment2.setEnabled(false);
+
             PeopleLogin login;
             login = new PeopleLogin();
             this.setVisible(false);
@@ -999,7 +1021,7 @@ public class PeopleMainPage extends javax.swing.JFrame {
     private void btncancelappointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelappointmentActionPerformed
 
         int result;
-        result = JOptionPane.showConfirmDialog(null, "Are you sure you want to cancel appointment?", "1st Dose Appointment Cancellation", JOptionPane.YES_NO_OPTION);
+        result = JOptionPane.showConfirmDialog(null, "Are you sure you want to cancel the appointment?", "1st Dose Appointment Cancellation", JOptionPane.YES_NO_OPTION);
 
         if (result == JOptionPane.YES_OPTION) {
             try {
@@ -1021,11 +1043,10 @@ public class PeopleMainPage extends javax.swing.JFrame {
                 if (found) {
                     People.cancelAppointment();
 
-                 Clear1stDose();
+                    Clear1stDose();
 
                     btnregister.setEnabled(true);
                     btncancelappointment.setEnabled(false);
-
 
                     JOptionPane.showMessageDialog(rootPane, "Appointment Canceled Successfully!");
                 }
@@ -1040,7 +1061,7 @@ public class PeopleMainPage extends javax.swing.JFrame {
 
     private void btnregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregisterActionPerformed
         int result;
-        result = JOptionPane.showConfirmDialog(null, "Are you sure?", "Register Appointment", JOptionPane.YES_NO_OPTION);
+        result = JOptionPane.showConfirmDialog(null, "Are you sure?", "Register 1st Dose Appointment", JOptionPane.YES_NO_OPTION);
 
         if (result == JOptionPane.YES_OPTION) {
             try {
@@ -1050,10 +1071,9 @@ public class PeopleMainPage extends javax.swing.JFrame {
                 People current = null;
                 if (found != null) {
                     current = found;
+
                     Appointment a = new Appointment();
 
-                    txtid.setText(pplID);
-                    txtname.setText(name);
                     txtaid.setText(a.AutoNumber());
 
                     Calendar c = Calendar.getInstance();
@@ -1065,13 +1085,18 @@ public class PeopleMainPage extends javax.swing.JFrame {
 
                     String AppTime = "-";
                     txttime.setText(AppTime);
+
                     int Adose = 1;
                     txtdose.setText(String.valueOf(Adose));
+
                     String defaultAppStatus = "Pending";
                     txtstatus.setText(defaultAppStatus);
+
                     String defaultVacStatus = "Incomplete";
                     txtvacstatus.setText(defaultVacStatus);
+
                     txtcentre.setText("notset");
+
                     btnregister.setEnabled(false);
                     btncancelappointment.setEnabled(true);
 
@@ -1112,7 +1137,69 @@ public class PeopleMainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_txtvacstatus2ActionPerformed
 
     private void btnregister2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregister2ActionPerformed
-        // TODO add your handling code here:
+        int result;
+        result = JOptionPane.showConfirmDialog(null, "Are you sure?", "Register 2nd Dose Appointment", JOptionPane.YES_NO_OPTION);
+
+        if (result == JOptionPane.YES_OPTION) {
+            try {
+                pplID = txtid.getText();
+                People found = SystemDataIO.checkingPeople(pplID);
+
+                People current = null;
+                if (found != null) {
+                    current = found;
+
+                    Appointment a = new Appointment();
+
+                    txtaid2.setText(a.AutoNumber());
+
+                    Calendar c = Calendar.getInstance();
+                    c.add(Calendar.DATE, 7);
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+                    String datestr = sdf.format(c.getTime());
+                    txtdate2.setText(datestr);
+
+                    String AppTime = "-";
+                    txttime2.setText(AppTime);
+
+                    int Adose = 2;
+                    txtdose2.setText(String.valueOf(Adose));
+
+                    String defaultAppStatus = "Pending";
+                    txtstatus2.setText(defaultAppStatus);
+
+                    String defaultVacStatus = "Incomplete";
+                    txtvacstatus2.setText(defaultVacStatus);
+
+                    txtcentre2.setText("notset");
+
+                    btnregister2.setEnabled(false);
+                    btncancelappointment2.setEnabled(true);
+
+                    a = new Appointment(current, datestr, AppTime, Adose, Centre.notset, defaultAppStatus, defaultVacStatus);
+                    allAppointments.add(a);
+
+                    People.makeAppointment();
+//                    if (txtvacstatus.getText().equals("Completed") && txtstatus.getText().equals("Accepted")) {
+//                        btnregister.setEnabled(false);
+//                        btncancelappointment.setEnabled(false);
+//                        lblnotice.setText("You are partially vaccinated!");
+//                    } else if (txtvacstatus.getText().equals("Incomplete") && txtstatus.getText().equals("Pending")) {
+//                        lblnotice.setText("Your appointment request has submitted, kindly wait for approval.");
+//                    } else if (txtstatus.getText().equals("Rejected")) {
+//                        lblreject.setText("Your appointment has been rejected.");
+//                    }
+//                        this.setVisible(false);
+//                        ca.setVisible(true);
+//                        
+//                        ca.DisplayTable();                       
+
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
+                e.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_btnregister2ActionPerformed
 
     private void txtaid2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtaid2ActionPerformed
@@ -1120,7 +1207,39 @@ public class PeopleMainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_txtaid2ActionPerformed
 
     private void btncancelappointment2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelappointment2ActionPerformed
-        // TODO add your handling code here:
+
+        int result;
+        result = JOptionPane.showConfirmDialog(null, "Are you sure you want to cancel the appointment?", "2nd Dose Appointment Cancellation", JOptionPane.YES_NO_OPTION);
+
+        if (result == JOptionPane.YES_OPTION) {
+            try {
+                String appID = txtaid2.getText();
+
+                Appointment current = null;
+                boolean found = false;
+
+                for (int i = 0; i < allAppointments.size(); i++) {
+                    Appointment a = allAppointments.get(i);
+                    if (appID.equals(a.getAppointmentID())) {
+                        found = true;
+                        current = a;
+                        allAppointments.remove(a);
+                        break;
+                    }
+                }
+
+                if (found) {
+                    People.cancelAppointment();
+
+                    Clear2ndDose();
+                    btnregister2.setEnabled(true);
+                    JOptionPane.showMessageDialog(rootPane, "2nd Dose Appointment Canceled Successfully!");
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btncancelappointment2ActionPerformed
 
     /**
@@ -1169,12 +1288,12 @@ public class PeopleMainPage extends javax.swing.JFrame {
     protected static javax.swing.ButtonGroup Gender;
     protected static javax.swing.ButtonGroup Nationality;
     protected static javax.swing.JButton btncancelappointment;
-    private javax.swing.JButton btncancelappointment2;
+    protected static javax.swing.JButton btncancelappointment2;
     private javax.swing.JButton btncanceledit;
     private javax.swing.JButton btnedit;
     private javax.swing.JButton btnlogout;
     protected static javax.swing.JButton btnregister;
-    private javax.swing.JButton btnregister2;
+    protected static javax.swing.JButton btnregister2;
     private javax.swing.JButton btnsave;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
