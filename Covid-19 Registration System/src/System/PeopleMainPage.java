@@ -1049,9 +1049,7 @@ public class PeopleMainPage extends javax.swing.JFrame {
 
                 People current = null;
                 if (found != null) {
-                    CommitteeAppointment ca = new CommitteeAppointment();
                     current = found;
-
                     Appointment a = new Appointment();
 
                     txtid.setText(pplID);
@@ -1081,20 +1079,6 @@ public class PeopleMainPage extends javax.swing.JFrame {
                     allAppointments.add(a);
 
                     People.makeAppointment();
-//                    if (txtvacstatus.getText().equals("Completed") && txtstatus.getText().equals("Accepted")) {
-//                        btnregister.setEnabled(false);
-//                        btncancelappointment.setEnabled(false);
-//                        lblnotice.setText("You are partially vaccinated!");
-//                    } else if (txtvacstatus.getText().equals("Incomplete") && txtstatus.getText().equals("Pending")) {
-//                        lblnotice.setText("Your appointment request has submitted, kindly wait for approval.");
-//                    } else if (txtstatus.getText().equals("Rejected")) {
-//                        lblreject.setText("Your appointment has been rejected.");
-//                    }
-//                        this.setVisible(false);
-//                        ca.setVisible(true);
-//                        
-//                        ca.DisplayTable();                       
-
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);

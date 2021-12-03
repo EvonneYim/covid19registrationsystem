@@ -101,7 +101,7 @@
                           <Component id="lblage" alignment="0" max="32767" attributes="0"/>
                           <Component id="lblgender" alignment="0" max="32767" attributes="0"/>
                           <Component id="lblmoblieno" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lblnationality" alignment="0" pref="80" max="32767" attributes="0"/>
+                          <Component id="lblnationality" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">

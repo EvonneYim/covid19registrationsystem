@@ -4,7 +4,6 @@ package SystemClass;
 import static SystemClass.SystemDataIO.allAppointments;
 import static SystemClass.SystemDataIO.allCentreVaccines;
 import static SystemClass.SystemDataIO.allPeople;
-import java.awt.Font;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -104,19 +103,9 @@ public class Report {
     
     private static ArrayList<Appointment> apprecords = new ArrayList<Appointment>();
     private int tot_app =0;
-//    private int[] tot_appdate;
-//    private int[] appTime = new int[14];   // to store 9.00am-2.00pm
     private String appDetails;
-    private int[] byCentres = new int[Centre.values().length];
-    private int tot_appstatus =0;
-    private int tot_vacstatus =0;
     
     private static ArrayList<CentreVaccines> centrevacrecords = new ArrayList<CentreVaccines>();
-    private int apa_vac =0;
-    private int ape_vac =0;
-    private int api_vac =0;
-    private int apo_vac =0;
-    private int apu_vac =0;
 
     public static ArrayList<People> getPplrecords() {
         return pplrecords;
@@ -150,40 +139,8 @@ public class Report {
         return tot_app;
     }
 
-    public int[] getByCentres() {
-        return byCentres;
-    }
-
-    public int getTot_appstatus() {
-        return tot_appstatus;
-    }
-
-    public int getTot_vacstatus() {
-        return tot_vacstatus;
-    }
-
     public static ArrayList<CentreVaccines> getCentrevacrecords() {
         return centrevacrecords;
-    }
-
-    public int getApa_vac() {
-        return apa_vac;
-    }
-
-    public int getApe_vac() {
-        return ape_vac;
-    }
-
-    public int getApi_vac() {
-        return api_vac;
-    }
-
-    public int getApo_vac() {
-        return apo_vac;
-    }
-
-    public int getApu_vac() {
-        return apu_vac;
     }
     
     public Report(){
@@ -205,8 +162,7 @@ public class Report {
                 registered_ncitizen +=1;    
             }           
         }
-        
-        
+          
         ArrayList<AppointmentCount> ac = new ArrayList<AppointmentCount>();           
         apprecords = allAppointments;
         for (i = 0; i < allCentreVaccines.size(); i++) {
@@ -240,8 +196,7 @@ public class Report {
                 
             }
         }
-        
-        
+              
         appDetails = ""; 
    
             for (i = 0; i < ac.size(); i++) {
@@ -253,12 +208,8 @@ public class Report {
                         + ac.get(i).getVacamount() + "\nCondition: " + condition +"\n\n";
 
             }
-        }
-        
-    
-    
-    
-    
+        }            
+      
     public String getReport(){
           SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ssaa dd/MM/yyyy");           //M month, m minute
           String datestr = sdf.format(new Date());
@@ -269,8 +220,7 @@ public class Report {
           tot_female = "Total registered female: " + registered_female;
           tot_citizen = "Total registered citizen: " + registered_citizen;
           tot_ncitizen = "Total registered non-citizen: " + registered_ncitizen;
-          
-          
+                   
           info = "Report generated on " + datestr + "\n\n"+ "People\n" + tot_ppl + "\n" + 
           tot_male + "\n" + tot_female + "\n" + tot_citizen + "\n" + tot_ncitizen + "\n\nTotal appointments and vaccines supply of each centre\n" + appDetails ;       
           return info;

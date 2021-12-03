@@ -81,29 +81,13 @@ public class SystemDataIO {
             Scanner s3 = new Scanner(new File("Appointment.txt"));
             while (s3.hasNext()) {
                 String line = s3.nextLine();
-               
-                                            
-//                String pplID = null;
-//                String pplname = null;
-//                ppl.setPeopleID(null);
-//                ppl.setPeopleName(null);
-                
-//                int appID = 0;
-//                String appDate = null;
-//                String appTime = null;
-//                int dose = 0;
-//                String appStatus = null;
-//                String vacStatus = null;
-//                Centre centre = null;
                               
                 if (!(line.isEmpty())) {
                     String[] wordsinLine = line.split(";");
                     String x = wordsinLine[0];
                     
                     People ppl = checkingPeople(x);
-                     
-//                    String y = ppl.getPeopleName();
-                 
+
                     String y = wordsinLine[1];
                     String appID = wordsinLine[2];
                     String appDate = wordsinLine[3];
@@ -117,9 +101,6 @@ public class SystemDataIO {
                     allAppointments.add(a);
                     ppl.getMyAppointment().add(a);
                 }
-
-               
-//                ppl.getMyAppointment().add(a);
             }
 
             Scanner s4 = new Scanner(new File("Vaccines.txt"));

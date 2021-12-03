@@ -193,16 +193,7 @@ public class PeopleLogin extends javax.swing.JFrame {
                             pthird.txtdose.setText(String.valueOf(current1.getDose()));
                             pthird.txtstatus.setText(current1.getAppointmentStatus());
                             pthird.txtvacstatus.setText(current1.getVaccinationStatus());
-                            
-//                            if (pthird.txtvacstatus.getText().equals("Completed") && pthird.txtstatus.getText().equals("Accepted")) {
-//                                pthird.btnregister.setEnabled(false);
-//                                pthird.btncancelappointment.setEnabled(false);
-//                                pthird.lblnotice.setText("You are partially vaccinated!");
-//                           } else if(pthird.txtvacstatus.getText().equals("Incomplete") && pthird.txtstatus.getText().equals("Pending")){
-//                               pthird.lblnotice.setText("Your appointment request has submitted, kindly wait for approval.");
-//                           } else if(pthird.txtstatus.getText().equals("Rejected")){
-//                               pthird.lblreject.setText("Your appointment has been rejected.");
-//                           } 
+
                             if ((!pthird.txtid.getText().isEmpty() || !pthird.txtdate.getText().isEmpty() || !pthird.txttime.getText().isEmpty() || !pthird.txtcentre.getText().isEmpty()
                                     || !pthird.txtdose.getText().isEmpty() || !pthird.txtstatus.getText().isEmpty() || !pthird.txtvacstatus.getText().isEmpty())) {
                                 pthird.btnregister.setEnabled(false);

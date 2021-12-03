@@ -484,27 +484,33 @@ public class CommitteeVaccines extends javax.swing.JFrame {
                 id = txtSID.getText();
                 centre = (Centre) cboxCentre.getSelectedItem();
                 supply = Integer.parseInt(txtSuppAmount.getText());
+                
+                for(int i =0; i< allVaccines.size();i++){
+                    if(allVaccines.get(i).getSupplyID().equals(id)){
+                       JOptionPane.showMessageDialog(rootPane, "Duplicated SupplyID! Please update by enter Edit", "Repeated SupplyID", JOptionPane.WARNING_MESSAGE); 
+                       return;
+                    }
+                }
 
                 Vaccines v = new Vaccines(centre, supply);
                 SystemDataIO.allVaccines.add(v);
                
                 System.out.println(v.toString());
 
-                for(int i = 0; i < allCentreVaccines.size(); i++){
-                    if(allCentreVaccines.get(i).getCentre().toString().equals(centre.toString())){
+                for (int i = 0; i < allCentreVaccines.size(); i++) {
+                    if (allCentreVaccines.get(i).getCentre().toString().equals(centre.toString())) {
                         int total = allCentreVaccines.get(i).getVacamount() + supply;
-                        allCentreVaccines.get(i).setVacamount(total); 
-                                                                     
-                    }                  
+                        allCentreVaccines.get(i).setVacamount(total);
+
+                    }
                 }
                 Committee.modifyVacSupply();
                 setLabelText();
                 ClearText();
                 DisplayTable();
 
-                    JOptionPane.showMessageDialog(rootPane, "Added successfully!");
-                    System.out.println("Added successfully!");
-                
+                JOptionPane.showMessageDialog(rootPane, "Added successfully!");
+
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "To update, please select Edit button!", "Fail to add", JOptionPane.WARNING_MESSAGE);
                 ClearText();

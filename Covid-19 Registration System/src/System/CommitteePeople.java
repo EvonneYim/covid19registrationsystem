@@ -270,6 +270,11 @@ public class CommitteePeople extends javax.swing.JFrame {
         jLabel11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         txtName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNameKeyTyped(evt);
+            }
+        });
 
         txtICPassport.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -461,7 +466,6 @@ public class CommitteePeople extends javax.swing.JFrame {
                             .addComponent(rbtnCitizen)
                             .addComponent(rbtnNCitizen)))
                     .addComponent(txtName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -810,6 +814,13 @@ public class CommitteePeople extends javax.swing.JFrame {
                         CommitteeAppointment ca = new CommitteeAppointment();
                         current = found;
                         
+                        for (int i = 0; i < allAppointments.size(); i++) {
+                            if (allAppointments.get(i).getPpl().getPeopleID().equals(current.getPeopleID())) {
+                                JOptionPane.showMessageDialog(rootPane, "This people had submitted the appointment request!", "Existing submission", JOptionPane.WARNING_MESSAGE);
+                                return;
+                            }
+                        }
+                        
                         Appointment a = new Appointment();
                         
                         ca.txtICPassport.setText(pplID);
@@ -868,6 +879,16 @@ public class CommitteePeople extends javax.swing.JFrame {
         ClearText();
         DisplayTable();
     }//GEN-LAST:event_btnResetActionPerformed
+
+    private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
+         char c = evt.getKeyChar();
+
+        if (Character.isAlphabetic(c) || Character.isWhitespace(c)|| Character.isISOControl(c)) {
+            txtName.setEditable(true);
+        } else{
+            txtName.setEditable(false);
+        }
+    }//GEN-LAST:event_txtNameKeyTyped
 
     /**
      * @param args the command line arguments
