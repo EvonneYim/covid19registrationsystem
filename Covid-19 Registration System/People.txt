@@ -7,3 +7,5 @@ q23333;Yuzuru Wendy;Tokyo, Japan;20;Male;0198988765;4455;Non-Citizen;
 010821101095;WoonKZ;Kajang, Selangor;33;Male;0122267321;kayzen0821;Citizen;
 010423141678;Jerry Tan;Selangor;40;Male;0129876574;12345;Citizen;
 1234567;Mr Kau;Bukit Jalil;37;Male;0174567654;12345;Citizen;
+060707123456;Malcolm Khoo;Kuala Lumpur;15;Male;0178899007;12345;Citizen;
+1234567890;Evonne Yim;Petaling Jaya, Selangor;20;Female;0178888888;8888;Citizen;

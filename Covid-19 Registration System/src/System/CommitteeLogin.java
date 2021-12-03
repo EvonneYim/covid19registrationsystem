@@ -8,6 +8,7 @@ public class CommitteeLogin extends javax.swing.JFrame {
 
     public CommitteeLogin() {
         initComponents();
+        setLocationRelativeTo(null);
         SystemDataIO.read();
     }
 

@@ -21,6 +21,7 @@ public class CommitteeManagement extends javax.swing.JFrame implements DisplayTa
 
     public CommitteeManagement() {
         initComponents();
+        setLocationRelativeTo(null);
         dtm = new DefaultTableModel(columnname, 0);
         tblCommitee.setModel(dtm);
 

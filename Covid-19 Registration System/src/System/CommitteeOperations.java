@@ -7,6 +7,7 @@ public class CommitteeOperations extends javax.swing.JFrame {
 
     public CommitteeOperations() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -60,7 +61,7 @@ public class CommitteeOperations extends javax.swing.JFrame {
         btnSummary.setBackground(new java.awt.Color(255, 255, 51));
         btnSummary.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnSummary.setForeground(new java.awt.Color(51, 51, 51));
-        btnSummary.setText("Summary Report");
+        btnSummary.setText("Statistical Report");
         btnSummary.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSummaryActionPerformed(evt);

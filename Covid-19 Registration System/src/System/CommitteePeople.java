@@ -30,6 +30,7 @@ public class CommitteePeople extends javax.swing.JFrame implements DisplayTablea
 
     public CommitteePeople() {
         initComponents();
+        setLocationRelativeTo(null);
 
         rbtnMale.setActionCommand("Male");
         rbtnFemale.setActionCommand("Female");

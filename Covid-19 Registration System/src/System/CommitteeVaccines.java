@@ -24,6 +24,7 @@ public class CommitteeVaccines extends javax.swing.JFrame implements DisplayTabl
 
     public CommitteeVaccines() {
         initComponents();
+        setLocationRelativeTo(null);
         dtm = new DefaultTableModel(columnname, 0);
         tblVacSupply.setModel(dtm);
         SystemDataIO.read();

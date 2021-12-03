@@ -70,10 +70,12 @@
                   <Component id="txticpassport" min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="txtpassword" alignment="1" pref="33" max="32767" attributes="0"/>
-                  <Component id="btnshow" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblpassword" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnshow" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblpassword" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">

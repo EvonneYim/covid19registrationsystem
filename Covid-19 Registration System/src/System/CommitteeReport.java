@@ -8,6 +8,7 @@ public class CommitteeReport extends javax.swing.JFrame {
 
     public CommitteeReport() {
         initComponents();
+        setLocationRelativeTo(null);
         Report r = new Report();
         txtReport.setText(r.getReport());
         txtReport.setEditable(false);

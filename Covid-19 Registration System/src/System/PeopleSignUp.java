@@ -14,6 +14,7 @@ public class PeopleSignUp extends javax.swing.JFrame {
 
     public PeopleSignUp() {
         initComponents();
+        setLocationRelativeTo(null);
 
         rbtnmale.setActionCommand("Male");
         rbtnfemale.setActionCommand("Female");
@@ -67,6 +68,7 @@ public class PeopleSignUp extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("People Sign Up");
 
         lblnationality.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblnationality.setText("Nationality:");
@@ -269,7 +271,6 @@ public class PeopleSignUp extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtmobileno, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblmobileno, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

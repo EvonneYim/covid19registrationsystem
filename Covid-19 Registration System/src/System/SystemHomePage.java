@@ -4,6 +4,7 @@ public class SystemHomePage extends javax.swing.JFrame {
 
     public SystemHomePage() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

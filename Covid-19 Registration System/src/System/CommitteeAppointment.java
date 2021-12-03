@@ -31,6 +31,7 @@ public class CommitteeAppointment extends javax.swing.JFrame implements DisplayT
 
     public CommitteeAppointment() {
         initComponents();
+        setLocationRelativeTo(null);
         rbtnAcc.setActionCommand("Accepted");
         rbtnRej.setActionCommand("Rejected");
         rbtnPending.setActionCommand("Pending");
