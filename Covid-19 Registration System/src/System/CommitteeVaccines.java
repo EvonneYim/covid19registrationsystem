@@ -488,7 +488,6 @@ public class CommitteeVaccines extends javax.swing.JFrame implements DisplayTabl
                 Vaccines v = new Vaccines(centre, supply);
                 SystemDataIO.allVaccines.add(v);
 
-                System.out.println(v.toString());
 
                 for (int i = 0; i < allCentreVaccines.size(); i++) {
                     if (allCentreVaccines.get(i).getCentre().toString().equals(centre.toString())) {

@@ -21,7 +21,7 @@ public class Report {
             this.place = place;
             this.total = 1;         //must be initiated as 1, cuz already got existing record
             
-            if(isComplete){
+            if(isComplete){         //Complete and incomplete appointments in each centre
                 complete = 1;
                 incomplete = 0;
             }else{
@@ -37,7 +37,7 @@ public class Report {
             
         }
         
-        public AppointmentCount(String place){
+        public AppointmentCount(String place){              
             this.place = place;
             this.total =0;
             this.complete =0;
@@ -221,8 +221,8 @@ public class Report {
           tot_citizen = "Total registered citizen: " + registered_citizen;
           tot_ncitizen = "Total registered non-citizen: " + registered_ncitizen;
                    
-          info = "Report generated on " + datestr + "\n\n"+ "**People**\n" + tot_ppl + "\n" + 
-          tot_male + "\n" + tot_female + "\n" + tot_citizen + "\n" + tot_ncitizen + "\n\n**Total appointments and vaccines supply of each centre**\n" + appDetails ;       
+          info = "Report generated on " + datestr + "\n\n"+ "**People**\n" + tot_ppl + "\n\n" + 
+          tot_male + "\n" + tot_female + "\n\n" + tot_citizen + "\n" + tot_ncitizen + "\n\n**Total appointments and vaccines supply of each centre**\n" + appDetails ;       
           return info;
     }
 }

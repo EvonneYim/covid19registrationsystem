@@ -137,10 +137,10 @@ public class CommitteeAppointment extends javax.swing.JFrame implements DisplayT
         jLabel3.setText("Full Name");
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        txtName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtName.setEnabled(false);
 
-        txtICPassport.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtICPassport.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtICPassport.setEnabled(false);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -238,6 +238,7 @@ public class CommitteeAppointment extends javax.swing.JFrame implements DisplayT
         jLabel7.setText("Dose");
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        spinDose.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         spinDose.setEnabled(false);
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -479,9 +480,9 @@ public class CommitteeAppointment extends javax.swing.JFrame implements DisplayT
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
 
-        if (txtICPassport.getText().isEmpty() || txtName.getText().isEmpty() || lblAppID.getText().isEmpty() || cboAppTime.getSelectedItem().equals("-")
-                || cboCentre.getSelectedItem().equals("notset") || APP_STATUS.getSelection().getActionCommand().isEmpty()
-                || VAC_STATUS.getSelection().getActionCommand().isEmpty() || spinDose.getValue().toString().equals("0")) {
+        if (txtICPassport.getText().isEmpty() || txtName.getText().isEmpty() || lblAppID.getText().isEmpty() || cboAppTime.getModel().getSelectedItem().equals("-")
+                || cboCentre.getModel().getSelectedItem().toString().equals("notset") || APP_STATUS.getSelection().getActionCommand().isEmpty()
+                || VAC_STATUS.getSelection().getActionCommand().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Please ensure all information are entered and valid.", "Incomplete details", JOptionPane.WARNING_MESSAGE);
         } else {
             Calendar c = Calendar.getInstance();
@@ -557,9 +558,10 @@ public class CommitteeAppointment extends javax.swing.JFrame implements DisplayT
                         current.setVaccinationStatus(vacStatus);
                         current.setAppointmentStatus(appStatus);
 
+                        
+                        
                         Calendar cd = Calendar.getInstance();
                         boolean isFound = false;
-
                         for (int i = 0; i < allAppointments.size(); i++) {
                             if (allAppointments.get(i).getPpl().getPeopleID().equals(pplID)
                                     && !allAppointments.get(i).getAppointmentID().equals(appID)) {
@@ -569,7 +571,7 @@ public class CommitteeAppointment extends javax.swing.JFrame implements DisplayT
                         }
                         //sout tab = system.out.println
 
-                        cd.add(Calendar.DATE, 7);
+                        cd.add(Calendar.DATE, 6);
                         Date defaultdate1 = cd.getTime();
 
                         if (appDate.before(defaultdate1) && isFound) {
@@ -580,13 +582,13 @@ public class CommitteeAppointment extends javax.swing.JFrame implements DisplayT
                         if (current.getDose() == 1 && vacStatus.equals("Completed") && appStatus.equals("Accepted")) {
 
                             cd.setTime(appDate);
-                            cd.add(Calendar.DATE, 7);
+                            cd.add(Calendar.DATE, 6);
                             String datestr1 = sdf.format(cd.getTime());
                             String apptime = "-", appstatus = "Pending", vacstatus = "Incomplete";
                             int dose = 2;
 
-                            People ppl = new People(pplID, name); //Polymorphism
-                            Appointment b = new Appointment();    //Modularity
+                            People ppl = new People(pplID, name);           //Polymorphism in People
+                            Appointment b = new Appointment();              //Polymorphism in Appointment
                             Appointment a = new Appointment(ppl, datestr1, apptime, dose, Centre.notset, appstatus, vacstatus, b.AutoNumber());
 
                             allAppointments.add(a);

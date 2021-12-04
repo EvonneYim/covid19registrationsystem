@@ -20,7 +20,7 @@ public class Appointment implements AutoNumber{
     private Centre place;
 
     public Appointment(People ppl, String appointmentDate, String appointmentTime, int dose,
-            Centre place, String appointmentStatus, String vaccinationStatus) {    //this want is without app_ID
+            Centre place, String appointmentStatus, String vaccinationStatus) {    //this is without app_ID
         this.appointmentID = AutoNumber();
         this.appointmentDate = appointmentDate;
         this.appointmentTime = appointmentTime;
@@ -33,7 +33,7 @@ public class Appointment implements AutoNumber{
     }
 
     public Appointment(People ppl, String appointmentDate, String appointmentTime, int dose,
-            Centre place, String appointmentStatus, String vaccinationStatus, String appointmentID) {        //poly exits here
+            Centre place, String appointmentStatus, String vaccinationStatus, String appointmentID) {        
         this.appointmentID = appointmentID;
         this.appointmentDate = appointmentDate;
         this.appointmentTime = appointmentTime;

@@ -331,13 +331,10 @@ public class CommitteeManagement extends javax.swing.JFrame implements DisplayTa
                     SystemDataIO.allCommitee.add(c);
 
                     Committee.CmodifyDetails();
-                    System.out.println(c.toString());
-
                     ClearText();
                     DisplayTable();
 
                     JOptionPane.showMessageDialog(rootPane, "Added successfully!");
-                    System.out.println("Added successfully!");
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
@@ -371,12 +368,10 @@ public class CommitteeManagement extends javax.swing.JFrame implements DisplayTa
                     }
                 }
                 if (found) {
-
                     current.setUsername(username);
                     current.setPassword(password);
 
                     Committee.CmodifyDetails();
-
                     ClearText();
                     DisplayTable();
 

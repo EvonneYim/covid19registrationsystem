@@ -55,7 +55,7 @@ public class SystemDataIO {
                 String peopleID = null;
                 String peopleName = null;
                 String address = null;
-                int age = 0;           //here got prob
+                int age = 0;           
                 String gender = null;
                 String mobileNo = null;
                 String password = null;
@@ -107,9 +107,8 @@ public class SystemDataIO {
             while (s4.hasNext()) {
                 String line = s4.nextLine();
                 String[] wordsinLine;
-
+                
                 if (!(line.isEmpty())) {
-
                     wordsinLine = line.split(";");
                     String SupplyId = wordsinLine[0];
                     Centre place = Centre.valueOf(wordsinLine[1]);
@@ -135,7 +134,7 @@ public class SystemDataIO {
 
         } catch (Exception e) {
             System.out.println("Error in read!");
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 
@@ -150,7 +149,7 @@ public class SystemDataIO {
             }
             p1.close();
 
-            PrintWriter p2 = new PrintWriter(new FileOutputStream("People.txt", false));
+            PrintWriter p2 = new PrintWriter(new FileOutputStream("People.txt", false));        //overwrites insteaf of append
             for (int i = 0; i < allPeople.size(); i++) {
                 p2.print(allPeople.get(i).getPeopleID() + ";");
                 p2.print(allPeople.get(i).getPeopleName() + ";");
@@ -188,8 +187,7 @@ public class SystemDataIO {
             }
             p4.close();
 
-            PrintWriter p5 = new PrintWriter("CentreVaccines.txt");
-            
+            PrintWriter p5 = new PrintWriter("CentreVaccines.txt");         
             for (int i = 0; i < allCentreVaccines.size(); i++) {
                 String l = allCentreVaccines.get(i).getCentre().toString();
                 String va = allCentreVaccines.get(i).getVacamount() + "";

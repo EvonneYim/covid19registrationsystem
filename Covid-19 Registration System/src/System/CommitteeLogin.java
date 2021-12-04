@@ -199,7 +199,7 @@ public class CommitteeLogin extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "Fail to login!", "Error", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+//            e.printStackTrace();
         }
 
 

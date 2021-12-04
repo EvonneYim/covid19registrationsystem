@@ -25,7 +25,7 @@ public class People {
         this.nationality = nationality;
     }
 
-    public People(String peopleID, String peopleName) { //Polymorphism
+    public People(String peopleID, String peopleName) { 
         this.peopleID = peopleID;
         this.peopleName = peopleName;
     }

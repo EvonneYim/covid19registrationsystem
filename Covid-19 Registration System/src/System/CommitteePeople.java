@@ -520,18 +520,15 @@ public class CommitteePeople extends javax.swing.JFrame implements DisplayTablea
                 } else {
 
                     People p = new People(pplID, name, address, age, gender, mobile, password, nationality);
-                    System.out.println(allPeople.size());
+                    
                     allPeople.add(p);
-
-                    System.out.println(allPeople.size());
+                   
                     Committee.PmodifyDetails();
-
                     ClearText();
-
                     DisplayTable();
 
                     JOptionPane.showMessageDialog(rootPane, "Added successfully!");
-                    System.out.println(allPeople.size());
+                    
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
@@ -558,7 +555,7 @@ public class CommitteePeople extends javax.swing.JFrame implements DisplayTablea
                 nationality = NATIONALITY.getSelection().getActionCommand();
                 People current = null;
                 boolean found = false;
-                System.out.println(allPeople.size());
+                
                 for (int i = 0; i < allPeople.size(); i++) {
                     People a = allPeople.get(i);
                     if (pplID.equals(a.getPeopleID())) {
@@ -629,7 +626,6 @@ public class CommitteePeople extends javax.swing.JFrame implements DisplayTablea
 
                     if (found) {
                         Committee.PmodifyDetails();
-
                         ClearText();
                         DisplayTable();
 
@@ -752,7 +748,7 @@ public class CommitteePeople extends javax.swing.JFrame implements DisplayTablea
                 Citizen c = new Citizen(pplID, name, address, age, gender, mobile, password, nationality);
                 c.setIcNumber(pplID);
                 c.setPassword(password);
-                System.out.println(c.getIcNumber() + c.getPassword());
+                
                 JOptionPane.showMessageDialog(rootPane, "The IC entered will be your future login access:"
                         + "\n" + "Username: " + c.getIcNumber() + "\n" + "Passport: " + c.getPassword(), "IC as People Account ID", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -772,7 +768,7 @@ public class CommitteePeople extends javax.swing.JFrame implements DisplayTablea
                 NonCitizen nc = new NonCitizen(pplID, name, address, age, gender, mobile, password, nationality);
                 nc.setPassportNumber(pplID);
                 nc.setPassword(password);
-                System.out.println(nc.getPassportNumber() + nc.getPassword());
+                
                 JOptionPane.showMessageDialog(rootPane, "The Passport entered will be your future login access:"
                         + "\n" + "Username: " + nc.getPassportNumber() + "\n" + "Passport: " + nc.getPassword(), "Passport as People Account ID", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -812,11 +808,11 @@ public class CommitteePeople extends javax.swing.JFrame implements DisplayTablea
                             }
                         }
 
-                        Appointment a = new Appointment();
+                        Appointment a = new Appointment();          //to call Auto Number method
 
                         ca.txtICPassport.setText(pplID);
                         ca.txtName.setText(name);
-                        ca.lblAppID.setText(a.AutoNumber());
+                        ca.lblAppID.setText(a.AutoNumber());        //Auto Number from Appointment class
 
                         Calendar c = Calendar.getInstance();
                         c.add(Calendar.DATE, 7);
@@ -848,7 +844,7 @@ public class CommitteePeople extends javax.swing.JFrame implements DisplayTablea
                         allAppointments.add(a);
 
                         Committee.modifyAppointment();
-//                        
+                        
                         this.setVisible(false);
                         ca.setVisible(true);
 
@@ -859,7 +855,7 @@ public class CommitteePeople extends javax.swing.JFrame implements DisplayTablea
                     }
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(rootPane, "Fail to access!", "Error", JOptionPane.WARNING_MESSAGE);
-                    e.printStackTrace();
+//                    e.printStackTrace();
                 }
             }
         }

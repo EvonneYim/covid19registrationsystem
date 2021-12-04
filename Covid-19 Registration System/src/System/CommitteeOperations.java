@@ -1,6 +1,5 @@
 package System;
 
-import SystemClass.Report;
 import javax.swing.JOptionPane;
 
 public class CommitteeOperations extends javax.swing.JFrame {
